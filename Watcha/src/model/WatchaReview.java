@@ -25,7 +25,10 @@ public class WatchaReview {
 	}
 	
 	public WatchaReview(int reviewId, Member member, int star, String review) {
-		
+		this.reviewId = reviewId;
+		this.member = member;
+		this.star = star;
+		this.review = review;
 	}
 	
 	
