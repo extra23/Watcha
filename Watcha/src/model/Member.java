@@ -23,6 +23,7 @@ public class Member {
 	
 	// 생성자 (2) : 회원 가입 입력 시 사용할 생성자
 	public Member(String userId, String password, String memberName) {
+		super();
 		this.userId = userId;
 		this.password = password;
 		this.memberName = memberName;
