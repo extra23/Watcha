@@ -11,5 +11,15 @@
 		<param-name>poolConfigFile</param-name>
 		<param-value>/WEB-INF/dbConfig/db.properties</param-value>
 	</context-param>
+	
+	<!-- 서블릿 등록 -->
+	<servlet>
+		<servlet-name>controller</servlet-name>	
+		<servlet-class>common.controller.Controller</servlet-class>
+		<init-param>
+			<param-name>handlerConfigFile</param-name>
+			<param-value>/WEB-INF/handlerConfig/commandHandler.properties</param-value>
+		</init-param>
+	</servlet>
 
 </web-app>

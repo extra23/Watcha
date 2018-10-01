@@ -1,4 +1,4 @@
-package handler.review;
+package common.handler;
 
 public interface CommonHandler {
 
