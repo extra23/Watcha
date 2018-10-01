@@ -8,12 +8,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.handler.CommandHandler;
+import common.handler.NullHandler;
 
 
 
@@ -65,10 +67,10 @@ public class Controller extends HttpServlet {
 		process(req, resp);
 	}
 
-	private void process(HttpServletRequest req, HttpServletResponse resp) {
+	private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		// URI로부터 command 뽑아오기
 		String command = req.getRequestURI();
-		
 		if(command.indexOf(req.getContextPath()) == 0) {
 			command = command.substring(req.getContextPath().length());
 		}
@@ -76,6 +78,20 @@ public class Controller extends HttpServlet {
 		CommandHandler handler = null;
 		if(command == null) {
 			handler = new NullHandler();
+		}else {
+			handler = commandHandlerMap.get(command);
+		}
+		
+		String viewPage = null;
+		try {
+			viewPage = handler.process(req, resp);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(viewPage != null) {
+			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+			dispatcher.forward(req, resp);
 		}
 		
 	}
