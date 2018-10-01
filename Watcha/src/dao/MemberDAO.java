@@ -9,7 +9,7 @@ import model.Member;
 
 
 public class MemberDAO {
-	// 싱글톤
+	// 싱글톤sd
 	private static MemberDAO instance = new MemberDAO( );
 	private MemberDAO( ) { }
 	public static MemberDAO getInstance( ) {
