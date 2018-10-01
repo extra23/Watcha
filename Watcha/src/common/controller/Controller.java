@@ -3,14 +3,20 @@ package common.controller;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import com.sun.corba.se.impl.activation.CommandHandler;
+import common.handler.CommandHandler;
+
+
+
 
 public class Controller extends HttpServlet {
 	
@@ -24,15 +30,57 @@ public class Controller extends HttpServlet {
 		Properties properties = new Properties();
 		
 		try(FileReader fR = new FileReader(handlerConfigFilePath);){
-			
+			properties.load(fR);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		// Properties 객체에 담긴 정보들을 commandHandlerMap에 객체로 만들어서 담아냄
+		for(Object key : properties.keySet()) {
+			
+			String command = (String)key;
+			String handlerClassName = properties.getProperty(command);
+			
+			try {
+				Class handlerClass = Class.forName(handlerClassName);
+				CommandHandler handlerInstance = (CommandHandler)handlerClass.getDeclaredConstructor().newInstance();
+				commandHandlerMap.put(command, handlerInstance);
+			}catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
 	}
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		process(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		process(req, resp);
+	}
+
+	private void process(HttpServletRequest req, HttpServletResponse resp) {
+
+		String command = req.getRequestURI();
+		
+		if(command.indexOf(req.getContextPath()) == 0) {
+			command = command.substring(req.getContextPath().length());
+		}
+		
+		CommandHandler handler = null;
+		if(command == null) {
+			handler = new NullHandler();
+		}
+		
+	}
+	
+	
+	
 	
 }
