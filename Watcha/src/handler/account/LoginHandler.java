@@ -61,8 +61,9 @@ public class LoginHandler implements CommandHandler{
 			return null;
 		}catch (LoginFailException e) {
 			// 3-2. 인증에 실패하면 errors 객체에 실패 정보를 받고 login.jsp 화면으로 다시 보냄
+			e.printStackTrace();
 			errors.put("idOrPasswordNotMatch", true);
-			return null;
+			return FORM_VIEW;
 		}
 		
 	}
