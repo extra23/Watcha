@@ -23,7 +23,7 @@ public class LoginService {
 			
 			conn.setAutoCommit(false);
 			
-				Member member = memberDAO.selectByUserId(conn, userId);
+				Member member = memberDAO.selectMember(conn, userId);
 				
 				if(member == null) {
 					
@@ -32,6 +32,8 @@ public class LoginService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		return null;
 		
 	}
 

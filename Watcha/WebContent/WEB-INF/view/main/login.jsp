@@ -6,7 +6,7 @@
 	<title>Insert title here</title>
 	<style>
 	
-		body {background: url("background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
+		body {background: url("images/background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
 		
 		#logo {text-align: center; margin-top: 40px;}
 		#logo img {border-radius: 100%; margin: 10px; width: 300px;}
@@ -21,7 +21,7 @@
 <body>
 	
 	<div id="logo">
-		<img src="overaction.gif" title="못찾겟어... 배고파... 맛있는거어어어어어어어어어!!!!!">
+		<img src="images/overaction.gif" title="못찾겟어... 배고파... 맛있는거어어어어어어어어어!!!!!">
 	</div>
 	
 	<div id="login">

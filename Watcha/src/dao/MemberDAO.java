@@ -18,13 +18,33 @@ public class MemberDAO {
 	}
 	
 	// 회원 가입 시 필요한 쿼리 메소드 작성 (아이디 중복 체크 시 사용하는 query문)
-	public Member selectByUserId(Connection conn, String userId) throws SQLException{
+	public Member selectMember(Connection conn, String userId) throws SQLException{
 		
 		String sql = "select * from member where user_id = ? ";
 		
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			
 			pst.setString(1, userId);
+			Member member = null;
+			
+			try(ResultSet rs = pst.executeQuery()){
+				if(rs.next()) {
+					member = new Member(rs.getInt("member_id"), rs.getString("user_id"), rs.getString("member_name"), rs.getString("password"), rs.getInt("member_rate"), rs.getTimestamp("regDate").toLocalDateTime());
+				}
+			}
+			
+			return member;
+		}
+		
+	}
+	
+	public Member selectMember(Connection conn, int memberId) throws SQLException{
+		
+		String sql = "select * from member where user_id = ? ";
+		
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			
+			pst.setInt(1, memberId);
 			Member member = null;
 			
 			try(ResultSet rs = pst.executeQuery()){

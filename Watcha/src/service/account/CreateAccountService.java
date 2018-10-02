@@ -20,14 +20,12 @@ public class CreateAccountService {
 	// 회원가입 로직
 	public void create(CreateAccountRequest createReq) {
 		
-		System.out.println("create Account SErvice");
-		
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		
 		try(Connection conn = ConnectionProvider.getConnection()){
 			conn.setAutoCommit(false);
 			try {
-				Member member = memberDAO.selectByUserId(conn, createReq.getUserId());
+				Member member = memberDAO.selectMember(conn, createReq.getUserId());
 				if(member != null) {
 					 conn.rollback();
 					 throw new DuplicateException("아이디 중복");

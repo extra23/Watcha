@@ -32,7 +32,7 @@ public class ModifyAccountService {
 				conn.setAutoCommit(false);
 				// user객체를 받아오고
 
-				Member member = memberDao.selectByUserId(conn, userId);
+				Member member = memberDao.selectMember(conn, userId);
 
 				// 없는 유저라면
 				if (member == null) {

@@ -7,7 +7,7 @@
 	<title>Insert title here</title>
 	<style>
 
-		body {background: url("background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
+		body {background: url("images/background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
  
  		#famousLineMovieTitle {float: left; color: white; font-family: a스케치고딕; position: fixed; top: 200px; left: 100px; text-align: center;}
  		#famousLine {font-size: 50px;}
