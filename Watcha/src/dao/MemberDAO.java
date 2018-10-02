@@ -17,7 +17,7 @@ public class MemberDAO {
 		return instance;
 	}
 	
-	// 회원가입시 필요한 쿼리 메소드 작성 (아이디 중복 체크 시 사용하는 query문)
+	// 회원 가입 시 필요한 쿼리 메소드 작성 (아이디 중복 체크 시 사용하는 query문)
 	public Member selectByUserId(Connection conn, String userId) throws SQLException{
 		
 		String sql = "select * from member where user_id = ? ";
@@ -57,7 +57,6 @@ public class MemberDAO {
 			pst.setString(2, member.getPassword());
 			pst.setInt(3, member.getMemberId());
 			pst.executeUpdate();
-			
 		}
 	}
 	

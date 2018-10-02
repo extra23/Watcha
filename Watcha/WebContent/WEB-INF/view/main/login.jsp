@@ -7,20 +7,24 @@
 	<style>
 	
 		body {background: url("background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
-
-		div {text-align: center;}
 		
+		#logo {text-align: center; margin-top: 40px;}
+		#logo img {border-radius: 100%; margin: 10px; width: 300px;}
 		
+		#login * {font-family: a찐빵M; width: 200px; margin: auto;}
+		#login {text-align: center;}
+		#login input {height: 25px; width: 100%; border-radius: 3px; border-width: 0px; padding: 5px; margin: 8px;}
+		#createSubmit {background-color: rgb(65, 65, 65); color: white;}
 	
 	</style>
 </head>
 <body>
 	
-	<div>
+	<div id="logo">
 		<img src="overaction.gif" title="못찾겟어... 배고파... 맛있는거어어어어어어어어어!!!!!">
 	</div>
 	
-	<div>
+	<div id="login">
 	
 		<form action="login" method="post">
 	
@@ -33,11 +37,11 @@
 			</p>
 			
 			<p>
-				<input type="submit" value="LOG IN">
+				<input type="submit" value="LOG IN" id="loginSubmit">
 			</p>
 			
 			<p>
-				<input type="submit" value="Create a Account" formaction="join" formmethod="get">
+				<input type="submit" value="Create a Account" formaction="join" formmethod="get" id="createSubmit">
 			</p>
 	
 		</form>
