@@ -20,7 +20,10 @@
 			바꿀 비밀번호 <input type="password" name="newPwd" placeholder="새로운 비밀번호">
 			<c:if test="${errors.newPwd }">새로운 비밀번호를 입력해 주세요</c:if>
 		</p>
-		<input type="submit" value="비밀번호 변경">
+		<p>
+			이름 <input type="text" name="memberName" value="${authUser.memberName}">
+		</p>
+		<input type="submit" value="비밀번호/이름 변경">
 	</form>
 </body>
 </html>

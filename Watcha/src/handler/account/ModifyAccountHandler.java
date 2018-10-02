@@ -16,11 +16,11 @@ import service.account.ModifyAccountService;
 public class ModifyAccountHandler implements CommandHandler{
 
 	//수정할 페이지 생성
-	private static final String FORM_VIEW = "/WEB-INF/view/modifyForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/member/modifyForm.jsp";
 
 	
 	//입력받은 데이터(비밀번호)가 문제가 있는지 무결성 체크 후 비번화면으로 돌려보내거나
-	//정보 수정 후 성공화면으로 보낸다.
+	//정보 수정 후 성공화면으로 보낸다. + 수정한 이름을 성공화면으로 보낸다.
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("GET")) {
@@ -49,6 +49,7 @@ public class ModifyAccountHandler implements CommandHandler{
 		
 		String oldPwd = req.getParameter("oldPwd");
 		String newPwd = req.getParameter("newPwd");
+		String memberName = req.getParameter("memberName");
 		
 		if(oldPwd == null || oldPwd.isEmpty()) {
 			errors.put("oldPwd", true);
@@ -66,7 +67,8 @@ public class ModifyAccountHandler implements CommandHandler{
 		
 		try {
 			ModifyAccountService modifyAccountService = ModifyAccountService.getInstance();
-			modifyAccountService.changePassword(authUser.getUserId(), oldPwd, newPwd);
+			modifyAccountService.changePassword(authUser.getUserId(), oldPwd, newPwd,memberName);
+			req.setAttribute("authUser", authUser);
 			return "/WEB-INF/view/member/member_account.jsp";
 		}catch(InvalidPasswordException e) {
 			errors.put("wrongOldPwd", true);
