@@ -28,6 +28,7 @@
 		<url-pattern>/login</url-pattern>
 		<url-pattern>/join</url-pattern>
 		<url-pattern>/modify</url-pattern>
+		<url-pattern>/movieList</url-pattern>
 	</servlet-mapping>
 	
 	<!-- CharacterEncodingFilter 등록 및 맵핑 -->
