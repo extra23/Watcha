@@ -22,10 +22,10 @@ public class Member {
 	}
 	
 	// 생성자 (2) : 회원 가입 입력 시 사용할 생성자
-	public Member(String userId, String password, String memberName) {
+	public Member(String userId, String memberName, String password) {
 		this.userId = userId;
-		this.password = password;
 		this.memberName = memberName;
+		this.password = password;
 	}
 	
 	// 생성자 (3) : 작성자로써의 생성자

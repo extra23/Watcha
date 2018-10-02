@@ -1,6 +1,7 @@
 package service.account;
 
 public class AuthUser {
+	
 	private  int memberId;
 	private String userId;
 	private String memberName;

@@ -15,9 +15,7 @@
 </head>
 <body>
 
-	
-
-	회원가입에 성공하였습니다.
+	<jsp:include page="/WEB-INF/view/layout/top.jsp"></jsp:include>
 
 </body>
 </html>

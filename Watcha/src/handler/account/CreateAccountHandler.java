@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import Exception.DuplicateException;
 import common.handler.CommandHandler;
+import service.account.AuthUser;
 import service.account.CreateAccountRequest;
 import service.account.CreateAccountService;
+import service.account.LoginService;
 
 public class CreateAccountHandler implements CommandHandler{
 
@@ -56,13 +58,21 @@ public class CreateAccountHandler implements CommandHandler{
 		}
 		
 		// 잘 입력되면 CreateAccountService 회원가입 로직 수행
-		CreateAccountService createAccountService = CreateAccountService.getInstance( );
+		CreateAccountService createAccountService = CreateAccountService.getInstance();
+		LoginService loginService = LoginService.getInstance();
 		try {
+			
 			// 아이디가 중복일 때 예외를 여기로 던져줌
 			createAccountService.create(createAccountRequest);
+			
+			// 로그인 Service 사용
+			AuthUser authUser = loginService.login(createAccountRequest.getUserId(), createAccountRequest.getPassword());
+			req.getSession().setAttribute("authUser", authUser);
+			
 			// movie_list로 화면 반환
 			resp.sendRedirect(req.getContextPath() + "/movieList");
 			return null;
+			
 		}catch(DuplicateException e) {
 			// 아이디가 중복일 때 service에서 발생시킨 예외를 받아서 처리해줌.
 			errors.put("duplicateId", true);
