@@ -20,6 +20,7 @@ public class DeleteAccountHandler implements CommandHandler{
 		}else {
 			resp.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			return null;
+			//dk
 		}
 	}
 
