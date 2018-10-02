@@ -1,6 +1,7 @@
 package model;
 
 public class MovieGenre {
+	
 	private int genreId;
 	private String genreName;
 	

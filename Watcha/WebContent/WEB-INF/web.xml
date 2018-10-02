@@ -9,17 +9,34 @@
 	<!-- 어플리케이션 컨텍스트에서 사용할 value / 공통적으로 접근이 가능함 -->
 	<context-param>
 		<param-name>poolConfigFile</param-name>
-		<param-value>/WEB-INF/config/dbConfig/db.properties</param-value>
+		<param-value>/WEB-INF/dbConfig/db.properties</param-value>
 	</context-param>
 	
-	<!-- 서블릿 등록 -->
+	<!-- 서블릿 등록 및 맵핑 -->
 	<servlet>
 		<servlet-name>controller</servlet-name>	
 		<servlet-class>common.controller.Controller</servlet-class>
 		<init-param>
 			<param-name>handlerConfigFile</param-name>
-			<param-value>/WEB-INF/config/handlerConfig/commandHandler.properties</param-value>
+			<param-value>/WEB-INF/handlerConfig/commandHandler.properties</param-value>
 		</init-param>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>controller</servlet-name>
+		<url-pattern>/join</url-pattern>
+	</servlet-mapping>
+	
+	<!-- CharacterEncodingFilter 등록 및 맵핑 -->
+	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>filter.CharacterEncodingFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 </web-app>

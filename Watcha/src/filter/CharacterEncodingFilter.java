@@ -28,7 +28,6 @@ public class CharacterEncodingFilter implements Filter {
 		if(encoding == null) {
 			encoding = "utf-8";
 		}
-
 	}
 	
 	@Override

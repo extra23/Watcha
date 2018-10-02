@@ -5,13 +5,12 @@ import java.time.LocalDateTime;
 
 // 폼에서 받은 데이터를 담고 무결성 체크하는 클래스
 public class CreateAccountRequest {
+	
 	// 폼에서 입력되는 데이터
 	private String userId;
 	private String memberName;
 	private String password;
 	private String confirmPassword;
-	private int memberRate;
-	private LocalDateTime regDate;
 
 	public String getUserId() {
 		return userId;
@@ -37,28 +36,13 @@ public class CreateAccountRequest {
 		this.password = password;
 	}
 
-	public int getMemberRate() {
-		return memberRate;
-	}
-
-	public void setMemberRate(int memberRate) {
-		this.memberRate = memberRate;
-	}
-
-	public LocalDateTime getRegDate() {
-		return regDate;
-	}
-
-	public void setRegDate(LocalDateTime regDate) {
-		this.regDate = regDate;
-	}
 	public String getConfirmPassword() {
 		return confirmPassword;
 	}
+	
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
-	
 	
 	// 패스워드가 같은지 확인하는 메소드
 	public boolean isEqPassword() {
@@ -88,4 +72,5 @@ public class CreateAccountRequest {
 			}
 		}
 	}
+	
 }

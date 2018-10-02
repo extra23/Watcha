@@ -68,6 +68,7 @@ public class DBCPInitListener implements ServletContextListener {
 	private void initConnectionPool(Properties properties) {
 		
 		try {
+			
 			// 1. 커넥션 풀이 새로운 커넥션을 생성할 때 사용할 커넥션 팩토리 생성 (DB 접속 정보를 인자로 넣고 커넥션을 만들어 주는 팩토리 객체를 생성)
 			ConnectionFactory connFactory = new DriverManagerConnectionFactory(properties.getProperty("jdbcURI"), properties.getProperty("dbUser"), properties.getProperty("dbPwd"));
 					
@@ -75,7 +76,7 @@ public class DBCPInitListener implements ServletContextListener {
 			PoolableConnectionFactory poolableConnectionFactory = new PoolableConnectionFactory(connFactory, null);
 					
 			// 3. 커넥션들이 유효한지 확인하기 위한 작업 (커넥션이 유효한지 체크하기 위한 쿼리를 지정)
-			poolableConnectionFactory.setValidationQuery(properties.getProperty("validationQuery", "select 1"));	// prop.getProperty(A, B); -> A : 파일에 정의되어 있는 값, B: 없을 시 기본값으로 해줄 값 (default)
+			poolableConnectionFactory.setValidationQuery(properties.getProperty("validationQuery", "select 1"));	// properties.getProperty(A, B); -> A : 파일에 정의되어 있는 값, B: 없을 시 기본값으로 해줄 값 (default)
 				
 			// 4. 커넥션 풀의 설정 정보를 담을 변수 생성 (커넥션 풀의 설정 정보를 다루는 객체를 생성하고 설정 정보 셋팅)
 			GenericObjectPoolConfig poolConfig = new GenericObjectPoolConfig<>();
@@ -92,25 +93,23 @@ public class DBCPInitListener implements ServletContextListener {
 				// 4-4. 커넥션 풀의 설정정보 설정 (커넥션 최대 갯수 : 커넥션 자체의 총 갯수, 풀 안에 있든 사용 중이든 상관없이 총 갯수)
 				poolConfig.setMaxTotal(Integer.parseInt(properties.getProperty("maxTotal", "50")));
 						
-				// 5. 커넥션 풀 생성 시 팩토리와 커넥션 설정을 받음 (커넥션 풀 객체 생성)
-				GenericObjectPool<PoolableConnection> connectionPool = new GenericObjectPool<>(poolableConnectionFactory, poolConfig);
+			// 5. 커넥션 풀 생성 시 팩토리와 커넥션 설정을 받음 (커넥션 풀 객체 생성)
+			GenericObjectPool<PoolableConnection> connectionPool = new GenericObjectPool<>(poolableConnectionFactory, poolConfig);
 					
-				// 6. poolableConnectionFactory에 생성한 커넥션 풀을 연결
-				poolableConnectionFactory.setPool(connectionPool);
+			// 6. poolableConnectionFactory에 생성한 커넥션 풀을 연결
+			poolableConnectionFactory.setPool(connectionPool);
 
-				// 7. 커넥션 풀을 제공하는 JDBC 드라이버 등록 (풀링 드라이버 로드)
-				Class.forName(properties.getProperty("poolingDriver"));
+			// 7. 커넥션 풀을 제공하는 JDBC 드라이버 등록 (풀링 드라이버 로드)
+			Class.forName(properties.getProperty("poolingDriver"));
 					
-				// 8. 커넥션 풀 드라이버에 생성한 커넥션 풀을 등록 (생성한 커넥션 풀을 커넥션 풀 드라이버에 등록)
-				PoolingDriver driver = (PoolingDriver)DriverManager.getDriver("jdbc:apache:commons:dbcp:");
-				driver.registerPool(properties.getProperty("poolName"), connectionPool);
+			// 8. 커넥션 풀 드라이버에 생성한 커넥션 풀을 등록 (생성한 커넥션 풀을 커넥션 풀 드라이버에 등록)
+			PoolingDriver driver = (PoolingDriver)DriverManager.getDriver("jdbc:apache:commons:dbcp:");
+			driver.registerPool(properties.getProperty("poolName"), connectionPool);
 
-			}catch(Exception e) {
-				throw new RuntimeException(e);
-			}
+		}catch(Exception e) {
+			throw new RuntimeException(e);
+		}
 		
 	}
-
-
 
 }

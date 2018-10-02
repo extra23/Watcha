@@ -13,7 +13,7 @@ import service.account.CreateAccountService;
 
 public class CreateAccountHandler implements CommandHandler{
 
-	private static final String FORM_VIEW = "/WEB-INF/view/member/member_account.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/main/join.jsp";
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -34,8 +34,9 @@ public class CreateAccountHandler implements CommandHandler{
 	// 사용자로부터 회원가입 데이터를 입력받아
 	// submit 버튼을 클릭해서 데이타가 넘어왔을 때 실행하는 메소드 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) {
+		
 		// 파라미터를 통해서 입력받은 데이터를 CreateAccountRequest 객체에 담음.
-		CreateAccountRequest createAccountRequest = new CreateAccountRequest( );
+		CreateAccountRequest createAccountRequest = new CreateAccountRequest();
 		createAccountRequest.setUserId(req.getParameter("userId"));
 		createAccountRequest.setMemberName(req.getParameter("memberName"));
 		createAccountRequest.setPassword(req.getParameter("password"));
@@ -59,12 +60,13 @@ public class CreateAccountHandler implements CommandHandler{
 			// 아이디가 중복일 때 예외를 여기로 던져줌
 			createAccountService.create(createAccountRequest);
 			// movie_list로 화면 반환
-			return "/WEB-INF/view/movie_list.jsp";
+			return "/WEB-INF/view/movie/movie_list.jsp";
 		}catch(DuplicateException e) {
 			// 아이디가 중복일 때 service에서 발생시킨 예외를 받아서 처리해줌.
 			errors.put("duplicateId", true);
 			return FORM_VIEW;
 		}
+		
 	}
 	
 	
