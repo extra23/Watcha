@@ -80,4 +80,13 @@ public class MemberDAO {
 		}
 	}
 	
+	//사용자 삭제
+	public int delete(Connection conn, int memberId) throws SQLException {
+		String sql = "delete from member where memberId =?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, memberId);
+			return pst.executeUpdate();
+		}
+	}
+	
 }
