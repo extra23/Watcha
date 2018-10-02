@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class WatchReviewDAO {
 	
 	//싱글톤
-	private WatchReviewDAO instance = new WatchReviewDAO();
-	public WatchReviewDAO getInstance() {
+	private static WatchReviewDAO instance = new WatchReviewDAO();
+	public  static WatchReviewDAO getInstance() {
 		return instance;
 	}
 	private WatchReviewDAO () {}
