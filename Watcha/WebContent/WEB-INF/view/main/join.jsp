@@ -7,19 +7,25 @@
 	<title>Insert title here</title>
 	<style>
 
-		* {font-family: a찐빵M;}
-
 		body {background: url("background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
  
-		#join {background-color: rgb(240, 240, 240, 0.6); width: calc(100% - 75%); text-align: center; border-radius: 15px; border: 1px solid lightgray; padding: 20px; position: relative; left: calc(100% - 35%); top: 90px;}
-	 	#join input {height: 30px; width: calc(100% - 10%); border-radius: 3px; border-width: 0px; padding: 5px;}
+ 		#famousLineMovieTitle {float: left; color: white; font-family: a스케치고딕; position: fixed; top: 200px; left: 100px; text-align: center;}
+ 		#famousLine {font-size: 50px;}
+ 		#movieTitle {font-size: 30px;}
+ 
+ 		#join * {font-family: a찐빵M;}
+		#join {background-color: rgb(240, 240, 240, 0.6); width: calc(100% - 75%); text-align: center; border-radius: 15px; border: 1px solid lightgray; padding: 20px; float: right; margin-right: 60px; margin-top: 85px;}
+	 	#join input, #cancelButton {height: 30px; width: calc(100% - 10%); border-radius: 3px; border-width: 0px; padding: 5px;}
 		#createButton {background-color: rgb(65, 65, 65); color: white;}
 
 	</style>
 </head>
 <body>
 
-	<div id="famousLine"></div>
+	<div id="famousLineMovieTitle">
+		<p id="famousLine">"There's no place like home."</p>
+		<p id="movieTitle">- 영화 &lt;The Wizard of Oz&gt;</p>
+	</div>
 	
 	<div id="join">
 	
@@ -50,7 +56,7 @@
 			</p>
 			
 			<p>
-				<input type="submit" value="No, Thank you." id="cancelButton" formaction="login" formmethod="get">
+				<input type="button" value="No, Thank you." id="cancelButton" onclick="location.href='login'">
 			</p>
 		
 		</form>
