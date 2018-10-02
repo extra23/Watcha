@@ -1,5 +1,6 @@
 package handler.account;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ public class LoginHandler implements CommandHandler{
 		return FORM_VIEW;
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
 		// 1. request로 parameter를 받음 (id, password)
 		String userId = req.getParameter("userId");
@@ -56,9 +57,11 @@ public class LoginHandler implements CommandHandler{
 			// 3-1. 인증에 성공하면 AuthUser 객체를 생성하여 Session에 넣음
 			AuthUser authUser = loginService.login(userId, password);
 			req.getSession().setAttribute("authUser", authUser);
+			resp.sendRedirect(req.getContextPath() + "/movieList");
 			return null;
 		}catch (LoginFailException e) {
 			// 3-2. 인증에 실패하면 errors 객체에 실패 정보를 받고 login.jsp 화면으로 다시 보냄
+			errors.put("idOrPasswordNotMatch", true);
 			return null;
 		}
 		
