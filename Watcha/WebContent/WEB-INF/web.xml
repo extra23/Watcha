@@ -27,6 +27,7 @@
 		<servlet-name>controller</servlet-name>
 		<url-pattern>/login</url-pattern>
 		<url-pattern>/join</url-pattern>
+		<url-pattern>/modify</url-pattern>
 	</servlet-mapping>
 	
 	<!-- CharacterEncodingFilter 등록 및 맵핑 -->

@@ -16,7 +16,7 @@ import service.account.ModifyAccountService;
 public class ModifyAccountHandler implements CommandHandler{
 
 	//수정할 페이지 생성
-	private static final String FORM_VIEW = "/WEB-INF/view/";
+	private static final String FORM_VIEW = "/WEB-INF/view/modifyForm.jsp";
 
 	
 	//입력받은 데이터(비밀번호)가 문제가 있는지 무결성 체크 후 비번화면으로 돌려보내거나
@@ -67,7 +67,7 @@ public class ModifyAccountHandler implements CommandHandler{
 		try {
 			ModifyAccountService modifyAccountService = ModifyAccountService.getInstance();
 			modifyAccountService.changePassword(authUser.getUserId(), oldPwd, newPwd);
-			return "/WEB-INF/view/modifySuccess";
+			return "/WEB-INF/view/member/member_account.jsp";
 		}catch(InvalidPasswordException e) {
 			errors.put("wrongOldPwd", true);
 			return FORM_VIEW;
