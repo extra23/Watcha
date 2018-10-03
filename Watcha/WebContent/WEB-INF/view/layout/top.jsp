@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -28,6 +27,8 @@
 			float: left;
 			font-family: a스케치고딕;
 			margin: 10px;
+			margin-left: -3px;
+			padding-top: 4px;
 			font-size: 40px;
 			color: white;
 		}
@@ -36,8 +37,10 @@
 			float: right;
 			color: white;
 			font-family: a찐빵M;
-			margin: 15px;
+			margin: 24px;
 		}
+		
+		hr {border: 0px; clear: both;}
 		
 	</style>
 	
@@ -55,13 +58,27 @@
 		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">${authUser.memberName}&nbsp;&nbsp;<span class="caret"></button>
 
 		<ul class="dropdown-menu" role="menu">
-			<li><a href="setting">설정</a></li>
+			<li><a href="modify" onclick="return check()">계정 관리</a></li>
 			<li><a href="like">보고싶어요</a></li>
+			<li><a href="review">리뷰</a>
 			<li class="divider"></li>
 			<li><a href="logout">로그아웃</a></li>
 		</ul>
 
 	</div>
+	
+	<hr>
+	
+	<script>
+	
+		function check(){
+			var password = prompt("비밀번호를 다시 한 번 입력해주세요.");
+			if("${authUser.password}".equals(password)){
+				return true;
+			}
+		}
+	
+	</script>
 
 </body>
 </html>

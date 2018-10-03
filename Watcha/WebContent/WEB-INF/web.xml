@@ -26,9 +26,10 @@
 	<servlet-mapping>
 		<servlet-name>controller</servlet-name>
 		<url-pattern>/login</url-pattern>
+		<url-pattern>/logout</url-pattern>
 		<url-pattern>/join</url-pattern>
-		<url-pattern>/modify</url-pattern>
 		<url-pattern>/movieList</url-pattern>
+		<url-pattern>/modify</url-pattern>
 	</servlet-mapping>
 	
 	<!-- CharacterEncodingFilter 등록 및 맵핑 -->
@@ -41,5 +42,22 @@
 		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<!-- LoginCheckFilter 등록 및 맵핑 -->
+	<filter>
+		<filter-name>loginCheckFilter</filter-name>
+		<filter-class>filter.LoginCheckFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>loginCheckFilter</filter-name>
+		<url-pattern>/movieList</url-pattern>
+		<url-pattern>/modify</url-pattern>
+	</filter-mapping>
+	
+	<!-- Session 설정 -->
+	<session-config>
+		<session-timeout>60</session-timeout>	<!-- 분 단위 -->
+	</session-config>
 
 </web-app>

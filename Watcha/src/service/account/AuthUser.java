@@ -4,11 +4,13 @@ public class AuthUser {
 	
 	private  int memberId;
 	private String userId;
+	private String password;
 	private String memberName;
 	
-	public AuthUser(int memberId, String userId, String memberName) {
+	public AuthUser(int memberId, String userId, String password, String memberName) {
 		this.memberId = memberId;
 		this.userId = userId;
+		this.password = password;
 		this.memberName = memberName;
 	}
 
@@ -26,6 +28,14 @@ public class AuthUser {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getMemberName() {

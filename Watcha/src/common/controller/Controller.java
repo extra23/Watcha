@@ -25,7 +25,7 @@ public class Controller extends HttpServlet {
 	public void init() throws ServletException {
 		
 		String handlerConfigFilePath = getServletContext().getRealPath(getInitParameter("handlerConfigFile"));
-		//dff
+	
 		Properties properties = new Properties();
 		
 		try(FileReader fR = new FileReader(handlerConfigFilePath);){

@@ -29,7 +29,7 @@ public class MemberDAO {
 			
 			try(ResultSet rs = pst.executeQuery()){
 				if(rs.next()) {
-					member = new Member(rs.getInt("member_id"), rs.getString("user_id"), rs.getString("member_name"), rs.getString("password"), rs.getInt("member_rate"), rs.getTimestamp("regDate").toLocalDateTime());
+					member = new Member(rs.getInt("member_id"), rs.getString("user_id"), rs.getString("password"), rs.getString("member_name"), rs.getInt("member_rate"), rs.getTimestamp("regDate").toLocalDateTime());
 				}
 			}
 			
@@ -49,7 +49,7 @@ public class MemberDAO {
 			
 			try(ResultSet rs = pst.executeQuery()){
 				if(rs.next()) {
-					member = new Member(rs.getInt("member_id"), rs.getString("user_id"), rs.getString("member_name"), rs.getString("password"), rs.getInt("member_rate"), rs.getTimestamp("regDate").toLocalDateTime());
+					member = new Member(rs.getInt("member_id"), rs.getString("user_id"), rs.getString("password"), rs.getString("member_name"), rs.getInt("member_rate"), rs.getTimestamp("regDate").toLocalDateTime());
 				}
 			}
 			
@@ -82,7 +82,7 @@ public class MemberDAO {
 	
 	//사용자 삭제
 	public int delete(Connection conn, int memberId) throws SQLException {
-		String sql = "delete from member where memberId =?";
+		String sql = "delete from member where member_id =?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, memberId);
 			return pst.executeUpdate();

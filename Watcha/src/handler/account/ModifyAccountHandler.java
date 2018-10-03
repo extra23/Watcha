@@ -16,8 +16,7 @@ import service.account.ModifyAccountService;
 public class ModifyAccountHandler implements CommandHandler{
 
 	//수정할 페이지 생성
-	private static final String FORM_VIEW = "/WEB-INF/view/member/modifyForm.jsp";
-
+	private static final String FORM_VIEW = "/WEB-INF/view/member/member_account.jsp";
 	
 	//입력받은 데이터(비밀번호)가 문제가 있는지 무결성 체크 후 비번화면으로 돌려보내거나
 	//정보 수정 후 성공화면으로 보낸다. + 수정한 이름을 성공화면으로 보낸다.
@@ -32,7 +31,6 @@ public class ModifyAccountHandler implements CommandHandler{
 			return null;
 		}
 	}
-
 	
 	private String processForm(HttpServletRequest req, HttpServletResponse resp) {
 		return FORM_VIEW;
@@ -42,6 +40,7 @@ public class ModifyAccountHandler implements CommandHandler{
 	//session에 있는 auth객체로부터 로그인 ID정보를 받아오고
 	//서비스를 이용하여 비번 변경 수행
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		
 		AuthUser authUser = (AuthUser)req.getSession().getAttribute("authUser");
 		
 		Map<String, Boolean> errors = new HashMap<String,Boolean>();
@@ -69,7 +68,7 @@ public class ModifyAccountHandler implements CommandHandler{
 			ModifyAccountService modifyAccountService = ModifyAccountService.getInstance();
 			modifyAccountService.changePassword(authUser.getUserId(), oldPwd, newPwd,memberName);
 			req.setAttribute("authUser", authUser);
-			return "/WEB-INF/view/member/member_account.jsp";
+			return FORM_VIEW;
 		}catch(InvalidPasswordException e) {
 			errors.put("wrongOldPwd", true);
 			return FORM_VIEW;

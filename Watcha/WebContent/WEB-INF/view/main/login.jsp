@@ -21,7 +21,7 @@
 		#login input {height: 25px; width: 200px; border-radius: 3px; border-width: 0px; padding: 5px;}
 		#createSubmit {background-color: rgb(65, 65, 65); color: white;}
 		
-		span {color: red; font-size: 10px; text-align: left;}
+		span {color: red; font-size: 10px;}
 	
 	</style>
 </head>
@@ -40,13 +40,13 @@
 			<form action="login" method="post">
 		
 				<p>
-					<input type="text" name="userId" placeholder="ID" autocomplete=off>
+					<input type="text" name="userId" placeholder="ID" autocomplete=off><br>
 					<c:if test="${errors.userId}"><span>ID를 입력해주세요.</span></c:if>
 					<c:if test="${errors.idOrPasswordNotMatch}"><span>ID가 일치하지 않습니다.</span></c:if>
 				</p>
 				
 				<p>
-					<input type="password" name="password" placeholder="password">
+					<input type="password" name="password" placeholder="Password"><br>
 					<c:if test="${errors.password}"><span>Password를 입력해주세요.</span></c:if>
 					<c:if test="${errors.idOrPasswordNotMatch}"><span>Password가 일치하지 않습니다.</span></c:if>
 				</p>

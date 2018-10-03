@@ -1,6 +1,8 @@
 package handler.account;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Exception.DuplicateException;
+import Exception.LoginFailException;
 import common.handler.CommandHandler;
+import dao.MemberDAO;
+import jdbc.ConnectionProvider;
+import model.Member;
 import service.account.AuthUser;
 import service.account.CreateAccountRequest;
 import service.account.CreateAccountService;
@@ -40,10 +46,10 @@ public class CreateAccountHandler implements CommandHandler{
 		
 		// 파라미터를 통해서 입력받은 데이터를 CreateAccountRequest 객체에 담음.
 		CreateAccountRequest createAccountRequest = new CreateAccountRequest();
-		createAccountRequest.setUserId(req.getParameter("userId"));
-		createAccountRequest.setMemberName(req.getParameter("memberName"));
-		createAccountRequest.setPassword(req.getParameter("password"));
-		createAccountRequest.setConfirmPassword(req.getParameter("confirmPassword"));
+			createAccountRequest.setUserId(req.getParameter("userId"));
+			createAccountRequest.setMemberName(req.getParameter("memberName"));
+			createAccountRequest.setPassword(req.getParameter("password"));
+			createAccountRequest.setConfirmPassword(req.getParameter("confirmPassword"));
 		
 		Map<String, Boolean> errors = new HashMap<String, Boolean>( );
 		
@@ -77,6 +83,10 @@ public class CreateAccountHandler implements CommandHandler{
 			// 아이디가 중복일 때 service에서 발생시킨 예외를 받아서 처리해줌.
 			errors.put("duplicateId", true);
 			return FORM_VIEW;
+		}catch (LoginFailException e) {
+			e.printStackTrace();
+			errors.put("idOrPasswordNotMatch", true);
+			return "/WEB-INF/view/main/login.jsp";
 		}
 		
 	}
