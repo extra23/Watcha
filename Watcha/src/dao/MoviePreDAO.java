@@ -116,7 +116,7 @@ public class MoviePreDAO {
 		MoviePre moviePre = new MoviePre(rs.getInt("movieId"),
 							rs.getString("title"),
 							rs.getInt("time"),
-							rs.getTimestamp("releaseDate").toLocalDateTime(),
+							rs.getString("releaseDate"),
 							rs.getInt("rate"),
 							rs.getString("famousLine"),
 							rs.getString("image"));	

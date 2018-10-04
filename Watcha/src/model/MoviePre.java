@@ -7,13 +7,24 @@ public class MoviePre {
 	private int movieId;
 	private String title;
 	private int time;
-	private LocalDateTime releaseDate;
+	private String releaseDate;
 	private int rate;
 	private String famousLine;
 	private String image;
 	
-	public MoviePre(int movieId, String title, int time, LocalDateTime releaseDate, int rate, String famousLine, String image) {
+	// 생성자 (1) : 데이터 베이스에서 읽어올 때 필요한 생성자
+	public MoviePre(int movieId, String title, int time, String releaseDate, int rate, String famousLine, String image) {
 		this.movieId = movieId;
+		this.title = title;
+		this.time = time;
+		this.releaseDate = releaseDate;
+		this.rate = rate;
+		this.famousLine = famousLine;
+		this.image = image;
+	}
+	
+	// 생성자 (2) : 작성을 위한 생성자
+	public MoviePre(String title, int time, String releaseDate, int rate, String famousLine, String image) {
 		this.title = title;
 		this.time = time;
 		this.releaseDate = releaseDate;
@@ -46,11 +57,11 @@ public class MoviePre {
 		this.time = time;
 	}
 
-	public LocalDateTime getReleaseDate() {
+	public String getReleaseDate() {
 		return releaseDate;
 	}
 
-	public void setReleaseDate(LocalDateTime releaseDate) {
+	public void setReleaseDate(String releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 

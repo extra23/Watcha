@@ -4,7 +4,8 @@ import model.MovieDetail;
 import model.MoviePre;
 
 public class MovieData {
-	//moviePre 테이블 내용
+	
+		//moviePre 테이블 내용
 		private MoviePre moviePre;
 		//MovieDetail 테이블 내용
 		private MovieDetail movieDetail;

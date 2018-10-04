@@ -9,10 +9,29 @@ public class MovieDetail {
 	private String plot;
 	private String trailer;
 	
+	// 생성자 (1) : 데이터베이스에서 가져오기 위한 생성자
+	public MovieDetail(int movieId, String director, String actor, int genreId, String plot, String trailer) {
+		this.movieId = movieId;
+		this.director = director;
+		this.actor = actor;
+		this.genreId = genreId;
+		this.plot = plot;
+		this.trailer = trailer;
+	}
+	
+	// 생성자 (2) : 작성을 위한 생성자
+	public MovieDetail(String director, String actor, int genreId, String plot, String trailer) {
+		this.director = director;
+		this.actor = actor;
+		this.genreId = genreId;
+		this.plot = plot;
+		this.trailer = trailer;
+	}
+
 	public int getMovieId() {
 		return movieId;
 	}
-	
+
 	public void setMovieId(int movieId) {
 		this.movieId = movieId;
 	}
