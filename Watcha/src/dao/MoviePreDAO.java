@@ -107,12 +107,12 @@ public class MoviePreDAO {
 
 	//ResultSet 으로 나온결과를 MoviePre 객체로 생성해서 담는 메소드
 	private MoviePre convMoviePre(ResultSet rs) throws SQLException {
-		MoviePre moviePre = new MoviePre(rs.getInt("movieId"),
+		MoviePre moviePre = new MoviePre(rs.getInt("movie_id"),
 							rs.getString("title"),
 							rs.getInt("time"),
-							rs.getString("releaseDate"),
+							rs.getString("release_date"),
 							rs.getInt("rate"),
-							rs.getString("famousLine"),
+							rs.getString("famous_line"),
 							rs.getString("image"));	
 		return moviePre;
 	}
