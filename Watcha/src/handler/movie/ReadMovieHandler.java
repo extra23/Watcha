@@ -5,8 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import Exception.MovieDetailNotFoundException;
 import Exception.MoviePreNotFoundException;
-import common.exception.ArticleContentNotFoundException;
-import common.exception.ArticleNotFoundException;
 import common.handler.CommandHandler;
 import service.movie.MovieData;
 import service.movie.ReadMovieService;
@@ -21,7 +19,7 @@ public class ReadMovieHandler implements CommandHandler{
 		
 		// 화면으로 리턴
 		try {
-			MovieData movieData = movieService.getMovie(movieId, true);
+			MovieData movieData = movieService.getMovie(movieId);
 			req.setAttribute("movieData", movieData);
 			
 			return "/WEB-INF/view/movie/movie_list.jsp";
@@ -29,4 +27,6 @@ public class ReadMovieHandler implements CommandHandler{
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;
 	}
+}
+
 }

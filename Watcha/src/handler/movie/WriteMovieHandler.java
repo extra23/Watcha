@@ -10,10 +10,11 @@ import common.handler.CommandHandler;
 import model.MovieDetail;
 import model.MoviePre;
 import service.movie.MovieData;
+import service.movie.WriteMovieService;
 
 public class WriteMovieHandler implements CommandHandler{
 	
-	private static final String FORM_VIEW = "/WEB-INF/view/admin/admin_movie.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/admin/admin_movie_write.jsp";
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -68,8 +69,16 @@ public class WriteMovieHandler implements CommandHandler{
 		req.setAttribute("errors", errors);
 		
 		// 3. 무결성 검사에서 이상이 있으면 FORM_VIEW로 다시 반환
+		if(!errors.isEmpty()) {
+			return FORM_VIEW;
+		}
 		
-		return null;
+		// 4. 무결성 검사에서 이상이 없다면 WriteMovieService를 이용하여 write(movie_pre, movie_detail insert) 로직을 수행함
+		WriteMovieService writeMovieService = WriteMovieService.getInstance();
+		int newMovieNum = writeMovieService.write(movieData);
+		req.setAttribute("newMovieNum", newMovieNum);
+		
+		return "/WEB-INF/view/admin/admin_movie.jsp";
 	}
 	
 }

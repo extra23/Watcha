@@ -30,7 +30,7 @@
 			<hr class="menuHr">
 			<ul>
 				<li><a href="admin_member">회원 관리</a></li>
-				<li><a href="admin_movie">영화 관리</a></li>
+				<li><a href="admin_movie_write">영화 관리</a></li>
 				<li><a href="admin_review">리뷰 관리</a></li>
 			</ul>
 			

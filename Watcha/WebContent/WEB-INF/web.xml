@@ -30,6 +30,7 @@
 		<url-pattern>/join</url-pattern>
 		<url-pattern>/movieList</url-pattern>
 		<url-pattern>/member_account</url-pattern>
+		<url-pattern>/admin_movie_write</url-pattern>
 	</servlet-mapping>
 	
 	<!-- CharacterEncodingFilter 등록 및 맵핑 -->
@@ -53,6 +54,8 @@
 		<filter-name>loginCheckFilter</filter-name>
 		<url-pattern>/movieList</url-pattern>
 		<url-pattern>/modify</url-pattern>
+		<url-pattern>/admin_movie_write</url-pattern>
+		<url-pattern>/admin_movie</url-pattern>
 	</filter-mapping>
 	
 	<!-- Session 설정 -->

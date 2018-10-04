@@ -20,7 +20,7 @@ public class WriteMovieService {
 		return instance;
 	}
 	
-/*	public int write(MovieData movieData) {
+	public int write(MovieData movieData) {
 		
 		// 게시글의 테이블이 두개가 있고, 두 개의 movieId는 같아야 무결성을 해치지 않음.
 				// 따라서 두개의 movieId는 동기화 되어야 하고, movie_pre에 삽입 되었을 때 movieId가 생성되기 때문에 삽입 후 select를 하여 movieId를 받아옴
@@ -57,7 +57,9 @@ public class WriteMovieService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		return 0;
 
-	}*/
+	}
 
 }
