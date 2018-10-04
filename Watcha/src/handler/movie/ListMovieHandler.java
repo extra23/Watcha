@@ -13,15 +13,20 @@ public class ListMovieHandler implements CommandHandler{
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		
 		ListMovieService movieService = ListMovieService.getInstance( );
+		
 		String pageNoStr = req.getParameter("pageNo");
 		int pageNo = 1;
 		if(pageNoStr != null) {
 			pageNo = Integer.parseInt(pageNoStr);
 		}
+		
 		MoviePage moviePage = movieService.getMoviePage(pageNo);
 		req.setAttribute("moviePage", moviePage);
+		
 		return "/WEB-INF/view/movie/movie_list.jsp";
+		
 	}
 
 }
