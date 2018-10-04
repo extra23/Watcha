@@ -27,7 +27,7 @@ public class MoviePreDAO {
 					pst.setString(3, moviePre.getReleaseDate());
 					pst.setInt(4, moviePre.getRate());
 					pst.setString(5, moviePre.getFamousLine());
-					pst.setString(5, moviePre.getImage());
+					pst.setString(6, moviePre.getImage());
 					int insertedCount = pst.executeUpdate(); 
 
 				if(insertedCount > 0) {

@@ -13,7 +13,7 @@ public class ReadMovieHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// 사용자에게 요청을 받고 서비스를 이용해서 화면에 보여줄 데이터 생성
+/*		// 사용자에게 요청을 받고 서비스를 이용해서 화면에 보여줄 데이터 생성
 		int movieId = Integer.parseInt(req.getParameter("no"));
 		ReadMovieService movieService = ReadMovieService.getInstance( );
 		
@@ -26,7 +26,8 @@ public class ReadMovieHandler implements CommandHandler{
 		}catch(MoviePreNotFoundException | MovieDetailNotFoundException e) {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;
-	}
+	}*/
+		return "/WEB-INF/view/admin/admin_movie.jsp";
 }
 
 }

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form action="admin_movie" method="post">
+	<form action="admin_movie_write" method="post">
 	
 		<p>
 			<input type="text" name="title" placeholder="title">
