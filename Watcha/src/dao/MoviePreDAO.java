@@ -19,15 +19,19 @@ public class MoviePreDAO {
 
 	// 게시글 insert를 구현할 것인데!	
 	public MoviePre insert(Connection conn, MoviePre moviePre) throws SQLException {
-		String Sql = "insert into Movie(movieId,title)values(?,?)";
+		String Sql = "insert into movie_pre(title,time,release_date,rate,famous_line,image)values(?,?,?,?,?,?)";
 		try(PreparedStatement pst = conn.prepareStatement(Sql);
 				Statement st = conn.createStatement()){
-					pst.setInt(1,moviePre.getMovieId());
-					pst.setString(2, moviePre.getTitle());
+					pst.setString(1, moviePre.getTitle());
+					pst.setInt(2, moviePre.getTime());
+					pst.setString(3, moviePre.getReleaseDate());
+					pst.setInt(4, moviePre.getRate());
+					pst.setString(5, moviePre.getFamousLine());
+					pst.setString(5, moviePre.getImage());
 					int insertedCount = pst.executeUpdate(); 
 
 				if(insertedCount > 0) {
-					try(ResultSet rs = st.executeQuery("select last_insert_id() from moviePre")){
+					try(ResultSet rs = st.executeQuery("select last_insert_id() from movie_pre")){
 						if(rs.next()) {
 							int movieId = rs.getInt(1);
 							moviePre.setMovieId(movieId);
@@ -41,7 +45,7 @@ public class MoviePreDAO {
 	
 	// 게시글 개수를 가져오는 메소드 작성 ㄱㄱ
 	public int selectCount(Connection conn) throws SQLException {
-		String sql = "select count(*) from moviePre";
+		String sql = "select count(*) from movie_pre";
 		try(Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(sql)){
 			if(rs.next()) {
@@ -53,7 +57,7 @@ public class MoviePreDAO {
 
 	// 리미트를 이용한 리스트를 가져오는 쿼리
 	public List<MoviePre> select(Connection conn , int StarRow , int size) throws SQLException{
-		String sql = "select * from moviePre order by movieId limit ?,?";
+		String sql = "select * from movie_pre order by movie_id limit ?,?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, StarRow);
 			pst.setInt(2, size);
@@ -69,7 +73,7 @@ public class MoviePreDAO {
 
 	// 게시글 번호로 특정 게시글을 가져오는 메소드
 	public MoviePre selectById(Connection conn, int no ) throws SQLException {
-		String sql = "select * from moviePre where movieId  =? ";
+		String sql = "select * from movie_pre where movie_id  =? ";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, no);
 			try(ResultSet rs = pst.executeQuery()){
@@ -84,27 +88,17 @@ public class MoviePreDAO {
 
 	// 조회수를 올리는 메소드
 	public void increaseReadCount(Connection conn , int movieId) throws SQLException{
-		String sql = "update moviePre set readCnt = readCnt+1 where movieId = ? ";
+		String sql = "update movie_pre set readCnt = readCnt+1 where movie_id = ? ";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, movieId);
 			pst.executeQuery();
-		}
-	}
-
-	// 제목을 수정하는 메소드
-	public int update(Connection conn , int movieId , String title) throws SQLException {
-		String sql = "update moviePre set title = ? where movieId = ? ";
-		try(PreparedStatement pst = conn.prepareStatement(sql)){
-			pst.setString(1, title);
-			pst.setInt(2, movieId);
-			return pst.executeUpdate();
 		}
 	}
 	
 
 	// 삭제하는 메소드
 	public int delete(Connection conn , int movieId ) throws SQLException {
-		String sql = "delet from moviePre where  movieId = ? ";
+		String sql = "delet from movie_pre where  movie_id = ? ";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1,  movieId);
 			return pst.executeUpdate();
