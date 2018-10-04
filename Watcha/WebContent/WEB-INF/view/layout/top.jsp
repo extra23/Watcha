@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -40,7 +41,7 @@
 			margin: 24px;
 		}
 		
-		hr {border: 0px; clear: both;}
+		#topHr {border: 0px; clear: both;}
 		
 	</style>
 	
@@ -58,16 +59,25 @@
 		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">${authUser.memberName}&nbsp;&nbsp;<span class="caret"></button>
 
 		<ul class="dropdown-menu" role="menu">
-			<li><a href="modify" onclick="return check()">계정 관리</a></li>
-			<li><a href="like">보고싶어요</a></li>
-			<li><a href="review">리뷰</a>
+		
+			<c:if test="${authUser.memberRate eq 0}">
+				<li><a href="admin_member">회원 관리</a></li>
+				<li><a href="admin_movie">영화 관리</a></li>
+				<li><a href="admin_review">리뷰 관리</a></li>
+				<li class="divider"></li>
+			</c:if>
+		
+			<li><a href="member_account" onclick="return check()">계정 관리</a></li>
+			<li><a href="member_like">보고싶어요</a></li>
+			<li><a href="member_review">리뷰</a>
 			<li class="divider"></li>
 			<li><a href="logout">로그아웃</a></li>
+			
 		</ul>
 
 	</div>
 	
-	<hr>
+	<hr id="topHr">
 	
 	<script>
 	

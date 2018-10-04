@@ -6,12 +6,14 @@ public class AuthUser {
 	private String userId;
 	private String password;
 	private String memberName;
+	private int memberRate;
 	
-	public AuthUser(int memberId, String userId, String password, String memberName) {
+	public AuthUser(int memberId, String userId, String password, String memberName, int memberRate) {
 		this.memberId = memberId;
 		this.userId = userId;
 		this.password = password;
 		this.memberName = memberName;
+		this.memberRate = memberRate;
 	}
 
 	public int getMemberId() {
@@ -44,6 +46,14 @@ public class AuthUser {
 
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
+	}
+
+	public int getMemberRate() {
+		return memberRate;
+	}
+
+	public void setMemberRate(int memberRate) {
+		this.memberRate = memberRate;
 	}
 	
 }

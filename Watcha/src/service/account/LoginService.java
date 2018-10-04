@@ -36,7 +36,7 @@ public class LoginService {
 			}
 			
 			// 인증이 완료되었으므로 Member 객체를 AuthUser 객체에 담아 반환
-			return new AuthUser(member.getMemberId(), member.getUserId(), member.getPassword(), member.getMemberName());
+			return new AuthUser(member.getMemberId(), member.getUserId(), member.getPassword(), member.getMemberName(), member.getMemberRate());
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

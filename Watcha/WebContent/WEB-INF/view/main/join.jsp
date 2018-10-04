@@ -18,7 +18,8 @@
  		#join * {font-family: a찐빵M;}
 		#join {background-color: rgb(240, 240, 240, 0.6); text-align: center; border-radius: 15px; border: 1px solid lightgray; clear: both;}
 	 	#join input, #cancelButton {height: 30px; width: calc(100% - 10%); border-radius: 3px; border-width: 0px; padding: 5px; text-align: center;}
-		#createButton {background-color: rgb(65, 65, 65); color: white;}
+		#createButton {background-color: rgb(65, 65, 65); color: white; cursor: pointer;}
+		#cancelButton {cursor: pointer;}
 
 	</style>
 </head>

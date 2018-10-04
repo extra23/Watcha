@@ -19,7 +19,8 @@
 		
 		#login * {font-family: a찐빵M; text-align: center;}
 		#login input {height: 25px; width: 200px; border-radius: 3px; border-width: 0px; padding: 5px;}
-		#createSubmit {background-color: rgb(65, 65, 65); color: white;}
+		#loginSubmit {cursor: pointer;}
+		#createSubmit {background-color: rgb(65, 65, 65); color: white; cursor: pointer;}
 		
 		span {color: red; font-size: 10px;}
 	
