@@ -28,6 +28,7 @@ public class ReadMovieHandler implements CommandHandler{
 			return null;
 	}*/
 		return "/WEB-INF/view/admin/admin_movie.jsp";
+		//kdjfs;fdjk
 }
 
 }

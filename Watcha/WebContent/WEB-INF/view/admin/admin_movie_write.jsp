@@ -8,6 +8,7 @@
 </head>
 <body>
 
+<!--  -->
 	<form action="admin_movie_write" method="post">
 	
 		<p>

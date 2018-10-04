@@ -56,6 +56,7 @@
 		<url-pattern>/modify</url-pattern>
 		<url-pattern>/admin_movie_write</url-pattern>
 		<url-pattern>/admin_movie</url-pattern>
+		<!--   -->
 	</filter-mapping>
 	
 	<!-- Session 설정 -->
