@@ -64,9 +64,10 @@ public class WriteMovieHandler implements CommandHandler{
 		MovieData movieData = new MovieData(new MoviePre(req.getParameter("title"), time, req.getParameter("releaseDate"), rate, req.getParameter("famousLine"), req.getParameter("image")), new MovieDetail(req.getParameter("director"), req.getParameter("actor"), genreId, req.getParameter("plot"), req.getParameter("trailer")));
 		
 		// 2. MovieData에 담은 내용들의 무결성 체크 (비어있는지 안비어 있는지)
-		
-		
+		movieData.validate(errors);
 		req.setAttribute("errors", errors);
+		
+		// 3. 무결성 검사에서 이상이 있으면 FORM_VIEW로 다시 반환
 		
 		return null;
 	}

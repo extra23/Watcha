@@ -35,7 +35,17 @@ public class MovieData {
 				errors.put("releaseDate", true);
 			}else if(moviePre.getFamousLine() == null || moviePre.getFamousLine().isEmpty()) {
 				errors.put("famousLine", true);
-			}else if()
+			}else if(moviePre.getImage() == null || moviePre.getImage().isEmpty()) {
+				errors.put("image", true);
+			}else if(movieDetail.getDirector() == null || movieDetail.getDirector().isEmpty()) {
+				errors.put("director", true);
+			}else if(movieDetail.getActor() == null || movieDetail.getActor().isEmpty()) {
+				errors.put("actor", true);
+			}else if(movieDetail.getPlot() == null || movieDetail.getPlot().isEmpty()) {
+				errors.put("plot", true);
+			}else if(movieDetail.getTrailer() == null || movieDetail.getTrailer().isEmpty()) {
+				errors.put("trailer", true);
+			}
 		}
 		
 }

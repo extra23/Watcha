@@ -3,6 +3,8 @@ package handler.movie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Exception.MovieDetailNotFoundException;
+import Exception.MoviePreNotFoundException;
 import common.exception.ArticleContentNotFoundException;
 import common.exception.ArticleNotFoundException;
 import common.handler.CommandHandler;
@@ -23,7 +25,7 @@ public class ReadMovieHandler implements CommandHandler{
 			req.setAttribute("movieData", movieData);
 			
 			return "/WEB-INF/view/movie/movie_list.jsp";
-		}catch(ArticleNotFoundException | ArticleContentNotFoundException e) {
+		}catch(MoviePreNotFoundException | MovieDetailNotFoundException e) {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;
 	}
