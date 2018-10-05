@@ -9,8 +9,6 @@
 	
 		body {background: url("images/background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
 	
-		body {color: white;}
-	
 	</style>
 </head>
 <body>
