@@ -28,6 +28,7 @@ public class ReadMovieService {
 		MovieDetailDAO movieDetailDAO = MovieDetailDAO.getInstance();
 
 		try (Connection conn = ConnectionProvider.getConnection()) {
+			
 			MoviePre moviePre = moviePreDAO.selectById(conn, movieId);
 			
 			if (moviePre == null) {

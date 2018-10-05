@@ -1,5 +1,6 @@
-package handler.movie;
+package handler.admin;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +13,7 @@ import model.MoviePre;
 import service.movie.MovieData;
 import service.movie.WriteMovieService;
 
-public class WriteMovieHandler implements CommandHandler{
+public class WriteAdminMovieHandler implements CommandHandler{
 	
 	private static final String FORM_VIEW = "/WEB-INF/view/admin/admin_movie_write.jsp";
 
@@ -32,7 +33,7 @@ public class WriteMovieHandler implements CommandHandler{
 		return FORM_VIEW;
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
 		// 0. time, rate, genreId는 자료형이 int이므로 Integer.parseInt()하기 전에 먼저 빈 값이 들어 왔는지 들어오지 않았는지 check 해줌
 		Map<String, Boolean> errors = new HashMap<>();
@@ -75,10 +76,11 @@ public class WriteMovieHandler implements CommandHandler{
 		
 		// 4. 무결성 검사에서 이상이 없다면 WriteMovieService를 이용하여 write(movie_pre, movie_detail insert) 로직을 수행함
 		WriteMovieService writeMovieService = WriteMovieService.getInstance();
-		int newMovieNum = writeMovieService.write(movieData);
-		req.setAttribute("newMovieNum", newMovieNum);
+		int movieId = writeMovieService.write(movieData);
+		resp.sendRedirect(req.getContextPath() + "/admin_movie?movieId=" + movieId);
 		
-		return "/WEB-INF/view/admin/admin_movie.jsp";
+		return null;
+		
 	}
 	
 }

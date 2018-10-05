@@ -1,4 +1,4 @@
-package handler.movie;
+package handler.account;
 
 public class SelectMovieFamousLineHandler {
 
