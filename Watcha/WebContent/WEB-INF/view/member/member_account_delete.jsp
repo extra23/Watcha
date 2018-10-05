@@ -42,6 +42,7 @@
 			padding: 10px;
 			margin-left: -10px;
 			margin-right: 25px;
+			margin-top: -5px;
 			text-align: center;
 		}
 		

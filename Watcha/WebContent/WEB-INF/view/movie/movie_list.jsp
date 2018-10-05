@@ -12,6 +12,9 @@
 	
 		#nonMoviePre {text-align: center; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%);}
 	
+		#moviePre {width: 300px; display: inline-block;}
+		#col-md-4 {width: 100%;}
+	
 	</style>
 </head>
 <body>
@@ -27,11 +30,10 @@
 	</c:if>
 	
 	<!-- MoviePre가 있을 때 -->
+	<div id="moviePage">
 	<c:forEach var="moviePre" items="${moviePage.moviePreList}">
-		<div id="movie_pre">
-	
-			<div class="row">
-	 			<div class="col-sm-6 col-md-4">
+		<div id="moviePre">
+	 			<div class="col-sm-6 col-md-4" id="col-md-4">
 	    			<div class="thumbnail">
 	      				<img src="images/overaction.gif" alt="영화 포스터">
 	      				<div class="caption">
@@ -47,13 +49,10 @@
 	       	 				</p>
 	      				</div>
 	    			</div>
-	  			</div>
 			</div>
-		
 		</div>
 	</c:forEach>
-	<!--  -->
-	<!--  -->
+	</div>
 
 </body>
 </html>
