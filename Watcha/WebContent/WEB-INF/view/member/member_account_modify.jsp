@@ -18,8 +18,7 @@
 </head>
 <body>
 
-	<jsp:include page="/WEB-INF/view/layout/top.jsp"></jsp:include>
-	
+	<jsp:include page="/WEB-INF/view/layout/top.jsp" flush="false"></jsp:include>
 	
 	<jsp:include page="/WEB-INF/view/layout/left.jsp" flush="false"></jsp:include>
 

@@ -13,7 +13,7 @@ import service.account.DeleteAccountService;
 public class DeleteAccountHandler implements CommandHandler{
 
 	//삭제할지말지 알려주는 form
-	private static final String FORM_VIEW = "/WEB-INF/view/member/deleteForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/member/member_account_delete.jsp";
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {

@@ -16,7 +16,7 @@ import service.account.ModifyAccountService;
 public class ModifyAccountHandler implements CommandHandler{
 
 	//수정할 페이지 생성
-	private static final String FORM_VIEW = "/WEB-INF/view/member/member_account.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/member/member_account_modify.jsp";
 	
 	//입력받은 데이터(비밀번호)가 문제가 있는지 무결성 체크 후 비번화면으로 돌려보내거나
 	//정보 수정 후 성공화면으로 보낸다. + 수정한 이름을 성공화면으로 보낸다.
