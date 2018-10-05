@@ -15,7 +15,7 @@ public class WatchaReviewDAO {
 	
 	//사용자 리뷰 삭제
 	public int delete(Connection conn, int memberId) throws SQLException {
-		String sql = "delete from watcha_review where memberId =?";
+		String sql = "delete from watcha_review where member_id =?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, memberId);
 			return pst.executeUpdate();

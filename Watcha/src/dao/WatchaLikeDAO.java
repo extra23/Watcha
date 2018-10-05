@@ -15,7 +15,7 @@ public class WatchaLikeDAO {
 	
 	//사용자가 보고싶다고한 작품 삭제
 	public int delete(Connection conn, int memberId) throws SQLException {
-		String sql = "delete from watcha_like where memberId =?";
+		String sql = "delete from watcha_like where member_id =?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, memberId);
 			return pst.executeUpdate();

@@ -20,7 +20,7 @@ public class DeleteAccountService {
 	}
 	private DeleteAccountService () {}
 	
-	private void delete(int memberId,String userId,String memberName) {
+	public void delete(int memberId,String userId,String memberName) {
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		WatchaLikeDAO watchaLikeDAO = WatchaLikeDAO.getInstance();
 		WatchaReviewDAO watchaReviewDAO = WatchaReviewDAO.getInstance();
