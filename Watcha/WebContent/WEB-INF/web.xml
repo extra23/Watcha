@@ -56,9 +56,11 @@
 	<filter-mapping>
 		<filter-name>loginCheckFilter</filter-name>
 		<url-pattern>/movieList</url-pattern>
-		<url-pattern>/modify</url-pattern>
+		<url-pattern>/member_account_modify</url-pattern>
 		<url-pattern>/admin_movie_write</url-pattern>
 		<url-pattern>/admin_movie</url-pattern>
+		<url-pattern>/member_account_delete</url-pattern>
+		
 	</filter-mapping>
 	
 	<!-- Session 설정 -->
