@@ -10,16 +10,26 @@
 	
 		body {background: url("images/background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
 	
+		#nonMoviePre {text-align: center; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%);}
+	
 	</style>
 </head>
 <body>
 
 	<jsp:include page="/WEB-INF/view/layout/top.jsp" flush="false"></jsp:include>
 
-	<!-- 게시글이 없을 때 -->
+<%-- 	<!-- MoviePre가 없을 때 -->
 	<c:if test="${!moviePage.hasMoviePres()}">
-		
+		<div id="nonMoviePre">
+			<img src="images/overaction2.jpg">
+			<h2 style="font-family: a찐빵M; color: white;">영화 정보 없어!!</h2>
+		</div>
 	</c:if>
-
+	
+	<!-- MoviePre가 있을 때 -->
+	<c:forEach var="moviePre" items="${moviePage}">
+		
+	</c:forEach>
+ --%>
 </body>
 </html>
