@@ -97,6 +97,7 @@
 			<li><a href="member_review">리뷰</a>
 			<li class="divider"></li>
 			<li><a href="logout">로그아웃</a></li>
+			<!--  -->
 			
 		</ul>
 

@@ -18,7 +18,7 @@
 
 	<jsp:include page="/WEB-INF/view/layout/top.jsp" flush="false"></jsp:include>
 
-<%-- 	<!-- MoviePre가 없을 때 -->
+	<!-- MoviePre가 없을 때 -->
 	<c:if test="${!moviePage.hasMoviePres()}">
 		<div id="nonMoviePre">
 			<img src="images/overaction2.jpg">
@@ -27,9 +27,7 @@
 	</c:if>
 	
 	<!-- MoviePre가 있을 때 -->
-	<c:forEach var="moviePre" items="${moviePage}">
-		
-	</c:forEach>
- --%>
+	<c:forEach var="moviePre" items="${moviePage}"></c:forEach>
+
 </body>
 </html>
