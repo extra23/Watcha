@@ -1,6 +1,8 @@
 package handler.account;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,7 +61,17 @@ public class DeleteAccountHandler implements CommandHandler{
 			resp.sendRedirect(req.getContextPath() + "/login");
 			return null;
 		}else {
+			Map<String, Boolean> errors = new HashMap<String,Boolean>();
+			req.setAttribute("errors", errors);
+			
+			if(password ==null || password.isEmpty()) {
+				errors.put("emptyPassword", true);
+			}
+			if(!password.equals(authUser.getPassword()) ) {
+				errors.put("wrongPwd", true);
+			}
 			return FORM_VIEW;
 		}
+		
 	}	
 }
