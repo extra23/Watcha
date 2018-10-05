@@ -30,7 +30,8 @@
 		<url-pattern>/join</url-pattern>
 		<url-pattern>/movieList</url-pattern>
 		<url-pattern>/movie</url-pattern>
-		<url-pattern>/member_account</url-pattern>
+		<url-pattern>/member_account_modify</url-pattern>
+		<url-pattern>/member_account_delete</url-pattern>
 		<url-pattern>/admin_movie_write</url-pattern>
 		<url-pattern>/admin_movie</url-pattern>
 	</servlet-mapping>

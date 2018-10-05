@@ -42,7 +42,8 @@
 		<h3>회원 메뉴</h3>
 		<hr class="menuHr">
 		<ul>
-			<li><a href="member_account" onclick="return check()">계정 관리</a></li>
+			<li><a href="member_account_modify" onclick="return check()">계정 관리</a></li>
+			<li><a href="member_account_delete">회원 탈퇴</a></li>
 			<li><a href="member_like">보고싶어요</a></li>
 			<li><a href="member_review">리뷰</a>
 		</ul>
