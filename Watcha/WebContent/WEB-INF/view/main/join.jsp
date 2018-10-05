@@ -41,23 +41,23 @@
 			<form action="join" method="post">
 			
 				<p>
-					<input type="text" name="memberName" placeholder="User Name">
+					<input type="text" name="memberName" placeholder="User Name" autocomplete=off>
 				</p>
 				
 				<p>
-					<input type="text" name="userId" placeholder="ID">
+					<input type="text" name="userId" placeholder="ID" autocomplete=off>
 				</p>
 				
 				<p>
-					<input type="password" name="password" placeholder="Password">
+					<input type="password" name="password" placeholder="Password" autocomplete=off>
 				</p>
 				
 				<p>
-					<input type="password" name="confirmPassword" placeholder="Confirm Password">
+					<input type="password" name="confirmPassword" placeholder="Confirm Password" autocomplete=off>
 				</p>
 				
 				<p>
-					<input type="submit" value="Create a Account" id="createButton">
+					<input type="submit" value="Create a Account" id="createButton" autocomplete=off>
 				</p>
 				
 				<p>
