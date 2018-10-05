@@ -27,7 +27,31 @@
 	</c:if>
 	
 	<!-- MoviePre가 있을 때 -->
-	<c:forEach var="moviePre" items="${moviePage}"></c:forEach>
+	<c:forEach var="moviePre" items="${moviePage.moviePreList}">
+		<div id="movie_pre">
+	
+			<div class="row">
+	 			<div class="col-sm-6 col-md-4">
+	    			<div class="thumbnail">
+	      				<img src="images/overaction.gif" alt="영화 포스터">
+	      				<div class="caption">
+	        				<h3>${moviePre.title}</h3>
+	       					<p>
+	       						<span>${moviePre.releaseDate}년</span>
+	       						<span>${moviePre.rate}세</span>
+	       						<span>${moviePre.time}분</span>
+	       					</p>
+	        				<p>
+	        					<a href="#" class="btn btn-primary" role="button">상세보기</a>
+	        					<a href="#" class="btn btn-default" role="button">찜하기</a>
+	       	 				</p>
+	      				</div>
+	    			</div>
+	  			</div>
+			</div>
+		
+		</div>
+	</c:forEach>
 
 </body>
 </html>

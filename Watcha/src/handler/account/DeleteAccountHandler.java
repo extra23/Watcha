@@ -36,6 +36,7 @@ public class DeleteAccountHandler implements CommandHandler{
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException{ 
+		
 		//입력한 비밀번호
 		String password = req.getParameter("password");
 		//로그인시 사용한 비밀번호
