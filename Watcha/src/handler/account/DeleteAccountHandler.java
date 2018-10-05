@@ -65,12 +65,12 @@ public class DeleteAccountHandler implements CommandHandler{
 			Map<String, Boolean> errors = new HashMap<String,Boolean>();
 			req.setAttribute("errors", errors);
 			
-			if(password ==null || password.isEmpty()) {
+			if(password == null || password.isEmpty()) {
 				errors.put("emptyPassword", true);
-			}
-			if(!password.equals(authUser.getPassword()) ) {
+			}else if(!password.equals(authUser.getPassword())) {
 				errors.put("wrongPwd", true);
 			}
+			
 			return FORM_VIEW;
 		}
 		
