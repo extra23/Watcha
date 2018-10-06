@@ -58,6 +58,57 @@
 			</div>
 		</c:forEach>
 	</div>
+	
+	<!-- 페이지네이션 -->
+<%-- 	<div id="pagination">
+		<nav>
+			<ul class="pagination">
+				<c:if test="${moviePage.startPage > 5}">
+					<li>
+						<a href="movie_list?pageNo=${moviePage.startPage - 5}" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+				</c:if>
+				<c:forEach var="pageNo" begin="${moviePage.startPage}" end="${moviePage.endPage}">
+					<c:if test="${param.pageNo eq pageNo}"><li><a href="movie_list?pageNo=${pageNo}">${pageNo}</a></li></c:if>
+					<c:if test="${not param.pageNo eq pageNo}"><li><a href="movie_list?pageNo=${pageNo}">${pageNo}</a></li></c:if>
+				</c:forEach>
+				<c:if test="${moviePage.endPage < moviePage.totalPages}">
+					<li>
+						<a href="movie_list?pageNo=${moviePage.startPage + 5}" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</c:if>
+			</ul>
+		</nav>
+	</div> --%>
+	
+	<div id="MovieListPagination">
+		<nav>
+  			<ul class="pagination">
+  	  			<li>
+  	    			<a href="movie_list?pageNo=${moviePage.startPage - 5}" aria-label="Previous">
+  	      				<span aria-hidden="true">&laquo;</span>
+  	    			</a>
+  	  			</li>
+  	  			<li><a href="#">1</a></li>
+  	  			<li><a href="#">2</a></li>
+  	  			<li><a href="#">3</a></li>
+  	  			<li><a href="#">4</a></li>
+  	  			<li><a href="#">5</a></li>
+  	  			<c:forEach var="pageNo" begin="${moviePage.startPage}" end="${moviePage.endPage}">
+  	  				<li><a href="">${pageNo}</a></li>
+  	  			</c:forEach>
+  	  			<li>
+  	    			<a href="#" aria-label="Next">
+  	      				<span aria-hidden="true">&raquo;</span>
+  	    			</a>
+  	  			</li>
+  			</ul>
+		</nav>
+	</div>
 
 </body>
 </html>
