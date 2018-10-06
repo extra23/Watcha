@@ -15,13 +15,13 @@ public class ReadMovieHandler implements CommandHandler{
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
 		// 사용자에게 요청을 받고 서비스를 이용해서 화면에 보여줄 데이터 생성
-		//int movieId = Integer.parseInt(req.getParameter("no"));
-		//ReadMovieService movieService = ReadMovieService.getInstance( );
+		int movieId = Integer.parseInt(req.getParameter("no"));
+		ReadMovieService movieService = ReadMovieService.getInstance( );
 		
 		// 화면으로 리턴
 		try {
-			//MovieData movieData = movieService.getMovie(movieId);
-			//req.setAttribute("movieData", movieData);
+			MovieData movieData = movieService.getMovie(movieId);
+			req.setAttribute("movieData", movieData);
 			return "/WEB-INF/view/movie/movie.jsp";
 		}catch(MoviePreNotFoundException | MovieDetailNotFoundException e) {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);

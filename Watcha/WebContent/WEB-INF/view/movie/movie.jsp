@@ -9,6 +9,7 @@
 <body>
 
 	<h1>한편의 영화</h1>
+	${movieData.moviePre.title}
 
 </body>
 </html>

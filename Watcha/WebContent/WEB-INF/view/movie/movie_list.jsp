@@ -47,7 +47,7 @@
 								<span>${moviePre.time}분</span>
 							</p>
 							<p id="buttonGroup">
-								<a href="movie" class="btn btn-primary" role="button" style="background-color: rgb(255, 153, 51); border-width: 0px;">상세보기</a> 
+								<a href="movie?no=${moviePre.movieId}" class="btn btn-primary" role="button" style="background-color: rgb(255, 153, 51); border-width: 0px;">상세보기</a> 
 								<a href="#" class="btn btn-default" role="button"><img src="images/heart.png" width="20px;"></a>
 							</p>
 						</div>
