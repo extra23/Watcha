@@ -10,27 +10,27 @@ public class MoviePre {
 	private String releaseDate;
 	private int rate;
 	private String famousLine;
-	private String image;
+	private String imageName;
 	
 	// 생성자 (1) : 데이터 베이스에서 읽어올 때 필요한 생성자
-	public MoviePre(int movieId, String title, int time, String releaseDate, int rate, String famousLine, String image) {
+	public MoviePre(int movieId, String title, int time, String releaseDate, int rate, String famousLine, String imageName) {
 		this.movieId = movieId;
 		this.title = title;
 		this.time = time;
 		this.releaseDate = releaseDate;
 		this.rate = rate;
 		this.famousLine = famousLine;
-		this.image = image;
+		this.imageName = imageName;
 	}
 	
 	// 생성자 (2) : 작성을 위한 생성자
-	public MoviePre(String title, int time, String releaseDate, int rate, String famousLine, String image) {
+	public MoviePre(String title, int time, String releaseDate, int rate, String famousLine, String imageName) {
 		this.title = title;
 		this.time = time;
 		this.releaseDate = releaseDate;
 		this.rate = rate;
 		this.famousLine = famousLine;
-		this.image = image;
+		this.imageName = imageName;
 	}
 
 	public int getMovieId() {
@@ -81,12 +81,12 @@ public class MoviePre {
 		this.famousLine = famousLine;
 	}
 
-	public String getImage() {
-		return image;
+	public String getImageName() {
+		return imageName;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
 	}
 
 }

@@ -17,9 +17,9 @@ public class MoviePreDAO {
 		return instance;
 	}
 
-	// 게시글 insert를 구현할 것인데!	
+	// movie_pre 테이블에 insert 쿼리를 날리는 메소드
 	public MoviePre insert(Connection conn, MoviePre moviePre) throws SQLException {
-		String Sql = "insert into movie_pre(title,time,release_date,rate,famous_line,image)values(?,?,?,?,?,?)";
+		String Sql = "insert into movie_pre(title,time,release_date,rate,famous_line,image_name)values(?,?,?,?,?,?)";
 		try(PreparedStatement pst = conn.prepareStatement(Sql);
 				Statement st = conn.createStatement()){
 					pst.setString(1, moviePre.getTitle());
@@ -27,7 +27,7 @@ public class MoviePreDAO {
 					pst.setString(3, moviePre.getReleaseDate());
 					pst.setInt(4, moviePre.getRate());
 					pst.setString(5, moviePre.getFamousLine());
-					pst.setString(6, moviePre.getImage());
+					pst.setString(6, moviePre.getImageName());
 					int insertedCount = pst.executeUpdate(); 
 
 				if(insertedCount > 0) {
@@ -43,7 +43,7 @@ public class MoviePreDAO {
 		}	
 	}
 	
-	// 게시글 개수를 가져오는 메소드 작성 ㄱㄱ
+	// movie_pre의 tuple 수를 가져오는 메소드
 	public int selectCount(Connection conn) throws SQLException {
 		String sql = "select count(*) from movie_pre";
 		try(Statement st = conn.createStatement();
@@ -71,7 +71,7 @@ public class MoviePreDAO {
 		}
 	}
 
-	// 게시글 번호로 특정 게시글을 가져오는 메소드
+	// movie_id로 특정 게시글을 가져오는 메소드
 	public MoviePre selectById(Connection conn, int no ) throws SQLException {
 		String sql = "select * from movie_pre where movie_id  =? ";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
@@ -98,15 +98,14 @@ public class MoviePreDAO {
 
 	// 삭제하는 메소드
 	public int delete(Connection conn , int movieId ) throws SQLException {
-		String sql = "delet from movie_pre where  movie_id = ? ";
+		String sql = "delet from movie_pre where movie_id = ? ";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
-			pst.setInt(1,  movieId);
+			pst.setInt(1, movieId);
 			return pst.executeUpdate();
 		}
 	}
 
 	//ResultSet 으로 나온결과를 MoviePre 객체로 생성해서 담는 메소드
-	//abcdadgad
 	private MoviePre convMoviePre(ResultSet rs) throws SQLException {
 		MoviePre moviePre = new MoviePre(rs.getInt("movie_id"),
 							rs.getString("title"),
@@ -114,7 +113,7 @@ public class MoviePreDAO {
 							rs.getString("release_date"),
 							rs.getInt("rate"),
 							rs.getString("famous_line"),
-							rs.getString("image"));	
+							rs.getString("image_name"));	
 		return moviePre;
 	}
 
