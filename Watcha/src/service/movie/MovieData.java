@@ -37,7 +37,7 @@ public class MovieData {
 			}else if(moviePre.getFamousLine() == null || moviePre.getFamousLine().isEmpty()) {
 				errors.put("famousLine", true);
 			}else if(moviePre.getImageName() == null || moviePre.getImageName().isEmpty()) {
-				errors.put("image", true);
+				errors.put("imageName", true);
 			}else if(movieDetail.getDirector() == null || movieDetail.getDirector().isEmpty()) {
 				errors.put("director", true);
 			}else if(movieDetail.getActor() == null || movieDetail.getActor().isEmpty()) {

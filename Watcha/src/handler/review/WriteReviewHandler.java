@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import common.handler.CommandHandler;
 import model.WatchaReview;
+import service.account.AuthUser;
+import service.review.ReviewRequest;
 import service.review.WriteReviewService;
 
 //리뷰 작성 핸들러
@@ -17,7 +19,6 @@ public abstract class WriteReviewHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		
 		if(req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req,resp);
 		}else if(req.getMethod().equalsIgnoreCase("POST")) {
@@ -36,15 +37,17 @@ public abstract class WriteReviewHandler implements CommandHandler{
 		//서비스를 이용해서 리뷰를 작성하고 
 		//resp.sendRedirect를 통해 review 주소를 보낸다.
 		
+		String starStr = req.getParameter("star");
+		
+		ReviewRequest reviewRequest = new ReviewRequest(((AuthUser)req.getSession().getAttribute("authUser")).getMemberId(), Integer.parseInt(starStr), req.getParameter("review"));
+		
+		
 		//memberId, star는 자료형이 int이므로 Integer.parseInt()하기 전에 먼저 빈 값이 들어왔는지 들어오지 않았는지 check해줌
 		Map<String, Boolean> errors = new HashMap<>();
 		
-		String starStr = 
-		
-		
 		WriteReviewService writeReviewService = WriteReviewService.getInstance();
-		writeReviewService.write(watchaReview);
-		resp.sendRedirect(req.getContextPath()+"/watcha_review");
+		writeReviewService.write(reviewRequest);
+		resp.sendRedirect(req.getContextPath()+"/movie_review");
 		return null;
 	}
 }

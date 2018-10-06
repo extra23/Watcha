@@ -19,7 +19,9 @@ public class MoviePreDAO {
 
 	// movie_pre 테이블에 insert 쿼리를 날리는 메소드
 	public MoviePre insert(Connection conn, MoviePre moviePre) throws SQLException {
-		String Sql = "insert into movie_pre(title,time,release_date,rate,famous_line,image_name)values(?,?,?,?,?,?)";
+		
+		String Sql = "insert into movie_pre(title, time, release_date, rate, famous_line, image_name) values(?, ?, ?, ?, ?, ?)";
+		
 		try(PreparedStatement pst = conn.prepareStatement(Sql);
 				Statement st = conn.createStatement()){
 					pst.setString(1, moviePre.getTitle());
@@ -28,7 +30,7 @@ public class MoviePreDAO {
 					pst.setInt(4, moviePre.getRate());
 					pst.setString(5, moviePre.getFamousLine());
 					pst.setString(6, moviePre.getImageName());
-					int insertedCount = pst.executeUpdate(); 
+					int insertedCount = pst.executeUpdate();
 
 				if(insertedCount > 0) {
 					try(ResultSet rs = st.executeQuery("select last_insert_id() from movie_pre")){
@@ -39,8 +41,10 @@ public class MoviePreDAO {
 						}
 					}				
 				}
+				
 				return null;	
-		}	
+		}
+		
 	}
 	
 	// movie_pre의 tuple 수를 가져오는 메소드
@@ -57,7 +61,7 @@ public class MoviePreDAO {
 
 	// 리미트를 이용한 리스트를 가져오는 쿼리
 	public List<MoviePre> select(Connection conn , int StarRow , int size) throws SQLException{
-		String sql = "select * from movie_pre order by movie_id limit ?,?";
+		String sql = "select * from movie_pre order by movie_id limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, StarRow);
 			pst.setInt(2, size);

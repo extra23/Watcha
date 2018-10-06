@@ -47,7 +47,7 @@
 			</p>
 			
 			<p>
-				<input type="file" name="image">
+				<input type="text" name="imageName" placeholder="Image Name">
 			</p>
 			
 			<p>
@@ -57,13 +57,9 @@
 			<p>
 				<input type="text" name="actor" placeholder="actor">
 			</p>
-				
-<!-- 			<p>
-				<input type="text" name="genreId" placeholder="genreId">
-			</p> -->
 			
 			<p>
-				<select name="movieGenre">
+				<select name="genreId">
 					<c:forEach var="movieGenre" items="${movieGenreList}">
 						<option value="${movieGenre.genreId}">${movieGenre.genreName}</option>
 					</c:forEach>

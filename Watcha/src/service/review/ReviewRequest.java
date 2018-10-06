@@ -8,6 +8,12 @@ public class ReviewRequest {
 	private int memberId;
 	private int star;
 	private String review;
+	
+	public ReviewRequest(int memberId, int star, String review) {
+		this.memberId = memberId;
+		this.star = star;
+		this.review = review;
+	}
 
 	public int getMemberId() {
 		return memberId;

@@ -47,7 +47,8 @@
 			</p>
 			
 			<p>
-				<input type="file" name="image" value="${movieData.moviePre.image}">
+				<img src="poster/${movieData.moviePre.imageName}">
+				<input type="text" name="imageName" value="${movieData.moviePre.imageName}">
 			</p>
 			
 			<p>

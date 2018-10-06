@@ -69,7 +69,7 @@ public class WriteAdminMovieHandler implements CommandHandler{
 		}
 		
 		// 1. 관리자에게 입력받은 Movie 정보를 MovieData 객체에 담음
-		MovieData movieData = new MovieData(new MoviePre(req.getParameter("title"), time, req.getParameter("releaseDate"), rate, req.getParameter("famousLine"), req.getParameter("image")), new MovieDetail(req.getParameter("director"), req.getParameter("actor"), genreId, req.getParameter("plot"), req.getParameter("trailer")));
+		MovieData movieData = new MovieData(new MoviePre(req.getParameter("title"), time, req.getParameter("releaseDate"), rate, req.getParameter("famousLine"), req.getParameter("imageName")), new MovieDetail(req.getParameter("director"), req.getParameter("actor"), genreId, req.getParameter("plot"), req.getParameter("trailer")));
 		
 		// 2. MovieData에 담은 내용들의 무결성 체크 (비어있는지 안비어 있는지)
 		movieData.validate(errors);
@@ -77,12 +77,16 @@ public class WriteAdminMovieHandler implements CommandHandler{
 		
 		// 3. 무결성 검사에서 이상이 있으면 FORM_VIEW로 다시 반환
 		if(!errors.isEmpty()) {
+			ReadMovieGenreService readMovieGenreService = ReadMovieGenreService.getInstance();
+			List<MovieGenre> movieGenreList = readMovieGenreService.readMovieGenre();
+			req.setAttribute("movieGenreList", movieGenreList);
 			return FORM_VIEW;
 		}
 		
 		// 4. 무결성 검사에서 이상이 없다면 WriteMovieService를 이용하여 write(movie_pre, movie_detail insert) 로직을 수행함
 		WriteMovieService writeMovieService = WriteMovieService.getInstance();
 		int movieId = writeMovieService.write(movieData);
+		System.out.println("writeMovieService끝남" + movieId);
 		resp.sendRedirect(req.getContextPath() + "/admin_movie?movieId=" + movieId);
 		
 		return null;
