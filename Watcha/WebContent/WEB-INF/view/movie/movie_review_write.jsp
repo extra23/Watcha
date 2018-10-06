@@ -15,7 +15,7 @@
 <body>
 
 	<div id="movieReview">
-		<form action="movie_review_write" method="post">
+		<form action="movie" method="post">
 			${authUser.memberName}<br>
 			<input type="number" name="star" placeholder="별점">
 			<textarea rows="5" cols="30" name="review">${param.review}</textarea>

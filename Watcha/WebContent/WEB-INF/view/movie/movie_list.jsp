@@ -28,7 +28,7 @@
 	
 	
 
-	<!-- MoviePre가 없을 때 adaf-->
+	<!-- MoviePre가 없을 때 -->
 	<c:if test="${!moviePage.hasMoviePres()}">
 		<div id="nonMoviePre">
 			<img src="images/overaction2.jpg">
@@ -61,25 +61,27 @@
 		</c:forEach>
 	</div>
 	
-	<div id="MovieListPagination">
-		<nav>
-  			<ul class="pagination">
-  	  			<li>
-  	    			<a href="movie_list?pageNo=${moviePage.startPage - 5}" aria-label="Previous">
-  	      				<span aria-hidden="true">&laquo;</span>
-  	    			</a>
-  	  			</li>
-  	  			<c:forEach var="pageNo" begin="${moviePage.startPage}" end="${moviePage.endPage}">
-  	  				<li><a href="movie_list?pageNo=${pageNo}">${pageNo}</a></li>
-  	  			</c:forEach>
-  	  			<li>
-  	    			<a href="#" aria-label="Next">
-  	      				<span aria-hidden="true">&raquo;</span>
-  	    			</a>
-  	  			</li>
-  			</ul>
-		</nav>
-	</div>
+	<c:if test="${moviePage.hasMoviePres()}">
+		<div id="MovieListPagination">
+			<nav>
+	  			<ul class="pagination">
+	  	  			<li>
+	  	    			<a href="movie_list?pageNo=${moviePage.startPage - 5}" aria-label="Previous">
+	  	      				<span aria-hidden="true">&laquo;</span>
+	  	    			</a>
+	  	  			</li>
+	  	  			<c:forEach var="pageNo" begin="${moviePage.startPage}" end="${moviePage.endPage}">
+	  	  				<li><a href="movie_list?pageNo=${pageNo}">${pageNo}</a></li>
+	  	  			</c:forEach>
+	  	  			<li>
+	  	    			<a href="#" aria-label="Next">
+	  	      				<span aria-hidden="true">&raquo;</span>
+	  	    			</a>
+	  	  			</li>
+	  			</ul>
+			</nav>
+		</div>
+	</c:if>
 
 </body>
 </html>

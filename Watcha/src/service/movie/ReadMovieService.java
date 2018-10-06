@@ -23,7 +23,7 @@ public class ReadMovieService {
 		return instance;
 	}
 
-	//한 편의 movie를 읽어오는 메소드
+	// 한 편의 movie를 읽어오는 메소드
 	public MovieData getMovie(int movieId) {
 
 		MoviePreDAO moviePreDAO = MoviePreDAO.getInstance();
