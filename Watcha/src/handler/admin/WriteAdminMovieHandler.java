@@ -2,6 +2,7 @@ package handler.admin;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,8 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import common.handler.CommandHandler;
 import model.MovieDetail;
+import model.MovieGenre;
 import model.MoviePre;
 import service.movie.MovieData;
+import service.movie.ReadMovieGenreService;
 import service.movie.WriteMovieService;
 
 public class WriteAdminMovieHandler implements CommandHandler{
@@ -30,6 +33,9 @@ public class WriteAdminMovieHandler implements CommandHandler{
 	}
 	
 	private String processForm(HttpServletRequest req, HttpServletResponse resp) {
+		ReadMovieGenreService readMovieGenreService = ReadMovieGenreService.getInstance();
+		List<MovieGenre> movieGenreList = readMovieGenreService.readMovieGenre();
+		req.setAttribute("movieGenreList", movieGenreList);
 		return FORM_VIEW;
 	}
 

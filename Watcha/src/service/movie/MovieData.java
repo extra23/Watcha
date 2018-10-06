@@ -3,13 +3,14 @@ package service.movie;
 import java.util.Map;
 
 import model.MovieDetail;
+import model.MovieGenre;
 import model.MoviePre;
 
 public class MovieData {
 	
-		//moviePre 테이블 내용
+		//movie_pre 테이블 내용
 		private MoviePre moviePre;
-		//MovieDetail 테이블 내용
+		//movie_detail 테이블 내용
 		private MovieDetail movieDetail;
 		
 		//constructor
@@ -26,7 +27,7 @@ public class MovieData {
 		public MovieDetail getMovieDetail() {
 			return movieDetail;
 		}
-		
+
 		// 무결성 체크를 위한 메소드
 		public void validate(Map<String, Boolean> errors) {
 			if(moviePre.getTitle() == null || moviePre.getTitle().isEmpty()) {

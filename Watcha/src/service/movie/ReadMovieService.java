@@ -6,9 +6,11 @@ import java.sql.SQLException;
 import Exception.MovieDetailNotFoundException;
 import Exception.MoviePreNotFoundException;
 import dao.MovieDetailDAO;
+import dao.MovieGenreDAO;
 import dao.MoviePreDAO;
 import jdbc.ConnectionProvider;
 import model.MovieDetail;
+import model.MovieGenre;
 import model.MoviePre;
 
 public class ReadMovieService {
@@ -26,20 +28,21 @@ public class ReadMovieService {
 
 		MoviePreDAO moviePreDAO = MoviePreDAO.getInstance();
 		MovieDetailDAO movieDetailDAO = MovieDetailDAO.getInstance();
+		MovieGenreDAO movieGenreDAO = MovieGenreDAO.getInstance();
 
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			
 			MoviePre moviePre = moviePreDAO.selectById(conn, movieId);
-			
 			if (moviePre == null) {
 				throw new MoviePreNotFoundException("moviePre이 없음");
 			}
 
 			MovieDetail movieDetail = movieDetailDAO.selectById(conn, movieId);
-			
 			if (movieDetail ==null) {
 				throw new MovieDetailNotFoundException("movieDetail이 없음");
 			}
+			
+			String genreName = movieGenreDAO.selectMovieGenre(conn, movieDetail.getGenreId());
 
 			return new MovieData(moviePre, movieDetail);
 

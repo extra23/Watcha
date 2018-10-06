@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -57,8 +58,16 @@
 				<input type="text" name="actor" placeholder="actor">
 			</p>
 				
-			<p>
+<!-- 			<p>
 				<input type="text" name="genreId" placeholder="genreId">
+			</p> -->
+			
+			<p>
+				<select name="movieGenre">
+					<c:forEach var="movieGenre" items="${movieGenreList}">
+						<option value="${movieGenre.genreId}">${movieGenre.genreName}</option>
+					</c:forEach>
+				</select>
 			</p>
 			
 			<p>

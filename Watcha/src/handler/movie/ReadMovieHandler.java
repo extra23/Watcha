@@ -1,12 +1,16 @@
 package handler.movie;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Exception.MovieDetailNotFoundException;
 import Exception.MoviePreNotFoundException;
 import common.handler.CommandHandler;
+import model.MovieGenre;
 import service.movie.MovieData;
+import service.movie.ReadMovieGenreService;
 import service.movie.ReadMovieService;
 
 public class ReadMovieHandler implements CommandHandler{
@@ -16,12 +20,16 @@ public class ReadMovieHandler implements CommandHandler{
 		
 		// 사용자에게 요청을 받고 서비스를 이용해서 화면에 보여줄 데이터 생성
 		int movieId = Integer.parseInt(req.getParameter("no"));
-		ReadMovieService movieService = ReadMovieService.getInstance( );
+		
+		ReadMovieService movieService = ReadMovieService.getInstance();
+		ReadMovieGenreService readMovieGenreService = ReadMovieGenreService.getInstance();
 		
 		// 화면으로 리턴
 		try {
 			MovieData movieData = movieService.getMovie(movieId);
+			List<MovieGenre> movieGenreList = readMovieGenreService.readMovieGenre();
 			req.setAttribute("movieData", movieData);
+			req.setAttribute("movieGenreList", movieGenreList);
 			return "/WEB-INF/view/movie/movie.jsp";
 		}catch(MoviePreNotFoundException | MovieDetailNotFoundException e) {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);

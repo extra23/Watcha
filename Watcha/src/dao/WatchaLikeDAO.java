@@ -25,6 +25,7 @@ public class WatchaLikeDAO {
 			return pst.executeUpdate();
 		}
 	}
+	
 	// 게시글 내용을 가져오는 메소드
 	public WatchaLike selectById(Connection conn, int likeId, int memberId, int movieId, int saw) throws SQLException {
 		String sql = "select * from movie_like where like_id = ? ";
@@ -40,6 +41,7 @@ public class WatchaLikeDAO {
 			}
 		}
 	}
+	
 	//  글 수정  메소드
 	public int update(Connection conn, int likeId) throws SQLException {
 		String sql = "update movie_like set title = ? where like_id = ? ";
