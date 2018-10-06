@@ -14,19 +14,16 @@ public class WatchaReview {
 		return reviewId;
 	}
 	
-	//생성자 1. DB에서 가져올 때 사용할 생성자
-	public WatchaReview(int reviewId, Member member, int star, String review, LocalDateTime wdate, LocalDateTime udate) {
-		super();
+	//생성자. DB에서 가져올 때 사용할 생성자
+	public WatchaReview(int reviewId, Member member, int star, String review) {
 		this.reviewId = reviewId;
 		this.member = member;
 		this.star = star;
 		this.review = review;
-		this.wdate = wdate;
-		this.udate = udate;
 	}
 	
-	public WatchaReview(int reviewId, Member member, int star, String review) {
-		this.reviewId = reviewId;
+	//생성자. 작성할 때 사용할 생성자
+	public WatchaReview(Member member, int star, String review) {
 		this.member = member;
 		this.star = star;
 		this.review = review;
