@@ -40,7 +40,7 @@ public class CreateAccountHandler implements CommandHandler{
 		return FORM_VIEW;
 	}
 
-	// 사용자로부터 회원가입 데이터를 입력받아
+	// 사용자로부터 회원가입 데이터를 입력받아adadg
 	// submit 버튼을 클릭해서 데이타가 넘어왔을 때 실행하는 메소드 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		

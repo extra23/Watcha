@@ -21,6 +21,8 @@
 </head>
 <body>
 
+	<!--  -->
+
 	<jsp:include page="/WEB-INF/view/layout/top.jsp" flush="false"></jsp:include>
 
 	<div id="movieData">

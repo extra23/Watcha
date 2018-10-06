@@ -26,7 +26,7 @@
 	
 	
 
-	<!-- MoviePre가 없을 때 -->
+	<!-- MoviePre가 없을 때 adaf-->
 	<c:if test="${!moviePage.hasMoviePres()}">
 		<div id="nonMoviePre">
 			<img src="images/overaction2.jpg">

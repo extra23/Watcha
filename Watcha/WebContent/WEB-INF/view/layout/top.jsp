@@ -25,7 +25,7 @@
 		}
 
 		a {text-decoration: none; color: white;}
-		a:hover {text-decoration: none; color: white;}
+		a:hover {text-decoration: none; color: white;} /* top */
 
 		#title {
 			float: left;

@@ -51,7 +51,7 @@ public class LoginHandler implements CommandHandler{
 			return FORM_VIEW;
 		}
 		
-		// 3. 무결성 체크 후 비지 않았다면 Service 객체 받고 Service 객체의 메소드를 통해서 인증함
+		// 3. 무결성 체크 후 비지 않았다면 Service 객체 받고 Service 객체의 메소드를 통해서 인증함sdfsdf
 		LoginService loginService = LoginService.getInstance();
 		try{
 			// 3-1. 인증에 성공하면 AuthUser 객체를 생성하여 Session에 넣음
