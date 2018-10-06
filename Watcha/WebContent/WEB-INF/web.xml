@@ -30,12 +30,12 @@
 		<url-pattern>/join</url-pattern>
 		<url-pattern>/movie_list</url-pattern>
 		<url-pattern>/movie</url-pattern>
+		<url-pattern>/movie_review_write</url-pattern>
+		<url-pattern>/movie_review_list</url-pattern>
 		<url-pattern>/member_account_modify</url-pattern>
 		<url-pattern>/member_account_delete</url-pattern>
 		<url-pattern>/admin_movie_write</url-pattern>
 		<url-pattern>/admin_movie</url-pattern>
-		<url-pattern>/movie_review</url-pattern>
-		<url-pattern>/movie_review_write</url-pattern>
 	</servlet-mapping>
 	
 	<!-- CharacterEncodingFilter 등록 및 맵핑 -->
@@ -49,7 +49,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
-	<!-- LoginCheckFilter 등록 및 맵핑sdfsdf -->
+	<!-- LoginCheckFilter 등록 및 맵핑 -->
 	<filter>
 		<filter-name>loginCheckFilter</filter-name>
 		<filter-class>filter.LoginCheckFilter</filter-class>
@@ -59,11 +59,12 @@
 		<filter-name>loginCheckFilter</filter-name>
 		<url-pattern>/movie_list</url-pattern>
 		<url-pattern>/movie</url-pattern>
+		<url-pattern>/movie_review_write</url-pattern>
+		<url-pattern>/movie_review_list</url-pattern>
 		<url-pattern>/member_account_modify</url-pattern>
+		<url-pattern>/member_account_delete</url-pattern>
 		<url-pattern>/admin_movie_write</url-pattern>
 		<url-pattern>/admin_movie</url-pattern>
-		<url-pattern>/member_account_delete</url-pattern>
-		<url-pattern>/movie_review</url-pattern>
 	</filter-mapping>
 	
 	<!-- Session 설정 -->

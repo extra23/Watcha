@@ -11,7 +11,7 @@
 	
 		body {background: url("images/background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
 	
-		#movieData {background-color: rgb(240, 240, 240); margin: 20px; border-radius: 20px; padding: 40px; width: 1000px; display: inline-block;}
+		#movieData {background-color: rgb(240, 240, 240); margin: 20px; border-radius: 20px; padding: 40px; width: 1000px; float: left;}
 		#movieTitle {font-family: BomBaramOTF; font-size: 40px;}
 		#moviePre {font-family: a찐빵M;}
 		#movieTrailer {text-align: center;}
@@ -20,8 +20,6 @@
 	</style>
 </head>
 <body>
-
-	<!--  -->
 
 	<jsp:include page="/WEB-INF/view/layout/top.jsp" flush="false"></jsp:include>
 
@@ -71,7 +69,9 @@
 	
 	</div>
 	
-	<jsp:include page="/WEB-INF/view/movie/movie_review.jsp" flush="false"></jsp:include>
+	<jsp:include page="/WEB-INF/view/movie/movie_review_write.jsp" flush="false"></jsp:include>
+	
+	<jsp:include page="/WEB-INF/view/movie/movie_review_list.jsp" flush="false"></jsp:include>
 
 </body>
 </html>

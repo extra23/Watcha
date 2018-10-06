@@ -25,7 +25,7 @@ public class WatchaReviewDAO {
 
 	// 사용자 리뷰 추가
 	public int insert(Connection conn, ReviewRequest reviewRequest) throws SQLException {
-		String sql = "insert into watcha_review(member_id,star,review) values(?,?,?)";
+		String sql = "insert into watcha_review(member_id, star, review) values(?, ?, ?)";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setInt(1, reviewRequest.getMemberId());
 			pst.setInt(2, reviewRequest.getStar());

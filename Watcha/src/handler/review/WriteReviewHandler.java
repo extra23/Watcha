@@ -33,21 +33,37 @@ public abstract class WriteReviewHandler implements CommandHandler{
 		return FORM_VIEW;
 	}
 
+	// 서비스를 이용해서 리뷰를 watcha_review 테이블에 insert하고 resp.sendRedirect를 통해 review 주소를 보냄
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		//서비스를 이용해서 리뷰를 작성하고 
-		//resp.sendRedirect를 통해 review 주소를 보낸다.
+
+		// 빈 값이 있을 경우 오류를 저장할 Map 객체
+		Map<String, Boolean> errors = new HashMap<>();
 		
 		String starStr = req.getParameter("star");
+		int star = 0;
+		if(starStr != null) {
+			star = Integer.parseInt(starStr);
+		}else {
+			errors.put("star", true);
+		}
 		
-		ReviewRequest reviewRequest = new ReviewRequest(((AuthUser)req.getSession().getAttribute("authUser")).getMemberId(), Integer.parseInt(starStr), req.getParameter("review"));
+		// 사용자가 작성한 내용을 받아와서 저장하는 ReviewRequest 객체
+		ReviewRequest reviewRequest = new ReviewRequest(((AuthUser)req.getSession().getAttribute("authUser")).getMemberId(), star, req.getParameter("review"));
+		reviewRequest.validate(errors);
 		
-		
-		//memberId, star는 자료형이 int이므로 Integer.parseInt()하기 전에 먼저 빈 값이 들어왔는지 들어오지 않았는지 check해줌
-
+		if(!errors.isEmpty()) {
+			return FORM_VIEW;
+		}
 		
 		WriteReviewService writeReviewService = WriteReviewService.getInstance();
 		writeReviewService.write(reviewRequest);
-		resp.sendRedirect(req.getContextPath()+"/movie");
+		
+		System.out.println("주소 : " + req.getContextPath() + "/movie?no=2");
+		
+		resp.sendRedirect(req.getContextPath()+"/movie?no=2");
+		
 		return null;
+		
 	}
+	
 }

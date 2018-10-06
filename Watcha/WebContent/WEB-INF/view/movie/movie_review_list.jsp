@@ -2,11 +2,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>movie_review_list</title>
+	<meta charset="UTF-8">
+	<title>movie_review_list</title>
+	<style>
+	
+		#movieReviewList {background-color: white; float: right; margin: 30px;}
+	
+	</style>
 </head>
 <body>
-write 성공
+
+	<div id="movieReviewList">
+		성공 여부 : ${reviewPage.currentPage}
+	</div>
 
 </body>
 </html>
