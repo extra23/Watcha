@@ -30,8 +30,6 @@
 		<url-pattern>/join</url-pattern>
 		<url-pattern>/movie_list</url-pattern>
 		<url-pattern>/movie</url-pattern>
-		<url-pattern>/movie_review_write</url-pattern>
-		<url-pattern>/movie_review_list</url-pattern>
 		<url-pattern>/member_account_modify</url-pattern>
 		<url-pattern>/member_account_delete</url-pattern>
 		<url-pattern>/admin_movie_write</url-pattern>
@@ -59,8 +57,6 @@
 		<filter-name>loginCheckFilter</filter-name>
 		<url-pattern>/movie_list</url-pattern>
 		<url-pattern>/movie</url-pattern>
-		<url-pattern>/movie_review_write</url-pattern>
-		<url-pattern>/movie_review_list</url-pattern>
 		<url-pattern>/member_account_modify</url-pattern>
 		<url-pattern>/member_account_delete</url-pattern>
 		<url-pattern>/admin_movie_write</url-pattern>

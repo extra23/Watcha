@@ -1,7 +1,9 @@
 package handler.movie;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,18 +12,23 @@ import Exception.MovieDetailNotFoundException;
 import Exception.MoviePreNotFoundException;
 import common.handler.CommandHandler;
 import model.MovieGenre;
+import service.account.AuthUser;
 import service.movie.MovieData;
 import service.movie.ReadMovieGenreService;
 import service.movie.ReadMovieService;
 import service.review.ListReviewService;
 import service.review.ReviewPage;
+import service.review.ReviewRequest;
+import service.review.WriteReviewService;
 
 public class ReadMovieHandler implements CommandHandler{
 	
 	public static final String FORM_VIEW = "/WEB-INF/view/movie/movie.jsp";
+	int movieId;
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		
 		if(req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, resp);
 		}else if(req.getMethod().equalsIgnoreCase("POST")) {
@@ -38,6 +45,7 @@ public class ReadMovieHandler implements CommandHandler{
 		// 사용할 Parameter 받아오기 (movieData, reviewPage)
 		// movieData
 		int movieId = Integer.parseInt(req.getParameter("no"));
+		this.movieId = movieId;
 		// reviewPage
 		String pageNoStr = req.getParameter("pageNo");
 		int pageNo = 1;
@@ -65,12 +73,40 @@ public class ReadMovieHandler implements CommandHandler{
 		req.setAttribute("movieData", movieData);
 		req.setAttribute("movieGenreList", movieGenreList);
 		req.setAttribute("reviewPage", reviewPage);
-		return "/WEB-INF/view/movie/movie.jsp";
+		return FORM_VIEW;
 		
 	}
 	
-	public String processSubmit(HttpServletRequest req, HttpServletResponse resp) {
+	public String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		
+		Map<String, Boolean> errors = new HashMap<>();
+		
+		// 사용자가 작성한 내용을 받아와서 ReviewRequest 객체 생성하여 저장
+		String starStr = req.getParameter("star");
+		int star = 0;
+		if(starStr != null) {
+			star = Integer.parseInt(starStr);
+		}else {
+			errors.put("star", true);
+		}
+		
+		ReviewRequest reviewRequest = new ReviewRequest(((AuthUser)req.getSession().getAttribute("authUser")).getMemberId(), movieId, star, req.getParameter("review"));
+		
+		reviewRequest.validate(errors);
+		req.setAttribute("errors", errors);
+		
+		if(!errors.isEmpty()) {
+			return FORM_VIEW;
+		}
+		
+		// WriteReviewService 이용하여 watcha_review 테이블에 reviewRequest 내용 넣기
+		WriteReviewService writeReviewService = WriteReviewService.getInstance();
+		writeReviewService.write(reviewRequest);
+		
+		resp.sendRedirect(req.getContextPath() + "/movie?no=" + this.movieId);
+		
 		return null;
+		
 	}
 
 }

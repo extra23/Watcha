@@ -25,11 +25,12 @@ public class WatchaReviewDAO {
 
 	// 사용자 리뷰 추가
 	public int insert(Connection conn, ReviewRequest reviewRequest) throws SQLException {
-		String sql = "insert into watcha_review(member_id, star, review) values(?, ?, ?)";
+		String sql = "insert into watcha_review(member_id, movie_id, star, review) values(?, ?, ?, ?)";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setInt(1, reviewRequest.getMemberId());
-			pst.setInt(2, reviewRequest.getStar());
-			pst.setString(3, reviewRequest.getReview());
+			pst.setInt(2, reviewRequest.getMovieId());
+			pst.setInt(3, reviewRequest.getStar());
+			pst.setString(4, reviewRequest.getReview());
 			return pst.executeUpdate();
 		}
 	}
@@ -92,8 +93,10 @@ public class WatchaReviewDAO {
 		
 		WatchaReview watchaReview = new WatchaReview(rs.getInt("review_id"),
 									rs.getInt("member_id"),
+									rs.getInt("movie_id"),
 									rs.getInt("star"), 
 									rs.getString("review"));
 		return watchaReview;
+		
 	}
 }
