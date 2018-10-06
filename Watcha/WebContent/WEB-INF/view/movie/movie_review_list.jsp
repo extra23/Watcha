@@ -3,10 +3,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>member_review</title>
+<title>movie_review_list</title>
 </head>
 <body>
-
+write 성공
 
 </body>
 </html>

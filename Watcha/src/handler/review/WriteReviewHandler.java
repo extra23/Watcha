@@ -43,11 +43,11 @@ public abstract class WriteReviewHandler implements CommandHandler{
 		
 		
 		//memberId, star는 자료형이 int이므로 Integer.parseInt()하기 전에 먼저 빈 값이 들어왔는지 들어오지 않았는지 check해줌
-		Map<String, Boolean> errors = new HashMap<>();
+
 		
 		WriteReviewService writeReviewService = WriteReviewService.getInstance();
 		writeReviewService.write(reviewRequest);
-		resp.sendRedirect(req.getContextPath()+"/movie_review");
+		resp.sendRedirect(req.getContextPath()+"/movie");
 		return null;
 	}
 }
