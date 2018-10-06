@@ -24,6 +24,9 @@
 			width: 50px;
 		}
 
+		a {text-decoration: none; color: white;}
+		a:hover {text-decoration: none; color: white;}
+
 		#title {
 			float: left;
 			font-family: a스케치고딕;
@@ -72,10 +75,10 @@
 <body>
 
 	<div id="logo">
-		<a href="movieList"><img src="images/overaction.gif"></a>
+		<a href="movie_list"><img src="images/overaction.gif"></a>
 	</div>
 
-	<div id="title">POTATO</div>
+	<div id="title"><a href="movie_list">POTATO</a></div>
 
 	<div id="user" class="btn-group">
 

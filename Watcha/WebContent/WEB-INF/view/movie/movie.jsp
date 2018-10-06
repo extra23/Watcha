@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -10,8 +11,11 @@
 	
 		body {background: url("images/background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
 	
-		#movieData {background-color: rgb(240, 240, 240); margin: 20px; border-radius: 20px; padding: 30px; width: 1000px; display: inline-block;}
-		#movieTitle {font-family: BomBaramOTF; font-size: 30px;}
+		#movieData {background-color: rgb(240, 240, 240); margin: 20px; border-radius: 20px; padding: 40px; width: 1000px; display: inline-block;}
+		#movieTitle {font-family: BomBaramOTF; font-size: 40px;}
+		#moviePre {font-family: a찐빵M;}
+		#movieTrailer {text-align: center;}
+		#movieDirector, #movieActor, .moviePlot {font-family: a찐빵M;}
 	
 	</style>
 </head>
@@ -25,10 +29,10 @@
 			${movieData.moviePre.title}
 		</p>
 		
-		<p>
-			<span>${movieData.moviePre.releaseDate}</span>
-			<span>${movieData.moviePre.rate}</span>
-			<span>${movieData.moviePre.time}</span>
+		<p id="moviePre">
+			<span>${movieData.moviePre.releaseDate}년</span>&nbsp;&nbsp;
+			<span>${movieData.moviePre.rate}세</span>&nbsp;&nbsp;
+			<span>${movieData.moviePre.time}분</span>&nbsp;&nbsp;
 			<span>
 				<c:forEach var="movieGenre" items="${movieGenreList}">
 					<c:if test="${movieData.movieDetail.genreId eq movieGenre.genreId}">
@@ -36,6 +40,31 @@
 					</c:if>
 				</c:forEach>
 			</span>
+		</p>
+		
+		<br>
+		
+		<p id="movieTrailer">
+			<iframe width="885" height="498" src="${movieData.movieDetail.trailer}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+		</p>
+		
+		<br>
+		
+		<p id="movieDirector">
+			<span><b>감독 : </b></span>
+			<span>${movieData.movieDetail.director}</span>
+		</p>
+		
+		<p id="movieActor">
+			<span><b>배우 : </b></span>
+			<span>${movieData.movieDetail.actor}</span>
+		</p>
+		
+		<br>
+		
+		<p class="moviePlot">
+			<span><b>줄거리 : </b></span><br>
+			<div class="moviePlot"><u:pre value="${movieData.movieDetail.plot}"></u:pre></div>
 		</p>
 	
 	</div>

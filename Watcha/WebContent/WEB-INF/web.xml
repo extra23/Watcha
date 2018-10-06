@@ -28,7 +28,7 @@
 		<url-pattern>/login</url-pattern>
 		<url-pattern>/logout</url-pattern>
 		<url-pattern>/join</url-pattern>
-		<url-pattern>/movieList</url-pattern>
+		<url-pattern>/movie_list</url-pattern>
 		<url-pattern>/movie</url-pattern>
 		<url-pattern>/member_account_modify</url-pattern>
 		<url-pattern>/member_account_delete</url-pattern>
@@ -57,7 +57,7 @@
 	
 	<filter-mapping>
 		<filter-name>loginCheckFilter</filter-name>
-		<url-pattern>/movieList</url-pattern>
+		<url-pattern>/movie_list</url-pattern>
 		<url-pattern>/movie</url-pattern>
 		<url-pattern>/member_account_modify</url-pattern>
 		<url-pattern>/admin_movie_write</url-pattern>

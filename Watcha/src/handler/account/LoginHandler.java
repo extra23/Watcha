@@ -57,7 +57,7 @@ public class LoginHandler implements CommandHandler{
 			// 3-1. 인증에 성공하면 AuthUser 객체를 생성하여 Session에 넣음
 			AuthUser authUser = loginService.login(userId, password);
 			req.getSession().setAttribute("authUser", authUser);
-			resp.sendRedirect(req.getContextPath() + "/movieList");
+			resp.sendRedirect(req.getContextPath() + "/movie_list");
 			return null;
 		}catch (LoginFailException e) {
 			// 3-2. 인증에 실패하면 errors 객체에 실패 정보를 받고 login.jsp 화면으로 다시 보냄

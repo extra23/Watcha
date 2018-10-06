@@ -23,6 +23,8 @@
 <body>
 
 	<jsp:include page="/WEB-INF/view/layout/top.jsp" flush="false"></jsp:include>
+	
+	
 
 	<!-- MoviePre가 없을 때 -->
 	<c:if test="${!moviePage.hasMoviePres()}">
@@ -56,8 +58,6 @@
 			</div>
 		</c:forEach>
 	</div>
-	
-	<!-- testtest -->
 
 </body>
 </html>

@@ -76,7 +76,7 @@ public class CreateAccountHandler implements CommandHandler{
 			req.getSession().setAttribute("authUser", authUser);
 			
 			// movie_list로 화면 반환
-			resp.sendRedirect(req.getContextPath() + "/movieList");
+			resp.sendRedirect(req.getContextPath() + "/movie_list");
 			return null;
 			
 		}catch(DuplicateException e) {
