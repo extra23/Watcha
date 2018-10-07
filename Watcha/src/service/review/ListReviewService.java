@@ -17,7 +17,7 @@ public class ListReviewService {
 	}
 	private ListReviewService () {}
 	
-	private int size = 3; //한 페이지에 보여줄 리뷰 개수
+	private int size = 5; //한 페이지에 보여줄 리뷰 개수
 	private int blockSize = 5; //한 페이지에서 보여줄 하단 페이지 링크의 개수
 	
 	public ReviewPage getReviewPage(int pageNum) {
