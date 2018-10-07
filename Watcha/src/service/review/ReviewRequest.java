@@ -7,10 +7,10 @@ public class ReviewRequest {
 
 	private int memberId;
 	private int movieId;
-	private int star;
+	private double star;
 	private String review;
 	
-	public ReviewRequest(int memberId, int movieId, int star, String review) {
+	public ReviewRequest(int memberId, int movieId, double star, String review) {
 		this.memberId = memberId;
 		this.movieId = movieId;
 		this.star = star;
@@ -25,7 +25,7 @@ public class ReviewRequest {
 		return movieId;
 	}
 
-	public int getStar() {
+	public double getStar() {
 		return star;
 	}
 

@@ -83,9 +83,9 @@ public class ReadMovieHandler implements CommandHandler{
 		
 		// 사용자가 작성한 내용을 받아와서 ReviewRequest 객체 생성하여 저장
 		String starStr = req.getParameter("star");
-		int star = 0;
+		double star = 0.0;
 		if(starStr != null) {
-			star = Integer.parseInt(starStr);
+			star = Double.parseDouble(starStr);
 		}else {
 			errors.put("star", true);
 		}

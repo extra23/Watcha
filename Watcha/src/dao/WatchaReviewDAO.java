@@ -29,7 +29,7 @@ public class WatchaReviewDAO {
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setInt(1, reviewRequest.getMemberId());
 			pst.setInt(2, reviewRequest.getMovieId());
-			pst.setInt(3, reviewRequest.getStar());
+			pst.setDouble(3, reviewRequest.getStar());
 			pst.setString(4, reviewRequest.getReview());
 			return pst.executeUpdate();
 		}
@@ -94,7 +94,7 @@ public class WatchaReviewDAO {
 		WatchaReview watchaReview = new WatchaReview(rs.getInt("review_id"),
 									rs.getInt("member_id"),
 									rs.getInt("movie_id"),
-									rs.getInt("star"), 
+									rs.getDouble("star"), 
 									rs.getString("review"));
 		return watchaReview;
 		
