@@ -27,26 +27,32 @@
 			font-family: a찐빵M;
 		}
 		
-		#star-rating-outer {
-			height: 39px;
+		#gray-star {
+			background: url("images/starGray.png") no-repeat; 
+			display: inline-block; 
+			width: 205px; 
+			height: 39px; 
+			z-index: 0;
+		}
+	
+		#star-rating {
+			position: relative; 
+			height: 39px; 
+			width: 10%; 
+			float: left;
+			display: inline-block;
+		}
+	
+		#red-star {
+			display: inline-block; 
+			width: 0; 
+			overflow: hidden; 
+			position: relative; 
+			top: -39px; 
+			z-index: 2;
 		}
 		
-		#star-rating-inner {
-			width: 0;
-			overflow: hidden;
-			position: relative;
-			top: -46px;
-			z-index: 3;
-			-ms-user-select: none; 
-   			-moz-user-select: -moz-none;
-   			-khtml-user-select: none;
-   			-webkit-user-select: none;
-   			user-select: none;
-		}
-		
-		#star-rating-inner-image {
-			z-index: 3;
-		}
+		#star-value {display: inline-block;}
 		
 	</style>
 </head>
@@ -56,63 +62,38 @@
 
 		<form action="movie" method="post">
 
-			<div id="star-rating-outer">
-				<canvas id="canvas" width="205" height="39"></canvas>
-				<div id="star-rating-inner">
-					<img id="star-rating-inner-image" src="images/starRed.png">
+			<div id="gray-star">
+				<c:forEach begin="1" end="10" var="i">
+					<div id="star-rating" onclick="resize(${i})"></div>
+				</c:forEach>
+				<div id="red-star" onclick="resize(0)">
+					<img src="images/starRed2.png">
 				</div>
 			</div>
-			<input type="hidden" name="star" id="starInput" value="0">
-			</p>
+			
+			<input type="hidden" name="star" id="star-value">
 
-			<p style="text-align: center">
-				<textarea rows="3" cols="85" name="review" style="font-size: 12px;">${param.review}</textarea>
+			<p style="text-align: center; margin-top: -28px;">
+				<textarea rows="3" cols="125" name="review" style="font-size: 12px;">${param.review}</textarea>
 			</p>
 
 			<p>
-				<input type="submit" value="리뷰등록" style="width: 47.85%; font-size: 12px;">&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="reset" value="초기화" style="width: 47.85%; font-size: 12px;">
+				<input type="submit" value="리뷰등록" style="width: 48.5%; font-size: 12px;">&nbsp;&nbsp;&nbsp;
+				<input type="reset" value="초기화" style="width: 49%; font-size: 12px;">
 			</p>
 
 		</form>
 
 	</div>
-
+	
 	<script>
-		
-		var widthArr = [ 21, 41, 62, 82, 103, 123, 144, 164, 184, 205 ];
-
-		var index = 0;
-		var star = 0;
-
-		function event() {
-
-			document.getElementById("star-rating-inner").style.width = widthArr[index]
-					+ "px";
-
-			document.getElementById("starInput").value = 0.5 * (index + 1);
-
-			index += 1;
-
+	
+		function resize(i){
+			var per = (i) * 10;
+			document.getElementById('red-star').style.width = per + '%';
+			document.getElementById('star-value').value = 0.5 * i;
 		}
-
-		var context = canvas.getContext("2d");
-		var img = new Image();
-		img.src = "images/starGray.png";
-		img.addEventListener("load", function() {
-			context.drawImage(img, 0, 0);
-		})
-
-		canvas.onclick = function() {
-			event();
-		}
-
-		document.getElementById("star-rating-inner").onclick = function() {
-			document.getElementById("star-rating-inner").style.width = 0;
-			index = 0;
-			document.getElementById("starInput").value = 0;
-		}
-		
+	
 	</script>
 
 </body>

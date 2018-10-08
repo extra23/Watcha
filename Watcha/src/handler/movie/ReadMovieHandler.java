@@ -95,6 +95,10 @@ public class ReadMovieHandler implements CommandHandler{
 		reviewRequest.validate(errors);
 		req.setAttribute("errors", errors);
 		
+		for(String errorsValue : errors.keySet()) {
+			System.out.println(errorsValue);
+		}
+		
 		if(!errors.isEmpty()) {
 			return FORM_VIEW;
 		}

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,24 +11,36 @@
 		
 		#star-rating-inner {display: inline-block; width: 205px; height: 39px; overflow: hidden;}
 		
-/* 		#star-rating-outer, #star-rating-inner {display: inline-block; height: 39px; overflow: hidden; background: url("images/star.png") no-repeat;}
+ 		#star-rating-outer, #star-rating-inner {display: inline-block; height: 39px; overflow: hidden; background: url("images/starGray.png") no-repeat;}
 		
-		#star-rating-inner {background-position: left bottom; line-height: 0; vertical-align: top;} */
+		#star-rating-inner {background-position: left bottom; line-height: 0; vertical-align: top;}
 		
 	</style>
 </head>
 <body>
 
-<!-- 	<div id="star-rating-outer"  onclick="event()">
-		<div id="star-rating-inner" style="width: 0"></div>
-	</div> -->
+	<div id="star-rating-outer">
+		<c:forEach begin="1" end="10" var="i">
+			<div style="position: relative; height: 39px;width: 10%;float: left;" onclick="resize(${i})"></div>
+		</c:forEach>
+		<div id="star-rating-inner" style="width: 100%; overflow: hidden; position: relative; top:-39px; z-index: 2;" onclick="resize(0)">
+			<img src="images/starRed2.png">
+		</div>
+	</div>
 	
+	<script type="text/javascript">
+	function resize(i){
+		var per = (i) * 10;
+		document.getElementById('star-rating-inner').style.width = per + '%';
+	}
+	</script>
+	<!-- 
 	<canvas id="canvas" onclick="event()"></canvas>
 		
 		<div id="star-rating-inner" style="width: 100px; overflow: hidden; position: absolute; top: 7px; left: 8px; z-index: 2;">
 			<img src="images/starRed.png" style="z-index: 2;">
 		</div>
-	
+	--><!-- 
 	<script>
 	
 		function coordinate(x1, y1, x2, y2, width){
@@ -77,7 +90,7 @@
 		img.src = "images/starGray.png";
 		context.drawImage(img, 0, 0);
 	
-	</script>
+	</script> -->
 
 </body>
 </html>

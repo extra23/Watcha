@@ -14,7 +14,6 @@
 		table, tr, td {padding: 10px;}
 		
 		#star-td {padding-bottom: 16px;}
-		#star-div {width: 50px; overflow: hidden; display: inline-block; position: relative; top: 4px;}
 	
 	</style>
 </head>
@@ -33,7 +32,7 @@
 				<tr>
 					<td>
 						${authUser.memberName}&nbsp;&nbsp;
-						<div id="star-div"><img src="images/starRed.png" width="102.5"></div>
+						<div id="star-div-${review.star}" style="overflow: hidden; display: inline-block; position: relative; top: 4px;"><img src="images/starRed.png" width="102.5"></div>
 					</td>
 				</tr>
 				<tr>
@@ -50,7 +49,38 @@
 			</c:forEach>
 		</table>
 		
+		<!-- 페이지네이션 -->
+		
 	</div>
+	
+	<script>
+	
+		<c:forEach var="review" items="${reviewPage.reviewList}">
+			var star = <c:out value="${review.star}"/>
+			if(star == 0.5){
+				document.getElementById('star-div-0.5').style.width = "7%";
+			}else if(star == 1.0){
+				document.getElementById('star-div-1.0').style.width = "13%";
+			}else if(star == 1.5){
+				document.getElementById('star-div-1.5').style.width = "20%";
+			}else if(star == 2.0){
+				document.getElementById('star-div-2.0').style.width = "26%";
+			}else if(star == 2.5){
+				document.getElementById('star-div-2.5').style.width = "33%";
+			}else if(star == 3.0){
+				document.getElementById('star-div-3.0').style.width = "39%";
+			}else if(star == 3.5){
+				document.getElementById('star-div-3.5').style.width = "46%";
+			}else if(star == 4.0){
+				document.getElementById('star-div-4.0').style.width = "52%";
+			}else if(star == 4.5){
+				document.getElementById('star-div-4.5').style.width = "59%";
+			}else if(star == 5.0){
+				document.getElementById('star-div-5.0').style.width = "64%"
+			}
+		</c:forEach>
+	
+	</script>
 
 </body>
 </html>
