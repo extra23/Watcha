@@ -35,7 +35,7 @@ public class WatchaReviewDAO {
 		}
 	}
 
-	// watcha_review의 tuple수를 가져오는 메소드
+	// (movie_id에 상관없이) watcha_review의 전체 tuple수를 가져오는 메소드
 	public int selectCount(Connection conn) throws SQLException {
 		String sql = "select count(*) from watcha_review";
 		try (Statement st = conn.createStatement(); ResultSet rs = st.executeQuery(sql)) {
@@ -45,10 +45,24 @@ public class WatchaReviewDAO {
 		}
 		return 0;
 	}
+	
+	// (movie_id에 따라서) watcha_review의 전체 tuple수를 가져오는 메소드
+	public int selectCount(Connection conn, int movieId) throws SQLException {
+		String sql = "select count(*) from watcha_review where movie_id = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql);){
+			pst.setInt(1, movieId);
+			try(ResultSet rs = pst.executeQuery();){
+				if(rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+		}
+		return 0;
+	}
 
-	// 리미트를 이용한 리스트를 가져오는 쿼리
+	// (movie_id에 상관없이) 리미트를 이용한 리스트를 가져오는 쿼리
 	public List<WatchaReview> select(Connection conn, int StartRow, int size) throws SQLException {
-		String sql = "select * from watcha_review order by review_id limit ?,?";
+		String sql = "select * from watcha_review order by review_id desc limit ?,?";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
 			pst.setInt(1, StartRow);
 			pst.setInt(2, size);
@@ -58,7 +72,23 @@ public class WatchaReviewDAO {
 					reviewList.add(convReview(rs));
 				}
 				return reviewList;
-
+			}
+		}
+	}
+	
+	// (movie_id에 따라서) 리미트를 이용한 List<WatchaReview>를 가져오는 쿼리를 날리는 메소드
+	public List<WatchaReview> selectList(Connection conn, int movieId, int startRow, int size) throws SQLException{
+		String sql = "select * from watcha_review where movie_id = ? order by review_id desc limit ?, ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql);){
+			pst.setInt(1, movieId);
+			pst.setInt(2, startRow);
+			pst.setInt(3, size);
+			try(ResultSet rs = pst.executeQuery();){
+				List<WatchaReview> reviewList = new ArrayList<>();
+				while(rs.next()) {
+					reviewList.add(convReview(rs));
+				}
+				return reviewList;
 			}
 		}
 	}

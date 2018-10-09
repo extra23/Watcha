@@ -44,7 +44,7 @@ public class ReadMovieHandler implements CommandHandler{
 		
 		// 사용할 Parameter 받아오기 (movieData, reviewPage)
 		// movieData
-		int movieId = Integer.parseInt(req.getParameter("no"));
+		int movieId = Integer.parseInt(req.getParameter("movieId"));
 		this.movieId = movieId;
 		// reviewPage
 		String pageNoStr = req.getParameter("pageNo");
@@ -67,7 +67,7 @@ public class ReadMovieHandler implements CommandHandler{
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;
 		}
-		ReviewPage reviewPage = listReviewService.getReviewPage(pageNo);
+		ReviewPage reviewPage = listReviewService.getReviewPage(movieId, pageNo);
 		
 		// 화면으로 이동
 		req.setAttribute("movieData", movieData);
@@ -107,7 +107,7 @@ public class ReadMovieHandler implements CommandHandler{
 		WriteReviewService writeReviewService = WriteReviewService.getInstance();
 		writeReviewService.write(reviewRequest);
 		
-		resp.sendRedirect(req.getContextPath() + "/movie?no=" + this.movieId);
+		resp.sendRedirect(req.getContextPath() + "/movie?movieId=" + this.movieId);
 		
 		return null;
 		

@@ -43,15 +43,31 @@ public class MoviePage {
 			}
 			
 			// startPage 초기화
-			startPage = (currentPage / blockSize) * blockSize + 1;
+/*			startPage = (currentPage / blockSize) * blockSize + 1;
 			if((currentPage%blockSize) == 0) {
-				startPage -= 1;
+				startPage -= 5;
+			}*/
+			if(currentPage == 1 || currentPage == 2) {
+				startPage = (currentPage / blockSize) * blockSize + 1;
+			}else {
+				startPage = currentPage - 2;
 			}
 			
+			
 			// endPage 초기화
-			endPage = startPage + blockSize - 1;
+			/*endPage = startPage + blockSize - 1;
 			if(endPage > totalPages) {
 				endPage = totalPages;
+			}*/
+			if(currentPage == (totalPages - 1) || currentPage == totalPages) {
+				endPage = totalPages;
+			}else if(currentPage == 1 || currentPage == 2) {
+				endPage = startPage + blockSize -1;
+				if(endPage > totalPages) {
+					endPage = totalPages;
+				}
+			}else {
+				endPage = currentPage + 2;
 			}
 			
 		}

@@ -20,11 +20,11 @@ public class ListReviewService {
 	private int size = 5; //한 페이지에 보여줄 리뷰 개수
 	private int blockSize = 5; //한 페이지에서 보여줄 하단 페이지 링크의 개수
 	
-	public ReviewPage getReviewPage(int pageNum) {
+	public ReviewPage getReviewPage(int movieId, int pageNum) {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			WatchaReviewDAO watchaReviewDAO = WatchaReviewDAO.getInstance();
-			int total = watchaReviewDAO.selectCount(conn);
-			List<WatchaReview> reviewList = watchaReviewDAO.select(conn, (pageNum-1)*size, size);
+			int total = watchaReviewDAO.selectCount(conn, movieId);
+			List<WatchaReview> reviewList = watchaReviewDAO.selectList(conn, movieId, (pageNum-1)*size, size);
 			return new ReviewPage(reviewList, pageNum, total, size, blockSize);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

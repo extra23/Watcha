@@ -19,6 +19,7 @@
 		#movieInfo, #buttonGroup {font-family: a찐빵M;}
 		
 		#MovieListPagination {text-align: center;}
+		#MovieListPagination * {font-family: a찐빵M;}
 	
 	</style>
 </head>
@@ -47,11 +48,16 @@
 							<h3 id="movieTitle">${moviePre.title}</h3>
 							<p id="movieInfo">
 								<span>${moviePre.releaseDate}년</span>&nbsp;&nbsp;
-								<span>${moviePre.rate}세</span>&nbsp;&nbsp;
+								<c:if test="${moviePre.rate eq 0}">
+									<span>전체연령가</span>&nbsp;&nbsp;
+								</c:if>
+								<c:if test="${not (moviePre.rate eq 0)}">
+									<span>${moviePre.rate}세</span>&nbsp;&nbsp;
+								</c:if>
 								<span>${moviePre.time}분</span>
 							</p>
 							<p id="buttonGroup">
-								<a href="movie?no=${moviePre.movieId}" class="btn btn-primary" role="button" style="background-color: rgb(255, 153, 51); border-width: 0px;">상세보기</a> 
+								<a href="movie?movieId=${moviePre.movieId}" class="btn btn-primary" role="button" style="background-color: rgb(255, 153, 51); border-width: 0px;">상세보기</a> 
 								<a href="movie?no=" class="btn btn-default" role="button"><img src="images/heart.png" width="20px;"></a>
 							</p>
 						</div>
@@ -61,27 +67,51 @@
 		</c:forEach>
 	</div>
 	
+	<!-- 페이지네이션 -->
 	<c:if test="${moviePage.hasMoviePres()}">
 		<div id="MovieListPagination">
 			<nav>
 	  			<ul class="pagination">
-	  	  			<li>
-	  	    			<a href="movie_list?pageNo=${moviePage.startPage - 5}" aria-label="Previous">
-	  	      				<span aria-hidden="true">&laquo;</span>
-	  	    			</a>
-	  	  			</li>
+	  				<c:if test="${moviePage.totalPages > 5 && moviePage.currentPage > 4}">
+	  					<li>
+	  						<a href="movie_list?pageNo=1" aria-label="Previous">
+	  							<span aria-hidden="true">&lt;&lt;</span>
+	  						</a>
+	  					</li>
+	  				</c:if>
+	  				<c:if test="${moviePage.currentPage > 2}">
+	  	  				<li>
+	  	    				<a href="movie_list?pageNo=${moviePage.currentPage - 2}" aria-label="Previous">
+	  	      					<span aria-hidden="true">&lt;</span>
+	  	    				</a>
+	  	  				</li>
+	  	  			</c:if>
 	  	  			<c:forEach var="pageNo" begin="${moviePage.startPage}" end="${moviePage.endPage}">
-	  	  				<li><a href="movie_list?pageNo=${pageNo}">${pageNo}</a></li>
+ 						<c:if test="${moviePage.currentPage eq pageNo}">
+							<li class="active"><a href="movie_list?pageNo=${pageNo}">${pageNo}</a></li>
+						</c:if>
+						<c:if test="${not (moviePage.currentPage eq pageNo)}">
+							<li><a href="movie_list?pageNo=${pageNo}">${pageNo}</a></li>
+						</c:if>
 	  	  			</c:forEach>
-	  	  			<li>
-	  	    			<a href="#" aria-label="Next">
-	  	      				<span aria-hidden="true">&raquo;</span>
-	  	    			</a>
-	  	  			</li>
+	  	  			<c:if test="${moviePage.totalPages > 1 && moviePage.currentPage < moviePage.totalPages - 1}">
+	  	  				<li>
+	  	    				<a href="movie_list?pageNo=${moviePage.currentPage + 2}" aria-label="Next">
+	  	      					<span aria-hidden="true">&gt;</span>
+	  	    				</a>
+	  	  				</li>
+	  	  			</c:if>
+	  	  			<c:if test="${moviePage.totalPages > 5 && moviePage.currentPage < moviePage.totalPages - 2}">
+	  	  				<li>
+	  	  					<a href="movie_list?pageNo=${moviePage.totalPages}" aria-label="Next">
+	  	  						<span aria-hidden="true">&gt;&gt;</span>
+	  	  					</a>
+	  	  				</li>
+	  	  			</c:if>
 	  			</ul>
 			</nav>
 		</div>
 	</c:if>
-
+	
 </body>
 </html>

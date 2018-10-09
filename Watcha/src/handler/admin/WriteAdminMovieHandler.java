@@ -86,7 +86,6 @@ public class WriteAdminMovieHandler implements CommandHandler{
 		// 4. 무결성 검사에서 이상이 없다면 WriteMovieService를 이용하여 write(movie_pre, movie_detail insert) 로직을 수행함
 		WriteMovieService writeMovieService = WriteMovieService.getInstance();
 		int movieId = writeMovieService.write(movieData);
-		System.out.println("writeMovieService끝남" + movieId);
 		resp.sendRedirect(req.getContextPath() + "/admin_movie?movieId=" + movieId);
 		
 		return null;
