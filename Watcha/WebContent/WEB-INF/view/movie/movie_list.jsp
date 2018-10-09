@@ -10,6 +10,14 @@
 	
 		body {background: url("images/background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
 	
+		#selectMovies, #searchMovie {display: inline-block; font-family: a찐빵M;}
+		#selectMovies {padding: 20px; padding-top: 0px;}
+		#select-title, #select-button {background-color: rgb(0, 0, 0, 0); color: white; border-color: rgb(240, 240, 240); border-width: 0.5px; font-size: 18px;}
+		#option-menu {margin: 22px; margin-top: 8px; font-size: 18px;}
+		#option {margin: 10px;}
+		#searchMovie {width: 300px; font-size: 18px;}
+		#searchMovie input {padding: 5px;}
+	
 		#nonMoviePre {text-align: center; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%);}
 	
 		#moviePage {text-align: center;}
@@ -27,7 +35,32 @@
 
 	<jsp:include page="/WEB-INF/view/layout/top.jsp" flush="false"></jsp:include>
 	
-	
+	<div id="chooseMovies">
+		<div id="selectMovies">
+			<div class="btn-group">
+  				<button type="button" class="btn btn-danger" id="select-title">장르 선택</button>
+  				<button type="button" class="btn btn-danger dropdown-toggle" id="select-button" data-toggle="dropdown" aria-expanded="false">
+    				<span class="caret"></span>
+    				<span class="sr-only">Toggle Dropdown</span>
+  				</button>
+  				<ul class="dropdown-menu" id="option-menu" role="menu">
+  					<li id="option"><a href="movie_list">전체 장르</a></li>
+    				<c:forEach var="movieGenre" items="${movieGenreList}">
+    					<li id="option"><a href="movie_list?pageNo=${param.pageNo}&genreId=${movieGenre.genreId}">${movieGenre.genreName}</a></li>
+    				</c:forEach>
+  				</ul>
+			</div>
+		</div>
+		<div id="searchMovie">
+    		    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <input type="submit" class="btn btn-default" value="Go!">
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+		</div>
+	</div>
 
 	<!-- MoviePre가 없을 때 -->
 	<c:if test="${!moviePage.hasMoviePres()}">

@@ -20,16 +20,17 @@ public class MoviePreDAO {
 	// movie_pre 테이블에 insert 쿼리를 날리는 메소드
 	public MoviePre insert(Connection conn, MoviePre moviePre) throws SQLException {
 		
-		String Sql = "insert into movie_pre(title, time, release_date, rate, famous_line, image_name) values(?, ?, ?, ?, ?, ?)";
+		String Sql = "insert into movie_pre(title, genre_id, time, release_date, rate, famous_line, image_name) values(?, ?, ?, ?, ?, ?, ?)";
 		
 		try(PreparedStatement pst = conn.prepareStatement(Sql);
 				Statement st = conn.createStatement()){
 					pst.setString(1, moviePre.getTitle());
-					pst.setInt(2, moviePre.getTime());
-					pst.setString(3, moviePre.getReleaseDate());
-					pst.setInt(4, moviePre.getRate());
-					pst.setString(5, moviePre.getFamousLine());
-					pst.setString(6, moviePre.getImageName());
+					pst.setInt(2, moviePre.getGenreId());
+					pst.setInt(3, moviePre.getTime());
+					pst.setString(4, moviePre.getReleaseDate());
+					pst.setInt(5, moviePre.getRate());
+					pst.setString(6, moviePre.getFamousLine());
+					pst.setString(7, moviePre.getImageName());
 					int insertedCount = pst.executeUpdate();
 
 				if(insertedCount > 0) {
@@ -113,6 +114,7 @@ public class MoviePreDAO {
 	private MoviePre convMoviePre(ResultSet rs) throws SQLException {
 		MoviePre moviePre = new MoviePre(rs.getInt("movie_id"),
 							rs.getString("title"),
+							rs.getInt("genre_id"),
 							rs.getInt("time"),
 							rs.getString("release_date"),
 							rs.getInt("rate"),
