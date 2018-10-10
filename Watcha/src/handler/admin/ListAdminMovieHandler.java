@@ -9,8 +9,8 @@ public class ListAdminMovieHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return "/WEB-INF/view/admin/admin_movie_list.jsp";
 	}
 
 }
