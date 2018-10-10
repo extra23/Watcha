@@ -4,7 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import model.WatchaLike;
 import service.like.LikeRequest;
@@ -27,11 +28,11 @@ public class WatchaLikeDAO {
 		}
 	}
 	
-	// 게시글 내용을 가져오는 메소드
-	public WatchaLike selectById(Connection conn, int likeId) throws SQLException {
-		String sql = "select * from movie_like where like_id = ? ";
+	// member_id에 맞게 게시글 내용을 가져오는 메소드
+	public WatchaLike selectById(Connection conn, int memberId) throws SQLException {
+		String sql = "select * from movie_like where member_id = ? ";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
-			pst.setInt(1, likeId);
+			pst.setInt(1, memberId);
 			try (ResultSet rs = pst.executeQuery()) {
 				WatchaLike like = null;
 				if (rs.next()) {
@@ -42,6 +43,38 @@ public class WatchaLikeDAO {
 			}
 		}
 	}
+	
+	/*//member_id에 따라서 watcha_like의 전체 tuple수를 가져오는 메소드
+	public int selectCount(Connection conn, int memberId) throws SQLException {
+		String sql = "select count(*) from watcha_like where member_id = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql);){
+			pst.setInt(1, memberId);
+			try(ResultSet rs = pst.executeQuery();){
+				if(rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+		}
+		return 0;	
+	}*/
+	
+/*	//리미트를 이용한 리스트를 가져오는 쿼리
+	public List<WatchaLike> select(Connection conn, int StartRow, int size) throws SQLException{
+		String sql = "select * from watcha_like order by like_Id desc limit ?,?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, StartRow);
+			pst.setInt(2, size);
+			try(ResultSet rs = pst.executeQuery()){
+				List<WatchaLike> likeList = new ArrayList<WatchaLike>();
+				while(rs.next()) {
+					likeList.add(convLike(rs));
+				}
+				return likeList;
+			}
+		}
+	}*/
+	
+	
 	
 	// like update  메소드
 	public int update(Connection conn, int likeId) throws SQLException {
@@ -62,5 +95,12 @@ public class WatchaLikeDAO {
 		}
 	}
 	
-	
+	/*//ResultSet으로 나온 결과를 watcha_like객체로 생성해서 담는 메소드
+	private WatchaLike convLike(ResultSet rs) throws SQLException {
+		WatchaLike watchaLike = new WatchaLike(rs.getInt("like_Id"), 
+				rs.getInt("member_id"), 
+				rs.getInt("movie_id"), 
+				rs.getBoolean("saw"));
+		return watchaLike;
+	}	*/
 }

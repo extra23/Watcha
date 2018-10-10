@@ -3,9 +3,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>보고싶어요 페이지</title>
 </head>
 <body>
+
 
 </body>
 </html>
