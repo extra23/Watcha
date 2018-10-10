@@ -19,32 +19,32 @@ public class WriteLikeHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-	
-		/*//에러
-		Map<String, Boolean>errors = new HashMap<>();
-		req.setAttribute("errors", errors);
-		*/
 		
-		//movieId받아오기
-		int movieId = Integer.parseInt(req.getParameter("no"));
-		this.movieId = movieId;
+		String pageNoStr = req.getParameter("pageNo");
+		int pageNo = 0;
+		if(pageNoStr != null) {
+			pageNo = Integer.parseInt(pageNoStr);
+		}
 		
+		String genreIdStr = req.getParameter("genreId");
+		int genreId = 0;
+		if(genreIdStr != null && genreIdStr != "") {
+			genreId = Integer.parseInt(genreIdStr);
+		}
 		
-		if(movieId==0) {
-			throw new RuntimeException();
+		String movieIdStr = req.getParameter("no");
+		int movieId = 0;
+		if(movieIdStr != null) {
+			movieId = Integer.parseInt(movieIdStr);
 		}
 
-		
-		//WatchaLike watchaLike = (WatchaLike)req.getSession().getAttribute("watchaLike");
 		int memberId = ((AuthUser)req.getSession().getAttribute("authUser")).getMemberId();
 		LikeRequest likeRequest = new LikeRequest(memberId, movieId);
-		
-		
 		
 		WriteLikeService writeLikeService = WriteLikeService.getInstance();
 		writeLikeService.write(likeRequest);
 		
-		resp.sendRedirect(req.getContextPath()+"/movie_list?no="+this.movieId);
+		resp.sendRedirect(req.getContextPath()+"/movie_list?pageNo=" + pageNo + "&genreId=" + genreId);
 		
 		return null;
 		

@@ -40,7 +40,7 @@ public class MemberDAO {
 	
 	public Member selectMember(Connection conn, int memberId) throws SQLException{
 		
-		String sql = "select * from member where user_id = ? ";
+		String sql = "select * from member where member_id = ? ";
 		
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			

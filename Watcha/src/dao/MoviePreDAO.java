@@ -124,7 +124,6 @@ public class MoviePreDAO {
 	
 	// title로 특정 MoviePre 객체를 가져오는 메소드
 
-
 	// 조회수를 올리는 메소드
 	public void increaseReadCount(Connection conn , int movieId) throws SQLException{
 		String sql = "update movie_pre set readCnt = readCnt+1 where movie_id = ? ";
