@@ -57,6 +57,48 @@ public class LikePage {
 		}
 	}
 	
+	//getter, setter
+	public List<WatchaLike> getLikeList() {
+		return likeList;
+	}
+	public void setLikeList(List<WatchaLike> likeList) {
+		this.likeList = likeList;
+	}
+	public int getCurrentPage() {
+		return currentPage;
+	}
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+	public int getTotalPages() {
+		return totalPages;
+	}
+	public void setTotalPages(int totalPages) {
+		this.totalPages = totalPages;
+	}
+	public int getTotalLikes() {
+		return totalLikes;
+	}
+	public void setTotalLikes(int totalLikes) {
+		this.totalLikes = totalLikes;
+	}
+	public int getStartPage() {
+		return startPage;
+	}
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+	public int getEndPage() {
+		return endPage;
+	}
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+	
+	//페이지가 없을 때 화면을 편하게 출력하기 위한 메소드;
+	public boolean hasLikes() {
+		return totalLikes > 0;
+	}
 	
 	
 }
