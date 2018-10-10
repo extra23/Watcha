@@ -28,6 +28,6 @@ public class WriteLikeService {
 			throw new RuntimeException(e);
 		}
 		
-		
 	}
+	
 }
