@@ -20,7 +20,7 @@ public class MoviePreDAO {
 	// movie_pre 테이블에 insert 쿼리를 날리는 메소드
 	public MoviePre insert(Connection conn, MoviePre moviePre) throws SQLException {
 		
-		String Sql = "insert into movie_pre(title, genre_id, time, release_date, rate, famous_line, image_name, search_word1, search_word2, search_word2) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String Sql = "insert into movie_pre(title, genre_id, time, release_date, rate, famous_line, image_name, search_word1, search_word2, search_word3) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try(PreparedStatement pst = conn.prepareStatement(Sql);
 				Statement st = conn.createStatement()){
@@ -76,6 +76,40 @@ public class MoviePreDAO {
 		}
 		return 0;
 	}
+	
+	// (genre_id에 상관없이) searchWord에 따라서 movie_pre의 tuple 수를 가져오는 메소드
+	public int selectCount(Connection conn, String searchWord) throws SQLException {
+		String sql = "select count(*) from movie_pre where search_word1 like ? or search_word2 like ? or search_word3 like ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql);){
+			pst.setString(1, "%" + searchWord + "%");
+			pst.setString(2, "%" + searchWord + "%");
+			pst.setString(3, "%" + searchWord + "%");
+			try(ResultSet rs = pst.executeQuery();){
+				if(rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+		}
+		return 0;
+	}
+	
+	// (같은 genre_id한해서 ) searchWord에 따라서 movie_pre의 tuple 수를 가져오는 메소드
+	public int selectCount(Connection conn, int genreId, String searchWord) throws SQLException {
+		String sql = "select count(*) from (select * from movie_pre where genre_id = ?) as movie_pre_with_genre_id where search_word1 like ? or search_word2 like ? or search_word3 like ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql);){
+			pst.setInt(1, genreId);
+			pst.setString(2, "%" + searchWord + "%");
+			pst.setString(3, "%" + searchWord + "%");
+			pst.setString(4, "%" + searchWord + "%");
+			try(ResultSet rs = pst.executeQuery();){
+				System.out.println(sql);
+				if(rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+		}
+		return 0;
+	}
 
 	// (genre_id에 상관 없이) 리미트를 이용한 리스트를 가져오는 쿼리
 	public List<MoviePre> select(Connection conn , int StarRow , int size) throws SQLException{
@@ -109,23 +143,8 @@ public class MoviePreDAO {
 			}
 		}
 	}
-
-	// movie_id로 특정 MoviePre 객체를 가져오는 메소드
-	public MoviePre selectById(Connection conn, int no) throws SQLException {
-		String sql = "select * from movie_pre where movie_id  =? ";
-		try(PreparedStatement pst = conn.prepareStatement(sql)){
-			pst.setInt(1, no);
-			try(ResultSet rs = pst.executeQuery()){
-				MoviePre moviePre = null;
-			if(rs.next()) {
-				moviePre = convMoviePre(rs);
-				}
-			return moviePre;
-			}
-		}
-	}
 	
-	// title, searchWord들로 특정 MoviePre 객체를 가져오는 메소드
+	// (genre_id 상관없이) searchWord들로 특정 MoviePreList를 가져오는 메소드
 	public List<MoviePre> selectMoviePreList(Connection conn, String searchWord) throws SQLException{
 		
 		String sql = "select * from movie_pre where search_word1 like ? or search_word2 like ? or search_word3 like ?";
@@ -143,6 +162,40 @@ public class MoviePreDAO {
 			}
 		}
 
+	}
+	
+	// (같은 genre_id 내에서) searchWord들로 특정 MoviePreList를 가져오는 메소드
+	public List<MoviePre> selectMoviePreList(Connection conn, int genreId, String searchWord) throws SQLException{
+		String sql = "select * from (select * from movie_pre where genre_id = ?) as movie_pre_with_genre_id where search_word1 like ? or search_word2 like ? or search_word3 like ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql);){
+			pst.setInt(1, genreId);
+			pst.setString(2, "%" + searchWord + "%");
+			pst.setString(3, "%" + searchWord + "%");
+			pst.setString(4, "%" + searchWord + "%");
+			try(ResultSet rs = pst.executeQuery();){
+				System.out.println(sql);
+				List<MoviePre> moviePreList = new ArrayList<>();
+				while(rs.next()) {
+					moviePreList.add(convMoviePre(rs));
+				}
+				return moviePreList;
+			}
+		}
+	}
+
+	// movie_id로 특정 MoviePre 객체를 가져오는 메소드
+	public MoviePre selectById(Connection conn, int no) throws SQLException {
+		String sql = "select * from movie_pre where movie_id  =? ";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, no);
+			try(ResultSet rs = pst.executeQuery()){
+				MoviePre moviePre = null;
+			if(rs.next()) {
+				moviePre = convMoviePre(rs);
+				}
+			return moviePre;
+			}
+		}
 	}
 	
 	// 조회수를 올리는 메소드
@@ -166,18 +219,7 @@ public class MoviePreDAO {
 
 	//ResultSet 으로 나온결과를 MoviePre 객체로 생성해서 담는 메소드
 	private MoviePre convMoviePre(ResultSet rs) throws SQLException {
-		MoviePre moviePre = new MoviePre(rs.getInt("movie_id"),
-							rs.getString("title"),
-							rs.getInt("genre_id"),
-							rs.getInt("time"),
-							rs.getString("release_date"),
-							rs.getInt("rate"),
-							rs.getString("famous_line"),
-							rs.getString("image_name"),
-							rs.getString("search_word1"),
-							rs.getString("search_word2"),
-							rs.getString("search_word3"));	
-		return moviePre;
+		return new MoviePre(rs.getInt("movie_id"), rs.getString("title"), rs.getInt("genre_id"), rs.getInt("time"), rs.getString("release_date"), rs.getInt("rate"), rs.getString("famous_line"), rs.getString("image_name"), rs.getString("search_word1"), rs.getString("search_word2"), rs.getString("search_word3"));	
 	}
 
 }

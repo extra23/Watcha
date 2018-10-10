@@ -58,7 +58,7 @@
   			</ul>
 		</div>
  		<div class="col-lg-6" id="searchMovie">
- 			<form class="input-group" action="movie_list" method="post">
+ 			<form class="input-group" action="movie_list?genreId=${param.genreId}" method="post">
       			<input type="text" name="searchWord" class="form-control" placeholder="영화 제목을 입력해주세요." style="background-color: rgb(0, 0, 0, 0); color: white; border: 0.5px solid white; padding: 18px;">
       			<span class="input-group-btn">
         			<input type="submit" class="btn btn-default" value="검색" style="background-color: rgb(0, 0, 0, 0); color: white; border: 0.5px solid white; padding: 8px;">
@@ -68,7 +68,7 @@
 	</div>
 
 	<!-- MoviePre가 없을 때 -->
-	<c:if test="${!moviePage.hasMoviePres()}">
+	<c:if test="${!moviePage.hasMoviePres() && empty moviePreList}">
 		<div id="nonMoviePre">
 			<img src="images/overaction2.jpg">
 			<h2 style="font-family: a찐빵M; color: white;">영화 정보 없어!!</h2>
@@ -76,6 +76,7 @@
 	</c:if>
 
 	<!-- MoviePre가 있을 때 -->
+	<c:if test="${moviePage.hasMoviePres() && empty moviePreList}">
 	<div id="moviePage">
 		<c:forEach var="moviePre" items="${moviePage.moviePreList}">
 			<div id="moviePre">
@@ -104,9 +105,10 @@
 			</div>
 		</c:forEach>
 	</div>
+	</c:if>
 	
 	<!-- 페이지네이션 -->
-	<c:if test="${moviePage.hasMoviePres()}">
+	<c:if test="${moviePage.hasMoviePres() && empty moviePreList}">
 		<div id="MovieListPagination">
 			<nav>
 	  			<ul class="pagination">
@@ -148,6 +150,38 @@
 	  	  			</c:if>
 	  			</ul>
 			</nav>
+		</div>
+	</c:if>
+	
+	<!-- 검색 기능을 사용했을 시 화면 표시 -->
+	<c:if test="${not empty moviePreList}">
+		<div id="moviePage">
+			<c:forEach var="moviePre" items="${moviePreList}">
+				<div id="moviePre">
+					<div class="col-sm-6 col-md-4" id="col-md-4">
+						<div class="thumbnail">
+							<img src="poster/${moviePre.imageName}" alt="영화 포스터">
+							<div class="caption">
+								<h3 id="movieTitle">${moviePre.title}</h3>
+								<p id="movieInfo">
+									<span>${moviePre.releaseDate}년</span>&nbsp;&nbsp;
+									<c:if test="${moviePre.rate eq 0}">
+										<span>전체연령가</span>&nbsp;&nbsp;
+									</c:if>
+									<c:if test="${not (moviePre.rate eq 0)}">
+										<span>${moviePre.rate}세</span>&nbsp;&nbsp;
+									</c:if>
+									<span>${moviePre.time}분</span>
+								</p>
+								<p id="buttonGroup">
+									<a href="movie?movieId=${moviePre.movieId}" class="btn btn-primary" role="button" style="background-color: rgb(255, 153, 51); border-width: 0px;">상세보기</a> 
+									<a href="like_write?pageNo=${param.pageNo}&genreId=${param.genreId}&no=${moviePre.movieId}" class="btn btn-default" role="button"><img src="images/heart.png" width="20px;"></a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
 		</div>
 	</c:if>
 	
