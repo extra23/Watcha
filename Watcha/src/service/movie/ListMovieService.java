@@ -20,12 +20,22 @@ public class ListMovieService {
 	private int size = 10; // 한 페이지에 보여줄 게시물 개수
 	private int blockSize = 5; // 한 페이지에서 보여줄 하단 페이지 링크의 개수
 	
-	public MoviePage getMoviePage(int pageNum) {
-		try(Connection conn = ConnectionProvider.getConnection( )){
-			MoviePreDAO movieDAO = MoviePreDAO.getInstance( );
-			int total =movieDAO.selectCount(conn);
-			List<MoviePre> movieList = movieDAO.select(conn, (pageNum - 1)* size, size);
-			return new MoviePage(movieList, pageNum, total, size, blockSize);
+	public MoviePage getMoviePage(int pageNo, int genreId) {
+		try(Connection conn = ConnectionProvider.getConnection();){
+			MoviePreDAO moviePreDAO = MoviePreDAO.getInstance();
+			
+			int total = 0;
+			List<MoviePre> moviePreList = null;
+			
+			if(genreId == 0) {
+				total = moviePreDAO.selectCount(conn);
+				moviePreList = moviePreDAO.select(conn, (pageNo - 1) * size, size);
+			}else {
+				total = moviePreDAO.selectCount(conn, genreId);
+				moviePreList = moviePreDAO.selectList(conn, genreId, (pageNo - 1) * size, size);
+			}
+			
+			return new MoviePage(moviePreList, pageNo, total, size, blockSize);
 		}catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

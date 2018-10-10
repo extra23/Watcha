@@ -48,7 +48,7 @@ public class MoviePreDAO {
 		
 	}
 	
-	// movie_pre의 tuple 수를 가져오는 메소드
+	// (genre_id에 관계없이) movie_pre의 tuple 수를 가져오는 메소드
 	public int selectCount(Connection conn) throws SQLException {
 		String sql = "select count(*) from movie_pre";
 		try(Statement st = conn.createStatement();
@@ -59,25 +59,56 @@ public class MoviePreDAO {
 		}	
 		return 0;		
 	}
+	
+	// (genre_id에 따라서) movie_pre의 tuple 수를 가져오는 메소드
+	public int selectCount(Connection conn, int genreId) throws SQLException {
+		String sql = "select count(*) from movie_pre where genre_id = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql);){
+			pst.setInt(1, genreId);
+			try(ResultSet rs = pst.executeQuery();){
+				if(rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+		}
+		return 0;
+	}
 
-	// 리미트를 이용한 리스트를 가져오는 쿼리
+	// (genre_id에 상관 없이) 리미트를 이용한 리스트를 가져오는 쿼리
 	public List<MoviePre> select(Connection conn , int StarRow , int size) throws SQLException{
-		String sql = "select * from movie_pre order by movie_id limit ?, ?";
+		String sql = "select * from movie_pre order by movie_id desc limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, StarRow);
 			pst.setInt(2, size);
 			try(ResultSet rs = pst.executeQuery()){
 				List<MoviePre> movieList = new ArrayList<MoviePre>();
 				while(rs.next()) {
-						movieList.add(convMoviePre(rs));
-					}
+					movieList.add(convMoviePre(rs));
+				}
 				return movieList;
+			}
+		}
+	}
+	
+	// (genre_id에 따라) movie_pre의 데이터를 분류해서 가져오는 쿼리를 날리는 메소드 (limit 사용)
+	public List<MoviePre> selectList(Connection conn, int genreId, int startRow, int size) throws SQLException{
+		String sql = "select * from movie_pre where genre_id = ? order by movie_id desc limit ?, ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql);){
+			pst.setInt(1, genreId);
+			pst.setInt(2, startRow);
+			pst.setInt(3, size);
+			try(ResultSet rs = pst.executeQuery();){
+				List<MoviePre> moviePreList = new ArrayList<>();
+				while(rs.next()) {
+					moviePreList.add(convMoviePre(rs));
+				}
+				return moviePreList;
 			}
 		}
 	}
 
 	// movie_id로 특정 게시글을 가져오는 메소드
-	public MoviePre selectById(Connection conn, int no ) throws SQLException {
+	public MoviePre selectById(Connection conn, int no) throws SQLException {
 		String sql = "select * from movie_pre where movie_id  =? ";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, no);

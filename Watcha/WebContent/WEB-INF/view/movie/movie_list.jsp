@@ -10,13 +10,16 @@
 	
 		body {background: url("images/background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
 	
-		#selectMovies, #searchMovie {display: inline-block; font-family: a찐빵M;}
-		#selectMovies {padding: 20px; padding-top: 0px;}
-		#select-title, #select-button {background-color: rgb(0, 0, 0, 0); color: white; border-color: rgb(240, 240, 240); border-width: 0.5px; font-size: 18px;}
-		#option-menu {margin: 22px; margin-top: 8px; font-size: 18px;}
-		#option {margin: 10px;}
-		#searchMovie {width: 300px; font-size: 18px;}
-		#searchMovie input {padding: 5px;}
+		#chooseMovies {padding: 20px; padding-top: 0px;}
+		#selectGenre, #searchMovie {display: inline-block;}
+		#selectGenre {vertical-align: baseline;}
+		#select-title, #select-button {background-color: rgb(0, 0, 0, 0); border: 0.5px solid rgb(240, 240, 240); padding: 8px; font-family: a찐빵M; fon}
+		#select-title {width: 160px;}
+		#option-menu {margin: 22px; margin-top: 8px; width: 185px; font-family: a찐빵M;}
+		#option {margin: 5px;}
+		#searchMovie {width: 400px; float: none; display: inline-block;}
+		#searchMovie * {font-family: a찐빵M;}
+		#searchMovie input::placeholder {color: rgb(255, 255, 255, 0.5);}
 	
 		#nonMoviePre {text-align: center; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%);}
 	
@@ -36,30 +39,32 @@
 	<jsp:include page="/WEB-INF/view/layout/top.jsp" flush="false"></jsp:include>
 	
 	<div id="chooseMovies">
-		<div id="selectMovies">
-			<div class="btn-group">
-  				<button type="button" class="btn btn-danger" id="select-title">장르 선택</button>
-  				<button type="button" class="btn btn-danger dropdown-toggle" id="select-button" data-toggle="dropdown" aria-expanded="false">
-    				<span class="caret"></span>
-    				<span class="sr-only">Toggle Dropdown</span>
-  				</button>
-  				<ul class="dropdown-menu" id="option-menu" role="menu">
-  					<li id="option"><a href="movie_list">전체 장르</a></li>
-    				<c:forEach var="movieGenre" items="${movieGenreList}">
-    					<li id="option"><a href="movie_list?pageNo=${param.pageNo}&genreId=${movieGenre.genreId}">${movieGenre.genreName}</a></li>
-    				</c:forEach>
-  				</ul>
-			</div>
+		<div class="btn-group" id="selectGenre">
+  			<button type="button" class="btn btn-danger" id="select-title">
+  				<c:forEach var="movieGenre" items="${movieGenreList}">
+  					<c:if test="${movieGenre.genreId eq param.genreId}">${movieGenre.genreName}</c:if>
+  				</c:forEach>
+  				<c:if test="${empty param.genreId}">전체 장르</c:if>
+  			</button>
+  			<button type="button" class="btn btn-danger dropdown-toggle" id="select-button" data-toggle="dropdown" aria-expanded="false">
+    			<span class="caret"></span>
+    			<span class="sr-only">Toggle Dropdown</span>
+  			</button>
+  			<ul class="dropdown-menu" id="option-menu" role="menu">
+  				<li id="option"><a href="movie_list">전체 장르</a></li>
+    			<c:forEach var="movieGenre" items="${movieGenreList}">
+    				<li id="option"><a href="movie_list?pageNo=1&genreId=${movieGenre.genreId}">${movieGenre.genreName}</a></li>
+    			</c:forEach>
+  			</ul>
 		</div>
-		<div id="searchMovie">
-    		    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for...">
-      <span class="input-group-btn">
-        <input type="submit" class="btn btn-default" value="Go!">
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-		</div>
+ 		<div class="col-lg-6" id="searchMovie">
+ 			<form class="input-group">
+      			<input type="text" class="form-control" placeholder="영화 제목을 입력해주세요." style="background-color: rgb(0, 0, 0, 0); color: white; border: 0.5px solid white; padding: 18px;">
+      			<span class="input-group-btn">
+        			<input type="submit" class="btn btn-default" value="검색" style="background-color: rgb(0, 0, 0, 0); color: white; border: 0.5px solid white; padding: 8px;">
+      			</span>
+   			</form>
+ 		 </div>
 	</div>
 
 	<!-- MoviePre가 없을 때 -->
@@ -107,36 +112,36 @@
 	  			<ul class="pagination">
 	  				<c:if test="${moviePage.totalPages > 5 && moviePage.currentPage > 4}">
 	  					<li>
-	  						<a href="movie_list?pageNo=1" aria-label="Previous">
+	  						<a href="movie_list?pageNo=1&genreId=${param.genreId}" aria-label="Previous">
 	  							<span aria-hidden="true">&lt;&lt;</span>
 	  						</a>
 	  					</li>
 	  				</c:if>
 	  				<c:if test="${moviePage.currentPage > 2}">
 	  	  				<li>
-	  	    				<a href="movie_list?pageNo=${moviePage.currentPage - 2}" aria-label="Previous">
+	  	    				<a href="movie_list?pageNo=${moviePage.currentPage - 2}&genreId=${param.genreId}" aria-label="Previous">
 	  	      					<span aria-hidden="true">&lt;</span>
 	  	    				</a>
 	  	  				</li>
 	  	  			</c:if>
 	  	  			<c:forEach var="pageNo" begin="${moviePage.startPage}" end="${moviePage.endPage}">
  						<c:if test="${moviePage.currentPage eq pageNo}">
-							<li class="active"><a href="movie_list?pageNo=${pageNo}">${pageNo}</a></li>
+							<li class="active"><a href="movie_list?pageNo=${pageNo}&genreId=${param.genreId}">${pageNo}</a></li>
 						</c:if>
 						<c:if test="${not (moviePage.currentPage eq pageNo)}">
-							<li><a href="movie_list?pageNo=${pageNo}">${pageNo}</a></li>
+							<li><a href="movie_list?pageNo=${pageNo}&genreId=${param.genreId}">${pageNo}</a></li>
 						</c:if>
 	  	  			</c:forEach>
 	  	  			<c:if test="${moviePage.totalPages > 1 && moviePage.currentPage < moviePage.totalPages - 1}">
 	  	  				<li>
-	  	    				<a href="movie_list?pageNo=${moviePage.currentPage + 2}" aria-label="Next">
+	  	    				<a href="movie_list?pageNo=${moviePage.currentPage + 2}&genreId=${param.genreId}" aria-label="Next">
 	  	      					<span aria-hidden="true">&gt;</span>
 	  	    				</a>
 	  	  				</li>
 	  	  			</c:if>
 	  	  			<c:if test="${moviePage.totalPages > 5 && moviePage.currentPage < moviePage.totalPages - 2}">
 	  	  				<li>
-	  	  					<a href="movie_list?pageNo=${moviePage.totalPages}" aria-label="Next">
+	  	  					<a href="movie_list?pageNo=${moviePage.totalPages}&genreId=${param.genreId}" aria-label="Next">
 	  	  						<span aria-hidden="true">&gt;&gt;</span>
 	  	  					</a>
 	  	  				</li>

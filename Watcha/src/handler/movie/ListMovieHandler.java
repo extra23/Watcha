@@ -39,7 +39,13 @@ public class ListMovieHandler implements CommandHandler{
 			pageNo = Integer.parseInt(pageNoStr);
 		}
 		
-		MoviePage moviePage = listMovieService.getMoviePage(pageNo);
+		String genreIdStr = req.getParameter("genreId");
+		int genreId = 0;
+		if(genreIdStr != null && genreIdStr != "") {
+			genreId = Integer.parseInt(genreIdStr);
+		}
+		
+		MoviePage moviePage = listMovieService.getMoviePage(pageNo, genreId);
 		List<MovieGenre> movieGenreList = readMovieGenreService.readMovieGenre();
 		
 		req.setAttribute("moviePage", moviePage);
