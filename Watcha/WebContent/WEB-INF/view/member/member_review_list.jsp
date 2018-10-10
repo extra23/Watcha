@@ -26,7 +26,7 @@
 	</tr>
 	<tr>
 		<td>${MovieDetailDAO.movieId}</td>
-		<td>${AuthUser.memberId}</td>
+		<td>${authUser.memberId}</td>
 		<td>${review.review}</td>
 		<td>${review.star}</td>
 	</tr>

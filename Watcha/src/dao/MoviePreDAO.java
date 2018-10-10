@@ -20,7 +20,7 @@ public class MoviePreDAO {
 	// movie_pre 테이블에 insert 쿼리를 날리는 메소드
 	public MoviePre insert(Connection conn, MoviePre moviePre) throws SQLException {
 		
-		String Sql = "insert into movie_pre(title, genre_id, time, release_date, rate, famous_line, image_name) values(?, ?, ?, ?, ?, ?, ?)";
+		String Sql = "insert into movie_pre(title, genre_id, time, release_date, rate, famous_line, image_name, search_word1, search_word2, search_word2) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try(PreparedStatement pst = conn.prepareStatement(Sql);
 				Statement st = conn.createStatement()){
@@ -31,6 +31,9 @@ public class MoviePreDAO {
 					pst.setInt(5, moviePre.getRate());
 					pst.setString(6, moviePre.getFamousLine());
 					pst.setString(7, moviePre.getImageName());
+					pst.setString(8, moviePre.getSearchWord1());
+					pst.setString(9, moviePre.getSearchWord2());
+					pst.setString(10, moviePre.getSearchWord3());
 					int insertedCount = pst.executeUpdate();
 
 				if(insertedCount > 0) {
@@ -122,13 +125,15 @@ public class MoviePreDAO {
 		}
 	}
 	
-	// title로 특정 MoviePre 객체를 가져오는 메소드
+	// title, searchWord들로 특정 MoviePre 객체를 가져오는 메소드
 	public List<MoviePre> selectMoviePreList(Connection conn, String searchWord) throws SQLException{
 		
-		String sql = "select * from movie_pre where title like ?";
+		String sql = "select * from movie_pre where search_word1 like ? or search_word2 like ? or search_word3 like ?";
 		
 		try(PreparedStatement pst = conn.prepareStatement(sql);){
 			pst.setString(1, "%" + searchWord + "%");
+			pst.setString(2, "%" + searchWord + "%");
+			pst.setString(3, "%" + searchWord + "%");
 			try(ResultSet rs = pst.executeQuery();){
 				List<MoviePre> moviePreList = new ArrayList<>();
 				while(rs.next()) {
@@ -168,7 +173,10 @@ public class MoviePreDAO {
 							rs.getString("release_date"),
 							rs.getInt("rate"),
 							rs.getString("famous_line"),
-							rs.getString("image_name"));	
+							rs.getString("image_name"),
+							rs.getString("search_word1"),
+							rs.getString("search_word2"),
+							rs.getString("search_word3"));	
 		return moviePre;
 	}
 
