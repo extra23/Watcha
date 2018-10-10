@@ -57,6 +57,10 @@ public class ListMovieHandler implements CommandHandler{
 
 	private String processSubmint(HttpServletRequest req, HttpServletResponse resp) {
 		
+		System.out.println("들어오기 하니????");
+		
+		System.out.println(req.getParameter("searchWord"));
+		
 		String searchWord = req.getParameter("searchWord");
 		
 		return null;
