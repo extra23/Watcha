@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import common.handler.CommandHandler;
 import model.WatchaLike;
+import service.account.AuthUser;
 import service.like.LikeRequest;
 import service.like.WriteLikeService;
 
@@ -34,15 +35,16 @@ public class WriteLikeHandler implements CommandHandler{
 		}
 
 		
-		WatchaLike watchaLike = (WatchaLike)req.getSession().getAttribute("watchaLike");
-		LikeRequest likeRequest = new LikeRequest(watchaLike.getMemberId(), watchaLike.getMovieId());
+		//WatchaLike watchaLike = (WatchaLike)req.getSession().getAttribute("watchaLike");
+		int memberId = ((AuthUser)req.getSession().getAttribute("authUser")).getMemberId();
+		LikeRequest likeRequest = new LikeRequest(memberId, movieId);
 		
 		
 		
 		WriteLikeService writeLikeService = WriteLikeService.getInstance();
 		writeLikeService.write(likeRequest);
 		
-		resp.sendRedirect(req.getContextPath()+"/movie?no="+this.movieId);
+		resp.sendRedirect(req.getContextPath()+"/movie_list?no="+this.movieId);
 		
 		return null;
 		

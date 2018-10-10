@@ -5,9 +5,9 @@ public class WatchaLike {
 	private int likeId;
 	private int memberId;
 	private int movieId;
-	private int saw;
+	private boolean saw;
 	
-	public WatchaLike(int likeId, int memberId, int movieId, int saw) {
+	public WatchaLike(int likeId, int memberId, int movieId, boolean saw) {
 		this.likeId = likeId;
 		this.memberId = memberId;
 		this.movieId = movieId;
@@ -38,11 +38,11 @@ public class WatchaLike {
 		this.movieId = movieId;
 	}
 	
-	public int getSaw() {
+	public boolean getSaw() {
 		return saw;
 	}
 	
-	public void setSaw(int saw) {
+	public void setSaw(boolean saw) {
 		this.saw = saw;
 	}
 

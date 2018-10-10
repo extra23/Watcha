@@ -36,7 +36,7 @@ public class WatchaLikeDAO {
 				WatchaLike like = null;
 				if (rs.next()) {
 					like = new WatchaLike(rs.getInt("like_id"), rs.getInt("member_id"), rs.getInt("movie_id"),
-							rs.getInt("saw"));
+							rs.getBoolean("saw"));
 				}
 				return like;
 			}

@@ -34,6 +34,7 @@
 		<url-pattern>/member_account_delete</url-pattern>
 		<url-pattern>/admin_movie_write</url-pattern>
 		<url-pattern>/admin_movie</url-pattern>
+		<url-pattern>/like_write</url-pattern>
 	</servlet-mapping>
 	
 	<!-- CharacterEncodingFilter 등록 및 맵핑 -->
