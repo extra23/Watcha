@@ -51,6 +51,14 @@
 			</p>
 			
 			<p>
+				<input type="text" name="searchWord2" placeholder="검색어">
+			</p>
+			
+			<p>
+				<input type="text" name="searchWord3" placeholder="검색어">
+			</p>
+			
+			<p>
 				<input type="text" name="director" placeholder="director">
 			</p>
 			

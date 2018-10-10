@@ -38,6 +38,8 @@ public class MovieData {
 				errors.put("famousLine", true);
 			}else if(moviePre.getImageName() == null || moviePre.getImageName().isEmpty()) {
 				errors.put("imageName", true);
+			}else if(moviePre.getSearchWord1() == null || moviePre.getSearchWord1().isEmpty()) {
+				errors.put("searchWord1", true);
 			}else if(movieDetail.getDirector() == null || movieDetail.getDirector().isEmpty()) {
 				errors.put("director", true);
 			}else if(movieDetail.getActor() == null || movieDetail.getActor().isEmpty()) {
