@@ -49,7 +49,6 @@
 			
 			<p>
 				<input type="text" name="memberName" value="${authUser.memberName}">
-			</p>
 			
 			<p>
 				<input type="submit" value="비밀번호/이름 변경">
