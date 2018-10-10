@@ -44,7 +44,7 @@ public class WatchaLikeDAO {
 		}
 	}
 	
-	/*//member_id에 따라서 watcha_like의 전체 tuple수를 가져오는 메소드
+	//member_id에 따라서 watcha_like의 전체 tuple수를 가져오는 메소드
 	public int selectCount(Connection conn, int memberId) throws SQLException {
 		String sql = "select count(*) from watcha_like where member_id = ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql);){
@@ -56,7 +56,7 @@ public class WatchaLikeDAO {
 			}
 		}
 		return 0;	
-	}*/
+	}
 	
 /*	//리미트를 이용한 리스트를 가져오는 쿼리
 	public List<WatchaLike> select(Connection conn, int StartRow, int size) throws SQLException{
