@@ -58,7 +58,7 @@ public class WatchaLikeDAO {
 		return 0;	
 	}
 	
-/*	//리미트를 이용한 리스트를 가져오는 쿼리
+	//리미트를 이용한 리스트를 가져오는 쿼리
 	public List<WatchaLike> select(Connection conn, int StartRow, int size) throws SQLException{
 		String sql = "select * from watcha_like order by like_Id desc limit ?,?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
@@ -72,8 +72,7 @@ public class WatchaLikeDAO {
 				return likeList;
 			}
 		}
-	}*/
-	
+	}
 	
 	
 	// like update  메소드
@@ -95,12 +94,12 @@ public class WatchaLikeDAO {
 		}
 	}
 	
-	/*//ResultSet으로 나온 결과를 watcha_like객체로 생성해서 담는 메소드
+	//ResultSet으로 나온 결과를 watcha_like객체로 생성해서 담는 메소드
 	private WatchaLike convLike(ResultSet rs) throws SQLException {
 		WatchaLike watchaLike = new WatchaLike(rs.getInt("like_Id"), 
 				rs.getInt("member_id"), 
 				rs.getInt("movie_id"), 
 				rs.getBoolean("saw"));
 		return watchaLike;
-	}	*/
+	}	
 }
