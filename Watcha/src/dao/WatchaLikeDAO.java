@@ -54,7 +54,7 @@ public class WatchaLikeDAO {
 	
 	//like insert 메소드
 	public int insert(Connection conn, LikeRequest likeRequest) throws SQLException {
-		String sql = "insert into watcha_like(member_Id,movie_id) values(?,?)";
+		String sql = "insert into watcha_like(member_id, movie_id) values(?,?)";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, likeRequest.getMemberId());
 			pst.setInt(2, likeRequest.getMovieId());
