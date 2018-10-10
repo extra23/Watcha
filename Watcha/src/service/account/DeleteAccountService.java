@@ -40,7 +40,7 @@ public class DeleteAccountService {
 				}
 				
 				//사용자 권한이 있는지 확인
-				if(member.getUserId() != writeMember.getUserId()) {
+				if(!member.getUserId().equals(writeMember.getUserId())) {
 					throw new PermissionDeniedException("사용자 권한 없음");
 				}
 				
