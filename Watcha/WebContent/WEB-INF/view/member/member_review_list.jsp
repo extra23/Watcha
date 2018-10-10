@@ -4,29 +4,37 @@
 <head>
 <meta charset="UTF-8">
 <title>member_review</title>
+	<style>
+	
+		body {background: url("images/background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
+		#th {font-family: BomBaramOTF; margin-top: 85px;}
+		#container form * {font-family: a찐빵M;}
+		input {text-align: center;}
+		span {font-size: 10px; font-family: a찐빵M;}
+	</style>
 </head>
 <body>
+	<jsp:include page="/WEB-INF/view/layout/top.jsp" flush="false"></jsp:include>
+	
+	<jsp:include page="/WEB-INF/view/layout/left.jsp" flush="false"></jsp:include>
 <table id="review">
 	<tr>
 		<th>영화</th>
-		<td>${MovieDetailDAO.movieId}</td>
-	</tr>
-	<tr>
 		<th>작성자</th>
-		<td>${AuthUser.memberId}</td>
+		<th>리뷰</th>
+		<th>별점</th>
 	</tr>
 	<tr>
-		<th>리뷰</th>
+		<td>${MovieDetailDAO.movieId}</td>
+		<td>${AuthUser.memberId}</td>
 		<td>${review.review}</td>
-	</tr>	
-	<tr>
-		<th>별점</th>
 		<td>${review.star}</td>
-	</tr>	
+	</tr>
+		
 	<tr>
 		<td colspan="2">
 		<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }"/>
-		<a href="movie_review_list?pageNo=${pageNo }">[돌아가기]</a>
+		
 		<c:if test="${AuthUser.memberId == AuthUser.userId}">
 			<a href="modify?no=${Member.memberId }">[수정]</a>
 			<a href="delete?no=${Member.memberId }">[삭제]</a>
@@ -34,7 +42,6 @@
 		</td>
 	</tr>	
 </table>
-<!-- dd -->
 
 </body>
 </html>
