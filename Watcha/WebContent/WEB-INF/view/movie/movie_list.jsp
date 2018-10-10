@@ -58,8 +58,8 @@
   			</ul>
 		</div>
  		<div class="col-lg-6" id="searchMovie">
- 			<form class="input-group">
-      			<input type="text" class="form-control" placeholder="영화 제목을 입력해주세요." style="background-color: rgb(0, 0, 0, 0); color: white; border: 0.5px solid white; padding: 18px;">
+ 			<form class="input-group" action="movie_list" method="post">
+      			<input type="text" name="searchWord" class="form-control" placeholder="영화 제목을 입력해주세요." style="background-color: rgb(0, 0, 0, 0); color: white; border: 0.5px solid white; padding: 18px;">
       			<span class="input-group-btn">
         			<input type="submit" class="btn btn-default" value="검색" style="background-color: rgb(0, 0, 0, 0); color: white; border: 0.5px solid white; padding: 8px;">
       			</span>

@@ -56,7 +56,9 @@ public class ListMovieHandler implements CommandHandler{
 	}
 
 	private String processSubmint(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
+		
+		String searchWord = req.getParameter("searchWord");
+		
 		return null;
 	}
 

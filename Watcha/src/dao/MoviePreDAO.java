@@ -107,7 +107,7 @@ public class MoviePreDAO {
 		}
 	}
 
-	// movie_id로 특정 게시글을 가져오는 메소드
+	// movie_id로 특정 MoviePre 객체를 가져오는 메소드
 	public MoviePre selectById(Connection conn, int no) throws SQLException {
 		String sql = "select * from movie_pre where movie_id  =? ";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
@@ -121,6 +121,9 @@ public class MoviePreDAO {
 			}
 		}
 	}
+	
+	// title로 특정 MoviePre 객체를 가져오는 메소드
+
 
 	// 조회수를 올리는 메소드
 	public void increaseReadCount(Connection conn , int movieId) throws SQLException{
