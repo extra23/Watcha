@@ -32,7 +32,7 @@
 		
 		<br>
 		
-		<form action="modify" method="post">
+		<form action="member_account_modify" method="post">
 			
 			<c:if test="${errors.samePwd}"><span>바꾸려는 비밀번호가 현재 비밀번호와 같습니다.</span></c:if>
 			

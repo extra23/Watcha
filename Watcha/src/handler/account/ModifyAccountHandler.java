@@ -50,13 +50,19 @@ public class ModifyAccountHandler implements CommandHandler{
 		String newPwd = req.getParameter("newPwd");
 		String memberName = req.getParameter("memberName");
 		
+		System.out.println("oldPwd : " + req.getParameter("oldPwd"));
+		System.out.println("newPwd : " + newPwd);
+		System.out.println("memberName : " + memberName);
+		
 		if(oldPwd == null || oldPwd.isEmpty()) {
 			errors.put("oldPwd", true);
 		}
+		
 		if(newPwd == null || newPwd.isEmpty()) {
 			errors.put("newPwd", true);
 		}
-		if(oldPwd.equals(newPwd)) {
+		
+		if(oldPwd != null && newPwd != null && oldPwd.equals(newPwd)) {
 			errors.put("samePwd", true);
 		}
 		
