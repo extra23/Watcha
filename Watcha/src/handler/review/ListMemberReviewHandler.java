@@ -11,7 +11,7 @@ public class ListMemberReviewHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		//11
+		//1122
 		int memberId = Integer.parseInt(req.getParameter("memberId"));
 		
 		ListMemberReviewService listMemberReviewService = ListMemberReviewService.getInstance( );
