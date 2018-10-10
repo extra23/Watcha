@@ -117,6 +117,34 @@ public class WatchaReviewDAO {
 		}
 	}
 	
+	// member_id select하는 메소드
+	public WatchaReview selectByMemberId(Connection conn, int memberId) throws SQLException {
+		String sql = "select * from watcha_review where member_id = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, memberId);
+			try(ResultSet rs = pst.executeQuery()){
+				WatchaReview watchaReview = null;
+				if(rs.next()) {
+					watchaReview = convReview(rs);
+				}
+				return watchaReview;
+			}
+		}
+	}	
+	
+	// (member_id에 따라서) watcha_review의 전체 tuple수를 가져오는 메소드
+	public int selectMemberCount(Connection conn, int memberId) throws SQLException {
+		String sql = "select count(*) from watcha_review where member_id = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql);){
+			pst.setInt(1, memberId);
+			try(ResultSet rs = pst.executeQuery();){
+				if(rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+		}
+		return 0;
+	}
 
 	//ResultSet으로 나온결과를 Watcha_review객체로 생성해서 담는 메소드
 	private WatchaReview convReview(ResultSet rs) throws SQLException {
