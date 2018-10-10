@@ -10,6 +10,7 @@ public class MoviePre {
 	private int rate;
 	private String famousLine;
 	private String imageName;
+	private String searchWord1;
 	
 	// 생성자 (1) : 데이터 베이스에서 읽어올 때 필요한 생성자
 	public MoviePre(int movieId, String title, int genreId, int time, String releaseDate, int rate, String famousLine, String imageName) {

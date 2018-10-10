@@ -7,6 +7,7 @@
 </head>
 <body>
 
+	member review list로 들어옴
 
 </body>
 </html>

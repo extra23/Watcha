@@ -35,7 +35,7 @@
 		<url-pattern>/admin_movie_write</url-pattern>
 		<url-pattern>/admin_movie</url-pattern>
 		<url-pattern>/like_write</url-pattern>
-		<url-pattern>/movie_review_page</url-pattern>
+		<url-pattern>/member_review</url-pattern>
 	</servlet-mapping>
 	
 	<!-- CharacterEncodingFilter 등록 및 맵핑` -->
@@ -63,6 +63,7 @@
 		<url-pattern>/member_account_delete</url-pattern>
 		<url-pattern>/admin_movie_write</url-pattern>
 		<url-pattern>/admin_movie</url-pattern>
+		<url-pattern>/member_review</url-pattern>
 	</filter-mapping>
 	
 	<!-- Session 설정 -->
