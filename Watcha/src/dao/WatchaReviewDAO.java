@@ -132,7 +132,7 @@ public class WatchaReviewDAO {
 		}
 	}	
 	
-	// (member_id에 따라서) watcha_review의 전체 tuple수를 가져오는 메소드
+	// (member_id에 따라서) watcha_review의 전체 tuple수를 가져오는 메소드d
 	public int selectMemberCount(Connection conn, int memberId) throws SQLException {
 		String sql = "select count(*) from watcha_review where member_id = ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql);){
