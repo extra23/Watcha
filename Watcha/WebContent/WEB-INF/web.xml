@@ -38,7 +38,7 @@
 		<url-pattern>/movie_review_page</url-pattern>
 	</servlet-mapping>
 	
-	<!-- CharacterEncodingFilter 등록 및 맵핑 -->
+	<!-- CharacterEncodingFilter 등록 및 맵핑` -->
 	<filter>
 		<filter-name>characterEncodingFilter</filter-name>
 		<filter-class>filter.CharacterEncodingFilter</filter-class>

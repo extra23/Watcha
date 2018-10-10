@@ -10,7 +10,7 @@ import model.WatchaReview;
 
 public class ListMemberReviewService {
 	
-	// 싱글톤
+	// 싱글톤s
 	private static ListMemberReviewService instance = new ListMemberReviewService( );
 	public static ListMemberReviewService getInstance( ) {
 		return instance;
