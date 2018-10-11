@@ -9,8 +9,11 @@ public class ModifyAdminMovieHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		
-		return "/WEB-INF/view/admin/admin_movie_modify.jsp";
+		if(req.getMethod().equalsIgnoreCase("GET")) {
+			return processForm(req, resp);
+		}else if(req.getMethod().equalsIgnoreCase("POST")) {
+			return processSubmit(req, resp);
+		}
 	}
 
 }
