@@ -12,7 +12,7 @@ public class ListMemberReviewHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		//11223
+		
 		int memberId = ((AuthUser)req.getSession().getAttribute("authUser")).getMemberId();
 		
 		ListMemberReviewService listMemberReviewService = ListMemberReviewService.getInstance( );
