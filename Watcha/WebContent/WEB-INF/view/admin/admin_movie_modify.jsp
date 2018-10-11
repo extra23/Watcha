@@ -12,6 +12,14 @@
 	
 		#container {background-color: rgb(250, 250, 250); border-radius: 20px; width: calc(100% - 260px); float: right; padding: 30px; padding-bottom: 50px; margin: 20px; margin-left: -10px; margin-right: 25px;}
 		#container * {font-family: a찐빵M;}
+		
+		#movieDataModifyTable {width: 90%; margin: auto;}
+		movieDataModifyTable, #movieDataModifyTable tr, #movieDataModifyTable td {border: 1px solid black; border-collapse: collapse; text-align: center; padding: 10px;}
+		.thead {background-color: rgb(255, 153, 51); font-weight: bold;}
+		#movieDataModifyTable input {text-align: center; width: 98%;}
+		#movieDataModifyTable select {width: 98%;}
+		#movieDataModifyTable textarea {width: 98%;}
+		#submitButton {width: 300px; height: 30px; margin: auto; font-weight: bold;}
 	
 	</style>
 </head>
@@ -23,13 +31,13 @@
 	
 	<div id="container">
 	
-		<h1>영화 수정</h1>
+		<h1>영화 수정&nbsp;&nbsp;<sub><a href="admin_movie_list?pageNo=${param.pageNo}">[목록으로]</a></sub></h1>
 		
 		<hr>
 		
-		<form action="admin_movie_write" method="post">
+		<form action="admin_movie_modify?pageNo=${param.pageNo}&movieId=${param.movieId}" method="post">
 		
-			<table id="newMovieDataTable">
+			<table id="movieDataModifyTable">
 			
 				<colgroup>
 					<col width="13%"/>
@@ -73,14 +81,14 @@
 				
 				<tr>
 					<td colspan="2" class="thead">감독</td>
-					<td colspan="2"><input type="text" name="director" placeholder="director"></td>
+					<td colspan="2"><input type="text" name="director" value="${movieData.movieDetail.director}"></td>
 					<td colspan="2" class="thead">배우</td>
-					<td colspan="2"><input type="text" name="actor" placeholder="actor"></td>
+					<td colspan="2"><input type="text" name="actor" value="${movieData.movieDetail.actor}"></td>
 				</tr>
 				
 				<tr>
 					<td colspan="2" class="thead">줄거리</td>
-					<td colspan="6"><textarea rows="30" cols="100" name="plot" placeholder="plot"></textarea></td>
+					<td colspan="6"><textarea rows="30" cols="100" name="plot">${movieData.movieDetail.plot}</textarea></td>
 				</tr>
 				
 				<tr>
@@ -89,23 +97,25 @@
 				</tr>
 				<tr>
 					<td colspan="4">
-						<input type="text" name="imageName" placeholder="Image Name">
+						<img src="poster/${movieData.moviePre.imageName}"><br><br>
+						<input type="text" name="imageName" value="${movieData.moviePre.imageName}">
 					</td>
 					<td colspan="4">
-						<input type="text" name="trailer" placeholder="trailer">
+						<iframe width="480" height="280" src="${movieData.movieDetail.trailer}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><br><br>
+						<input type="text" name="trailer" value="${movieData.movieDetail.trailer}">
 					</td>
 				</tr>
 				
 				<tr>
 					<td colspan="2" class="thead">명대사</td>
-					<td colspan="6"><input type="text" name="famousLine" placeholder="famousLine"></td>
+					<td colspan="6"><input type="text" name="famousLine" value="${movieData.moviePre.famousLine}"></td>
 				</tr>
 				
 				<tr>
 					<td colspan="2" class="thead">검색어</td>
-					<td colspan="2"></td>
-					<td colspan="2"><input type="text" name="searchWord2" placeholder="검색어"></td>
-					<td colspan="2"><input type="text" name="searchWord3" placeholder="검색어"></td>
+					<td colspan="2">${movieData.moviePre.searchWord1}</td>
+					<td colspan="2"><input type="text" name="searchWord2" placeholder="검색어" value="${movieData.moviePre.searchWord2}"></td>
+					<td colspan="2"><input type="text" name="searchWord3" placeholder="검색어" value="${movieData.moviePre.searchWord3}"></td>
 				</tr>
 				
 			</table>

@@ -69,6 +69,7 @@ public class MovieDetailDAO {
 			pst.setInt(3, movieData.getMovieDetail().getGenreId());
 			pst.setString(4, movieData.getMovieDetail().getPlot());
 			pst.setString(5, movieData.getMovieDetail().getTrailer());
+			pst.setInt(6, movieData.getMoviePre().getMovieId());
 			pst.executeUpdate();
 		}
 	}

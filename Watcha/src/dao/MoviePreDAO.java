@@ -211,6 +211,7 @@ public class MoviePreDAO {
 			pst.setString(8, movieData.getMoviePre().getSearchWord1());
 			pst.setString(9, movieData.getMoviePre().getSearchWord2());
 			pst.setString(10, movieData.getMoviePre().getSearchWord3());
+			pst.setInt(11, movieData.getMoviePre().getMovieId());
 			pst.executeUpdate();
 		}
 	}

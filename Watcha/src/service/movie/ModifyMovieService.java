@@ -19,7 +19,7 @@ public class ModifyMovieService {
 	// 싱글톤 패턴 사용
 	private static ModifyMovieService instance = new ModifyMovieService();
 	private ModifyMovieService() {}
-	public ModifyMovieService getInstance() {
+	public static ModifyMovieService getInstance() {
 		return instance;
 	}
 	

@@ -27,7 +27,7 @@
 	
 	<div id="container">
 	
-		<h1>영화 한편 정보&nbsp;&nbsp;<sub><a href="admin_movie_list">[목록으로]</a></sub></h1>
+		<h1>영화 한편 정보&nbsp;&nbsp;<sub><a href="admin_movie_list?pageNo=${param.pageNo}">[목록으로]</a></sub></h1>
 	
 		<hr>
 		
@@ -90,11 +90,11 @@
 			</tr>
 			<tr>
 				<td colspan="4">
-					<img src="poster/${movieData.moviePre.imageName}" width="260" height="373">
+					<img src="poster/${movieData.moviePre.imageName}" width="260" height="373"><br><br>
 					${movieData.moviePre.imageName}
 				</td>
 				<td colspan="4">
-					<iframe width="400" height="200" src="${movieData.movieDetail.trailer}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					<iframe width="480" height="280" src="${movieData.movieDetail.trailer}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><br><br>
 					${movieData.movieDetail.trailer}
 				</td>
 			</tr>

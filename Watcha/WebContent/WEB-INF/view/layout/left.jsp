@@ -11,12 +11,12 @@
 	
 		#menu {background-color: rgb(255, 153, 51, 0.8); border-radius: 10px; width: 200px; font-family: a찐빵M; font-size: 18px; padding: 10px; margin: 20px; float: left;}
 
-		h3 {text-align: center;}
+		#menu h3 {text-align: center;}
 		.menuHr {border: 1px solid white; margin: 10px;}
 		
-		ul {list-style: none;}
-		a {text-decoration: none; color: rgb(100, 100, 100);}
-		a:hover {text-decoration: none; color: rgb(100, 100, 100);}
+		#menu ul {list-style: none;}
+		#menu a {text-decoration: none; color: rgb(100, 100, 100);}
+		#menu a:hover {text-decoration: none; color: rgb(100, 100, 100);}
 		
 	</style>
 </head>
