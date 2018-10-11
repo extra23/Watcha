@@ -44,7 +44,7 @@
 			
 				<tr>
 					<td colspan="2" class="thead">제목 (한글)</td>
-					<td colspan="6"><input type="text" name="title" placeholder="title"></td>
+					<td colspan="6"><input type="text" name="title" value="${movieData.moviePre.title}"></td>
 				</tr>
 				
 				<tr>
@@ -62,12 +62,12 @@
 						</select>
 					</td>
 					<td class="thead">개봉년도</td>
-					<td><input type="text" name="releaseDate" placeholder="releaseDate"></td>
+					<td><input type="text" name="releaseDate" value="${movieData.moviePre.releaseDate}"></td>
 					<td class="thead">상영시간</td>
-					<td><input type="text" name="time" placeholder="time"></td>
+					<td><input type="text" name="time" value="${movieData.moviePre.time}"></td>
 					<td class="thead">상영등급</td>
-					<td> <%-- 버튼 형식으로 만들어 볼까?? --%>
-						<input type="text" name="rate" placeholder="rate">
+					<td>
+						<input type="text" name="rate" value="${movieData.moviePre.rate}">
 					</td>
 				</tr>
 				

@@ -54,7 +54,7 @@
 						<td>${status.count}</td>
 						<td><a href="admin_movie?movieId=${moviePre.movieId}">${moviePre.title}</a></td>
 						<td>
-							<a href="admin_movie_modify">[수정]</a>
+							<a href="admin_movie_modify?movieId=${moviePre.movieId}">[수정]</a>
 							<a href="admin_movie_delete">[삭제]</a>
 						</td>
 					</tr>
