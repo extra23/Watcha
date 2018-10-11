@@ -30,7 +30,7 @@ public class SelectLikeService {
 		List<MoviePre> moviePreList = new ArrayList<>();
 
 		// movieId를 담을 ArrayList를 생성
-		List<Integer> movieIdList = null;
+		List<Integer> movieIdList = new ArrayList<>();
 
 		// 사용할 MoviePreDao 객체 생성
 		MoviePreDAO moviePreDAO = MoviePreDAO.getInstance();
@@ -43,7 +43,7 @@ public class SelectLikeService {
 
 			if (movieIdList != null) {
 				for (int i = 0; i < movieIdList.size(); i++) {
-					moviePreList.add(moviePreDAO.selectById(conn, i));
+					moviePreList.add(moviePreDAO.selectById(conn, movieIdList.get(i)));
 				}
 			}
 			return moviePreList;
