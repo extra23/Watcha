@@ -44,7 +44,7 @@
   				<c:forEach var="movieGenre" items="${movieGenreList}">
   					<c:if test="${movieGenre.genreId eq param.genreId}">${movieGenre.genreName}</c:if>
   				</c:forEach>
-  				<c:if test="${empty param.genreId}">전체 장르</c:if>
+  				<c:if test="${empty param.genreId || param.genreId eq 0}">전체 장르</c:if>
   			</button>
   			<button type="button" class="btn btn-danger dropdown-toggle" id="select-button" data-toggle="dropdown" aria-expanded="false">
     			<span class="caret"></span>

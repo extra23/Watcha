@@ -3,7 +3,7 @@ package service.like;
 //watcha like작성하는 내용이 들어오는 객체
 public class LikeRequest {
 
-	private int  memberId;
+	private int memberId;
 	private int movieId;
 	
 	

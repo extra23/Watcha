@@ -21,16 +21,20 @@ public class WriteLikeHandler implements CommandHandler{
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
 		String pageNoStr = req.getParameter("pageNo");
-		int pageNo = 0;
+		int pageNo = 1;
 		if(pageNoStr != null && !pageNoStr.isEmpty()) {
 			pageNo = Integer.parseInt(pageNoStr);
 		}
+		
+		System.out.println("페이지넘버 : " + pageNo);
 		
 		String genreIdStr = req.getParameter("genreId");
 		int genreId = 0;
 		if(genreIdStr != null && genreIdStr != "") {
 			genreId = Integer.parseInt(genreIdStr);
 		}
+		
+		System.out.println("장르 아이디 : " + genreId);
 		
 		String movieIdStr = req.getParameter("no");
 		int movieId = 0;
