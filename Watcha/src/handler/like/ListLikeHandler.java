@@ -6,9 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.handler.CommandHandler;
+import model.MoviePre;
 import service.account.AuthUser;
 import service.like.LikePage;
 import service.like.ListLikeService;
+import service.like.SelectLikeService;
+import service.movie.ListMovieService;
 
 public class ListLikeHandler implements CommandHandler{
 
@@ -30,6 +33,7 @@ public class ListLikeHandler implements CommandHandler{
 	//member_like를 요청할 때 처리하는 메소드
 	private String processForm(HttpServletRequest req, HttpServletResponse resp) {
 		
+		//ListLikeService객체 생성
 		 ListLikeService listLikeService = ListLikeService.getInstance();
 		 
 		 String pageNoStr = req.getParameter("pageNo");
@@ -38,12 +42,19 @@ public class ListLikeHandler implements CommandHandler{
 			 pageNo = Integer.parseInt(pageNoStr);
 		 }
 		 
+		 
 		 int memberId = ((AuthUser)req.getSession().getAttribute("authUser")).getMemberId();
 		 
 		 LikePage likePage = listLikeService.getLikePage(pageNo, memberId);
 		 
 		 req.setAttribute("likePage", likePage);
 		
+		 //SelectLikeService 객체 생성
+		 SelectLikeService selectLikeService = SelectLikeService.getInstance();
+		 
+		 List<MoviePre> moviePreList =  selectLikeService.getLikeList(memberId);
+		 req.setAttribute("moviePreList", moviePreList);
+		 
 		return "/WEB-INF/view/member/member_like.jsp";
 	}
 
