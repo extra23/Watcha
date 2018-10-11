@@ -12,7 +12,7 @@ import service.account.AuthUser;
 import service.like.LikeRequest;
 import service.like.WriteLikeService;
 
-//보고싶어요 한 영화에 대한 핸들러핸들러
+//보고싶어요 한 영화에 대한 핸들러핸들러DS
 public class WriteLikeHandler implements CommandHandler{
 
 	private int movieId;
