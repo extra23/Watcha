@@ -7,7 +7,7 @@ public class LikeRequest {
 	private int movieId;
 	
 	
-	//생성자
+	//생성자ㅇㄴㄹㄴㅇ
 	public LikeRequest(int memberId, int movieId) {
 		this.memberId = memberId;
 		this.movieId = movieId;
