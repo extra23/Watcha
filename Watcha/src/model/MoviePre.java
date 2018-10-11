@@ -18,6 +18,7 @@ public class MoviePre {
 	public MoviePre(int movieId, String title, int genreId, int time, String releaseDate, int rate, String famousLine, String imageName, String searchWord1, String searchWord2, String searchWord3) {
 		this.movieId = movieId;
 		this.title = title;
+		this.genreId = genreId;
 		this.time = time;
 		this.releaseDate = releaseDate;
 		this.rate = rate;

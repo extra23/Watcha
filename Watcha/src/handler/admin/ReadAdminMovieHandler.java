@@ -1,12 +1,16 @@
 package handler.admin;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Exception.MovieDetailNotFoundException;
 import Exception.MoviePreNotFoundException;
 import common.handler.CommandHandler;
+import model.MovieGenre;
 import service.movie.MovieData;
+import service.movie.ReadMovieGenreService;
 import service.movie.ReadMovieService;
 
 public class ReadAdminMovieHandler implements CommandHandler{
@@ -19,16 +23,24 @@ public class ReadAdminMovieHandler implements CommandHandler{
 		int movieId = Integer.parseInt(req.getParameter("movieId"));
 		
 		ReadMovieService readMovieService = ReadMovieService.getInstance();
+		ReadMovieGenreService readMovieGenreService = ReadMovieGenreService.getInstance();
+		
+		MovieData movieData = null;
+		List<MovieGenre> movieGenreList = null;
 		
 		// 화면으로 리턴
 		try {
-			MovieData movieData = readMovieService.getMovie(movieId);
-			req.setAttribute("movieData", movieData);
-			return "/WEB-INF/view/admin/admin_movie.jsp";
+			movieData = readMovieService.getMovie(movieId);
 		}catch(MoviePreNotFoundException | MovieDetailNotFoundException e) {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;
 		}
+		movieGenreList = readMovieGenreService.readMovieGenre();
+		
+		req.setAttribute("movieData", movieData);
+		req.setAttribute("movieGenreList", movieGenreList);
+		
+		return "/WEB-INF/view/admin/admin_movie.jsp";
 
 	}
 

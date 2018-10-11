@@ -10,7 +10,12 @@
 	
 		body {background: url("images/background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
 	
-		#container {background-color: rgb(250, 250, 250); border-radius: 20px; width: calc(100% - 260px); float: right; padding: 30px; margin: 20px; margin-left: -10px; margin-right: 25px;}
+		#container {background-color: rgb(250, 250, 250); border-radius: 20px; width: calc(100% - 260px); float: right; padding: 30px; padding-bottom: 50px; margin: 20px; margin-left: -10px; margin-right: 25px;}
+		#container * {font-family: a찐빵M;}
+		
+		#movieDataTable {width: 90%; margin: auto;}
+		#movieDataTable, #movieDataTable tr, #movieDataTable td {border: 1px solid black; border-collapse: collapse; text-align: center; padding: 10px;}
+		.thead {background-color: rgb(255, 153, 51); font-weight: bold;}
 	
 	</style>
 </head>
@@ -22,64 +27,91 @@
 	
 	<div id="container">
 	
-		<h1>영화 한편 정보</h1>
+		<h1>영화 한편 정보&nbsp;&nbsp;<sub><a href="admin_movie_list">[목록으로]</a></sub></h1>
 	
-		<form>
-	
-			<p>
-				<input type="text" name="title" placeholder="title" value="${movieData.moviePre.title}">
-			</p>
-			
-			<p>
-				<input type="text" name="time" placeholder="time" value="${movieData.moviePre.time}">
-			</p>
-			
-			<p>
-				<input type="text" name="releaseDate" placeholder="releaseDate" value="${movieData.moviePre.releaseDate}">
-			</p>
-			
-			<p>
-				<input type="text" name="rate" placeholder="rate" value="${movieData.moviePre.rate}">
-			</p>
-			
-			<p>
-				<input type="text" name="famousLine" placeholder="famousLine" value="${movieData.moviePre.famousLine}">
-			</p>
-			
-			<p>
-				<img src="poster/${movieData.moviePre.imageName}">
-				<input type="text" name="imageName" value="${movieData.moviePre.imageName}">
-			</p>
-			
-			<p>
-				<input type="text" name="director" placeholder="director" value="${movieData.movieDetail.director}">
-			</p>
-			
-			<p>
-				<input type="text" name="actor" placeholder="actor" value="${movieData.movieDetail.actor}">
-			</p>
-			
-			<p>
-				<input type="text" name="genreId" placeholder="genreId" value="${movieData.movieDetail.genreId}">
-			</p>
-			
-			<p>
-				<textarea rows="30" cols="100" name="plot" placeholder="plot">${movieData.movieDetail.plot}</textarea>
-			</p>
-			
-			<p>
-				<input type="text" name="trailer" placeholder="trailer" value="${movieData.movieDetail.trailer}">
-			</p>
+		<hr>
 		
-			<p>
-				<input type="submit" value="수정" formaction="admin_modify">
-			</p>
+		<table id="movieDataTable">
 			
-			<p>
-				<input type="submit" value="삭제" formaction="admin_delete">
-			</p>
+			<colgroup>
+				<col width="13%"/>
+				<col width="12%"/>
+				<col width="13%"/>
+				<col width="12%"/>
+				<col width="13%"/>
+				<col width="12%"/>
+				<col width="13%"/>
+				<col width="12%"/>
+			</colgroup>
 		
-		</form>
+			<tr>
+				<td colspan="2" class="thead">제목 (한글)</td>
+				<td colspan="6">${movieData.moviePre.title}</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" class="thead">제목 (영어)</td>
+				<td colspan="6"></td>
+			</tr>
+			
+			<tr>
+				<td class="thead">장르</td>
+				<td>
+					<c:forEach var="movieGenre" items="${movieGenreList}">
+						<c:if test="${movieGenre.genreId eq movieData.moviePre.genreId}">${movieGenre.genreName}</c:if>
+					</c:forEach>
+				</td>
+				<td class="thead">개봉년도</td>
+				<td>${movieData.moviePre.releaseDate}년</td>
+				<td class="thead">상영시간</td>
+				<td>${movieData.moviePre.time}분</td>
+				<td class="thead">상영등급</td>
+				<td>
+					<c:if test="${movieData.moviePre.rate eq 0}">전체 연령가</c:if>
+					<c:if test="${not(movieData.moviePre.rate eq 0)}">${movieData.moviePre.rate}세</c:if>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" class="thead">감독</td>
+				<td colspan="2">${movieData.movieDetail.director}</td>
+				<td colspan="2" class="thead">배우</td>
+				<td colspan="2">${movieData.movieDetail.actor}</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" class="thead">줄거리</td>
+				<td colspan="6">${movieData.movieDetail.plot}</td>
+			</tr>
+			
+			<tr>
+				<td colspan="4" class="thead">포스터</td>
+				<td colspan="4" class="thead">트레일러</td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<img src="poster/${movieData.moviePre.imageName}" width="260" height="373">
+					${movieData.moviePre.imageName}
+				</td>
+				<td colspan="4">
+					<iframe width="400" height="200" src="${movieData.movieDetail.trailer}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					${movieData.movieDetail.trailer}
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" class="thead">명대사</td>
+				<td colspan="6">${movieData.moviePre.famousLine}</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" class="thead">검색어</td>
+				<td colspan="2">${movieData.moviePre.searchWord1}</td>
+				<td colspan="2">${movieData.moviePre.searchWord2}</td>
+				<td colspan="2">${movieData.moviePre.searchWord3}</td>
+			</tr>
+		
+		</table>
 	
 	</div>
 

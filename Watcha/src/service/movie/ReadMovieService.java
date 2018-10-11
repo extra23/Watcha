@@ -33,6 +33,7 @@ public class ReadMovieService {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			
 			MoviePre moviePre = moviePreDAO.selectById(conn, movieId);
+			
 			if (moviePre == null) {
 				throw new MoviePreNotFoundException("moviePre이 없음");
 			}

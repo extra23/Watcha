@@ -17,11 +17,14 @@ public class ListMovieService {
 		return instance;
 	}
 	
-	private int size = 10; // 한 페이지에 보여줄 게시물 개수
+	/*private int size = 10; // 한 페이지에 보여줄 게시물 개수
 	private int blockSize = 5; // 한 페이지에서 보여줄 하단 페이지 링크의 개수
+*/	
 	
-	public MoviePage getMoviePage(int pageNo, int genreId) {
+	public MoviePage getMoviePage(int pageNo, int genreId, int size, int blockSize) {
+		
 		try(Connection conn = ConnectionProvider.getConnection();){
+			
 			MoviePreDAO moviePreDAO = MoviePreDAO.getInstance();
 			
 			int total = 0;
@@ -36,9 +39,11 @@ public class ListMovieService {
 			}
 			
 			return new MoviePage(moviePreList, pageNo, total, size, blockSize);
+			
 		}catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+		
 	}
 	
 }

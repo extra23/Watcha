@@ -19,7 +19,7 @@ public class MoviePreDAO {
 
 	// movie_pre 테이블에 insert 쿼리를 날리는 메소드
 	public MoviePre insert(Connection conn, MoviePre moviePre) throws SQLException {
-		
+
 		String Sql = "insert into movie_pre(title, genre_id, time, release_date, rate, famous_line, image_name, search_word1, search_word2, search_word3) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try(PreparedStatement pst = conn.prepareStatement(Sql);
@@ -102,7 +102,6 @@ public class MoviePreDAO {
 			pst.setString(3, "%" + searchWord + "%");
 			pst.setString(4, "%" + searchWord + "%");
 			try(ResultSet rs = pst.executeQuery();){
-				System.out.println(sql);
 				if(rs.next()) {
 					return rs.getInt(1);
 				}
@@ -173,7 +172,6 @@ public class MoviePreDAO {
 			pst.setString(3, "%" + searchWord + "%");
 			pst.setString(4, "%" + searchWord + "%");
 			try(ResultSet rs = pst.executeQuery();){
-				System.out.println(sql);
 				List<MoviePre> moviePreList = new ArrayList<>();
 				while(rs.next()) {
 					moviePreList.add(convMoviePre(rs));
@@ -185,15 +183,15 @@ public class MoviePreDAO {
 
 	// movie_id로 특정 MoviePre 객체를 가져오는 메소드
 	public MoviePre selectById(Connection conn, int no) throws SQLException {
-		String sql = "select * from movie_pre where movie_id  =? ";
+		String sql = "select * from movie_pre where movie_id = ? ";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, no);
 			try(ResultSet rs = pst.executeQuery()){
 				MoviePre moviePre = null;
-			if(rs.next()) {
-				moviePre = convMoviePre(rs);
+				if(rs.next()) {
+					moviePre = convMoviePre(rs);
 				}
-			return moviePre;
+				return moviePre;
 			}
 		}
 	}

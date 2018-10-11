@@ -34,7 +34,7 @@ public class WriteMovieService {
 				// 트랜잭션 사용 이유 : movie_pre 테이블에 데이터 넣는 것이 성공하고 movie_detail 테이블에 데이터 넣는 것이 실패하면 두 테이블에서 전부 데이터를 빼주어야 함
 			try{
 				conn.setAutoCommit(false);
-					 MoviePre moviePre = new MoviePre(movieData.getMoviePre().getMovieId(), movieData.getMoviePre().getTitle(), movieData.getMoviePre().getGenreId(), movieData.getMoviePre().getTime(), movieData.getMoviePre().getReleaseDate(), movieData.getMoviePre().getRate(), movieData.getMoviePre().getFamousLine(), movieData.getMoviePre().getImageName(), movieData.getMoviePre().getSearchWord1(), movieData.getMoviePre().getSearchWord2(), movieData.getMoviePre().getSearchWord3());
+					 MoviePre moviePre = new MoviePre(movieData.getMoviePre().getTitle(), movieData.getMoviePre().getGenreId(), movieData.getMoviePre().getTime(), movieData.getMoviePre().getReleaseDate(), movieData.getMoviePre().getRate(), movieData.getMoviePre().getFamousLine(), movieData.getMoviePre().getImageName(), movieData.getMoviePre().getSearchWord1(), movieData.getMoviePre().getSearchWord2(), movieData.getMoviePre().getSearchWord3());
 					 MoviePre savedMoviePre = moviePreDAO.insert(conn, moviePre);
 					 if(savedMoviePre == null) {
 						 throw new RuntimeException("Movie_Pre insert fail");
