@@ -60,7 +60,7 @@
 	<tr>
 		<td>${MovieDetailDAO.movieId}</td>
 		<td>"${authUser.memberName}</td>
-		<td>${review.review}</td>
+		<td>${WatchaReview.review}</td>
 		<td><span id="star">${review.star}</span></td>
 	</tr>
 		

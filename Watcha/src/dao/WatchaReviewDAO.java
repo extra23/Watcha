@@ -46,11 +46,11 @@ public class WatchaReviewDAO {
 		return 0;
 	}
 	
-	// (movie_id에 따라서) watcha_review의 전체 tuple수를 가져오는 메소드
-	public int selectCount(Connection conn, int movieId) throws SQLException {
-		String sql = "select count(*) from watcha_review where movie_id = ?";
+	// (member_id에 따라서) watcha_review의 전체 tuple수를 가져오는 메소드
+	public int selectCount(Connection conn, int memberId) throws SQLException {
+		String sql = "select count(*) from watcha_review where member_id = ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql);){
-			pst.setInt(1, movieId);
+			pst.setInt(1, memberId);
 			try(ResultSet rs = pst.executeQuery();){
 				if(rs.next()) {
 					return rs.getInt(1);
@@ -76,11 +76,11 @@ public class WatchaReviewDAO {
 		}
 	}
 	
-	// (movie_id에 따라서) 리미트를 이용한 List<WatchaReview>를 가져오는 쿼리를 날리는 메소드
-	public List<WatchaReview> selectList(Connection conn, int movieId, int startRow, int size) throws SQLException{
-		String sql = "select * from watcha_review where movie_id = ? order by review_id desc limit ?, ?";
+	// (member_id에 따라서) 리미트를 이용한 List<WatchaReview>를 가져오는 쿼리를 날리는 메소드
+	public List<WatchaReview> selectList(Connection conn, int memberId, int startRow, int size) throws SQLException{
+		String sql = "select * from watcha_review where member_id = ? order by review_id desc limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql);){
-			pst.setInt(1, movieId);
+			pst.setInt(1, memberId);
 			pst.setInt(2, startRow);
 			pst.setInt(3, size);
 			try(ResultSet rs = pst.executeQuery();){
@@ -94,10 +94,10 @@ public class WatchaReviewDAO {
 	}
 	
 	//review_id로 특정 리뷰를 가져오는 메소드
-	public WatchaReview selectById(Connection conn, int reviewId) throws SQLException {
-		String sql = "select * from watcha_review where review_id = ?";
+	public WatchaReview selectById(Connection conn, int memberId) throws SQLException {
+		String sql = "select * from watcha_review where member_id = ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
-			pst.setInt(1, reviewId);
+			pst.setInt(1, memberId);
 			try(ResultSet rs = pst.executeQuery()){
 				WatchaReview watchaReview = null;
 				if(rs.next()) {
