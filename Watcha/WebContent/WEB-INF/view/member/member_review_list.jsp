@@ -8,40 +8,23 @@
 	
 		body {background: url("images/background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
 
-		#container {background-color: rgb(250, 250, 250); border-radius: 20px; width: calc(100% - 260px); float: right; padding: 30px; margin: 20px; margin-left: -10px; margin-right: 25px;}
-		#container * {font-family: a찐빵M;}
+		#memberReviewList {background-color: rgb(250, 250, 250); border-radius: 20px; width: calc(100% - 260px); float: right; padding: 30px; margin: 20px; margin-left: -10px; margin-right: 25px;}
+		#memberReviewList * {font-family: a찐빵M;}
 
 		#review{width: 90%; margin: auto;}
 		#review, #review tr, th, td {border: 1px solid black; border-collapse: collapse;}
 		#review td, #review th, #review tr {padding: 10px; text-align: center;}
 		#review thead {background-color: rgb(255, 153, 51);}
 		
-			#gray-star {
-			background: url("images/starGray.png") no-repeat; 
-			display: inline-block; 
-			width: 205px; 
-			height: 39px; 
-			z-index: 0;
+		#star-td {
+			padding-bottom: 16px;
 		}
-	
-		#star-rating {
-			position: relative; 
-			height: 39px; 
-			width: 10%; 
-			float: left;
-			display: inline-block;
+
+		#star {
+			font-size: 10px;
+			color: rgb(255, 0, 128);
 		}
-	
-		#red-star {
-			display: inline-block; 
-			width: 0; 
-			overflow: hidden; 
-			position: relative; 
-			top: -39px; 
-			z-index: 2;
-		}
-		
-		#star-value {display: inline-block;}
+
 		
 	</style>
 </head>
@@ -49,6 +32,15 @@
 	<jsp:include page="/WEB-INF/view/layout/top.jsp" flush="false"></jsp:include>
 	
 	<jsp:include page="/WEB-INF/view/layout/left.jsp" flush="false"></jsp:include>
+
+<div id="memberReviewList">
+
+		<!--  리뷰가 없을 때 보여줄 화면-->
+		<c:if test="${!reviewPage.hasReviews()}">
+			<div style="text-align: center;">현재 등록된 리뷰가 없습니다.</div>
+		</c:if>
+
+<!-- 게시글이 있을 때 보여줄 화면 -->
 <table id="review">
 
 			<colgroup>
@@ -67,9 +59,9 @@
 	</thead>
 	<tr>
 		<td>${MovieDetailDAO.movieId}</td>
-		<td>${authUser.memberName}</td>
+		<td>"${authUser.memberName}</td>
 		<td>${review.review}</td>
-		<td>${review.star}</td>
+		<td><span id="star">${review.star}</span></td>
 	</tr>
 		
 	<tr>
@@ -111,6 +103,7 @@
 		}
 		</c:forEach>
 	</script>
+	</div>
 
 </body>
 </html>
