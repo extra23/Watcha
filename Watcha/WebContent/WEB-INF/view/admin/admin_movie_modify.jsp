@@ -9,32 +9,24 @@
 	<style>
 	
 		body {background: url("images/background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
-		
-		#container {background-color: rgb(250, 250, 250); border-radius: 20px; width: calc(100% - 260px); float: right; padding: 30px; margin: 20px; margin-left: -10px; margin-right: 25px;}
+	
+		#container {background-color: rgb(250, 250, 250); border-radius: 20px; width: calc(100% - 260px); float: right; padding: 30px; padding-bottom: 50px; margin: 20px; margin-left: -10px; margin-right: 25px;}
 		#container * {font-family: a찐빵M;}
-		
-		#newMovieDataTable {width: 90%; margin: auto;}
-		#newMovieDataTable, #newMovieDataTable tr, #newMovieDataTable td {border: 1px solid black; border-collapse: collapse; padding: 10px; text-align: center;}
-		.thead {font-weight: bold; background-color: rgb(255, 153, 51);}
-		#newMovieDataTable input {text-align: center; width: 98%;}
-		#newMovieDataTable select {width: 98%;}
-		#newMovieDataTable textarea {width: 98%;}
-		#submitButton {width: 300px; height: 30px; margin: auto; font-weight: bold;}
 	
 	</style>
 </head>
 <body>
 
-	<jsp:include page="/WEB-INF/view/layout/top.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/layout/top.jsp" flush="false"></jsp:include>
 	
-	<jsp:include page="/WEB-INF/view/layout/left.jsp"></jsp:include>
-
+	<jsp:include page="/WEB-INF/view/layout/left.jsp" flush="false"></jsp:include>
+	
 	<div id="container">
 	
-		<h1>새로운 영화 등록</h1>
+		<h1>영화 수정</h1>
 		
 		<hr>
-	
+		
 		<form action="admin_movie_write" method="post">
 		
 			<table id="newMovieDataTable">
@@ -121,11 +113,11 @@
 			<br>
 			
 			<div style="text-align: center;">
-				<input type="submit" value="등록" id="submitButton">
+				<input type="submit" value="수정" id="submitButton">
 			</div>
 		
 		</form>
-		
+	
 	</div>
 
 </body>

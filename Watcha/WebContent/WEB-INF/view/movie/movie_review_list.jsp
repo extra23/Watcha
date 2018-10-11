@@ -67,7 +67,9 @@
 						<div id="star-div-${review.star}"
 							style="overflow: hidden; display: inline-block; position: relative; top: 4px;">
 							<img src="images/starRed.png" width="102.5">
-						</div>&nbsp; <span id="star">${review.star}</span></td>
+						</div>&nbsp;
+						<span id="star">${review.star}</span>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="2">${review.review}</td>

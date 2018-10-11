@@ -44,6 +44,21 @@ public class WatchaLikeDAO {
 		}
 	}
 	
+	//member_id에 맞게 movie_Id 반환하는 메소드
+	public List<Integer> selectByIdToArr(Connection conn, int memberId) throws SQLException {
+		String sql = "select movie_id from watcha_like where member_id = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, memberId);
+			try(ResultSet rs = pst.executeQuery();){
+				List<Integer> movieIdArr = new ArrayList<>();
+				while(rs.next()) {
+					movieIdArr.add(rs.getInt("movie_id"));
+				}
+				return movieIdArr;
+			}
+		}
+	}
+	
 	//member_id에 따라서 watcha_like의 전체 tuple수를 가져오는 메소드
 	public int selectCount(Connection conn, int memberId) throws SQLException {
 		String sql = "select count(*) from watcha_like where member_id = ?";

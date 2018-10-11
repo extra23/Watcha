@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.MoviePre;
+import service.movie.MovieData;
 
 
 public class MoviePreDAO {
@@ -196,6 +197,24 @@ public class MoviePreDAO {
 		}
 	}
 	
+	// movie_pre 테이블의 정보를 수정하는 쿼리를 날리는 메소드
+	public void updateMoviePre(Connection conn, MovieData movieData) throws SQLException {
+		String sql = "update movie_pre set title=?, genre_id=?, time=?, release_date=?, rate=?, famous_line=?, image_name=?, search_word1=?, search_word2=?, search_word3=? where movie_id=?";
+		try(PreparedStatement pst = conn.prepareStatement(sql);){
+			pst.setString(1, movieData.getMoviePre().getTitle());
+			pst.setInt(2, movieData.getMoviePre().getGenreId());
+			pst.setInt(3, movieData.getMoviePre().getTime());
+			pst.setString(4, movieData.getMoviePre().getReleaseDate());
+			pst.setInt(5, movieData.getMoviePre().getRate());
+			pst.setString(6, movieData.getMoviePre().getFamousLine());
+			pst.setString(7, movieData.getMoviePre().getImageName());
+			pst.setString(8, movieData.getMoviePre().getSearchWord1());
+			pst.setString(9, movieData.getMoviePre().getSearchWord2());
+			pst.setString(10, movieData.getMoviePre().getSearchWord3());
+			pst.executeUpdate();
+		}
+	}
+	
 	// 조회수를 올리는 메소드
 	public void increaseReadCount(Connection conn , int movieId) throws SQLException{
 		String sql = "update movie_pre set readCnt = readCnt+1 where movie_id = ? ";
@@ -208,7 +227,7 @@ public class MoviePreDAO {
 
 	// 삭제하는 메소드
 	public int delete(Connection conn , int movieId ) throws SQLException {
-		String sql = "delet from movie_pre where movie_id = ? ";
+		String sql = "delete from movie_pre where movie_id = ? ";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, movieId);
 			return pst.executeUpdate();
