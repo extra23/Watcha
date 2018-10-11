@@ -2,7 +2,7 @@ package service.review;
 
 import java.util.Map;
 
-//review작성 하는 내용이 들어오는 객체
+//review작성 하는 내용이 들어오는 객체d
 public class ReviewRequest {
 
 	private int memberId;

@@ -18,15 +18,15 @@ public class ReadReviewService {
 		return instance;
 	}
 	
-	public ReviewData getReview(int reviewId, boolean increaseReadCount) {
+	public ReviewData getReview(int memberId, boolean increaseReadCount) {
 		WatchaReviewDAO reviewDAO = WatchaReviewDAO.getInstance( );
 		WatchaReviewContentDAO contentDAO = WatchaReviewContentDAO.getInstance( );
 		try(Connection conn= ConnectionProvider.getConnection( )){
-			WatchaReview review = reviewDAO.selectById(conn, reviewId);
+			WatchaReview review = reviewDAO.selectById(conn, memberId);
 			if(review == null) {
 				throw new ReviewNotFoundException("review 없음");
 			}
-			WatchaReviewContent reviewContent = contentDAO.selectById(conn, reviewId);
+			WatchaReviewContent reviewContent = contentDAO.selectById(conn, memberId);
 			if(reviewContent == null) {
 				throw new ReviewContentNotFoundException("content 없음");
 			}

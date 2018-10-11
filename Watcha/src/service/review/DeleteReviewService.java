@@ -11,7 +11,7 @@ import jdbc.ConnectionProvider;
 import model.WatchaReview;
 
 public class DeleteReviewService {
-	// 싱글톤
+	// 싱글톤dd
 	private static DeleteReviewService instance = new DeleteReviewService( );
 	private DeleteReviewService( ) { }
 	public static DeleteReviewService getInstance( ) {

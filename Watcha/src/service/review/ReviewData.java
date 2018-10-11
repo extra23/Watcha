@@ -3,7 +3,7 @@ package service.review;
 import model.WatchaReview;
 import model.WatchaReviewContent;
 
-// 리뷰 보기에 필요한 객체
+// 리뷰 보기에 필요한 객체dd
 public class ReviewData {
 	private WatchaReview watchaReview; // 리뷰 테이블 내용
 	private WatchaReviewContent content; // 리뷰 컨텐트 테이블 내용
