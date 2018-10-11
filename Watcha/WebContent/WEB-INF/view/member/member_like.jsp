@@ -8,14 +8,18 @@
 	<style>
 		body {background: url("images/background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
 		#nonLike {text-align: center; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%);}
-		#likePage {text-align: center;}
+	
+		#likePage {text-align: center; width: 1500px; display: inline-block;}
 		#moviePre {width: 300px; display: inline-block; margin: 20px;}
 		#col-md-4 {width: 100%;}
 		#movieTitle {font-family: BomBaramOTF;}
 		#movieInfo, #buttonGroup {font-family: a찐빵M;}
 		
+		
 		#MovieListPagination {text-align: center;}
 		#MovieListPagination * {font-family: a찐빵M;}
+		
+		
 		
 	</style>
 </head>
@@ -33,6 +37,7 @@
 	</c:if>   
 	
 		<!-- MoviePre가 있을 때 -->
+ 
 	<c:if test="${likePage.hasLikes()}">
 	<div id="likePage">
 		<c:forEach var="moviePre" items="${moviePreList}">
@@ -54,7 +59,7 @@
 							</p>
 							<p id="buttonGroup">
 								<a href="movie?movieId=${moviePre.movieId}" class="btn btn-primary" role="button" style="background-color: rgb(255, 153, 51); border-width: 0px;">상세보기</a> 
-								<a href="like_write?pageNo=${param.pageNo}&genreId=${param.genreId}&no=${moviePre.movieId}" class="btn btn-default" role="button"><img src="images/heart.png" width="20px;"></a>
+								<a  href="like_write?pageNo=${param.pageNo}&genreId=${param.genreId}&no=${moviePre.movieId}" class="btn btn-default" role="button"><img src="images/heart.png" width="20px;"></a>
 							</p>
 						</div>
 					</div>
@@ -63,6 +68,7 @@
 		</c:forEach>
 	</div>
 	</c:if>
+
 	
 	<!-- 페이지네이션 -->
 	<c:if test="${likePage.hasLikes() }">
@@ -109,7 +115,6 @@
 			</nav>
 		</div>
 	</c:if>
-	
 		
 </body>
 </html>
