@@ -18,6 +18,8 @@
 		#moviePageTable td, #moviePageTable th, #moviePageTable tr {padding: 10px; text-align: center;}
 		#moviePageTable thead {background-color: rgb(255, 153, 51);}
 		
+		#pagination {text-align: center; margin: 10px; margin-top: 30px; font-size: 18px;}
+		
 	</style>
 </head>
 <body>
@@ -51,11 +53,14 @@
 			<tbody>
 				<c:forEach var="moviePre" items="${moviePage.moviePreList}" varStatus="status">
 					<tr>
-						<td>${status.count}</td>
+						<td>
+							<c:if test="${empty param.pageNo}">${status.count}</c:if>
+							<c:if test="${not empty param.pageNo}">${(20 * (param.pageNo - 1)) + status.count}</c:if>
+						</td>
 						<td><a href="admin_movie?pageNo=${param.pageNo}&movieId=${moviePre.movieId}">${moviePre.title}</a></td>
 						<td>
 							<a href="admin_movie_modify?pageNo=${param.pageNo}&movieId=${moviePre.movieId}">[수정]</a>
-							<a href="admin_movie_delete">[삭제]</a>
+							<a href="admin_movie_delete?pageNo=${param.pageNo}&movieId=${moviePre.movieId}">[삭제]</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -64,7 +69,21 @@
 		</table>
 		
 		<div id="pagination">
-			
+			<c:if test="${moviePage.totalPages > 10 && not(moviePage.currentPage eq 1)}">
+				<a href="admin_movie_list?pageNo=1">&lt;&lt;</a>
+			</c:if>
+			<c:if test="${moviePage.startPage > 5}">
+				<a href="admin_movie_list?pageNo=${moviePage.startPage - 5}">&lt;</a>
+			</c:if>
+			<c:forEach var="pageNo" begin="${moviePage.startPage}" end="${moviePage.endPage}">
+				<a href="admin_movie_list?pageNo=${pageNo}">[${pageNo}]</a>
+			</c:forEach>
+			<c:if test="${moviePage.endPage > 5}">
+				<a href="${moviePage.startpage + 5}">&gt;</a>
+			</c:if>
+			<c:if test="${moviePage.totalPages > 10 && not (moviePage.currentPage eq moviePage.endPage)}">
+				<a href="admin_movie_list?pageNo=${moviePage.totalPages}">&gt;&gt;</a>
+			</c:if>
 		</div>
 	
 	</div>

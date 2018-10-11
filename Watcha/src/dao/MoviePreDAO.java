@@ -227,7 +227,7 @@ public class MoviePreDAO {
 	
 
 	// 삭제하는 메소드
-	public int delete(Connection conn , int movieId ) throws SQLException {
+	public int delete(Connection conn , int movieId) throws SQLException {
 		String sql = "delete from movie_pre where movie_id = ? ";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, movieId);

@@ -31,7 +31,14 @@
 	
 	<div id="container">
 	
-		<h1>영화 수정&nbsp;&nbsp;<sub><a href="admin_movie_list?pageNo=${param.pageNo}">[목록으로]</a></sub></h1>
+		<h1>
+			영화 정보 수정&nbsp;&nbsp;
+			<sub>
+				<a href="admin_movie_list?pageNo=${param.pageNo}">[영화 목록]</a>&nbsp;&nbsp;
+				<a href="admin_movie?pageNo=${param.pageNo}&movieId=${param.movieId}">[영화 정보]</a>&nbsp;&nbsp;
+				<a href="admin_movie_delete?pageNo=${param.pageNo}&movieId=${param.movieId}">[삭제]</a>
+			</sub>
+		</h1>
 		
 		<hr>
 		
@@ -97,7 +104,7 @@
 				</tr>
 				<tr>
 					<td colspan="4">
-						<img src="poster/${movieData.moviePre.imageName}"><br><br>
+						<img src="poster/${movieData.moviePre.imageName}" width="260" height="373"><br><br>
 						<input type="text" name="imageName" value="${movieData.moviePre.imageName}">
 					</td>
 					<td colspan="4">

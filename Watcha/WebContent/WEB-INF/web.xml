@@ -34,6 +34,7 @@
 		<url-pattern>/admin_movie_list</url-pattern>
 		<url-pattern>/admin_movie</url-pattern>
 		<url-pattern>/admin_movie_modify</url-pattern>
+		<url-pattern>/admin_movie_delete</url-pattern>
 		<url-pattern>/member_account_modify</url-pattern>
 		<url-pattern>/member_account_delete</url-pattern>
 		<url-pattern>/like_write</url-pattern>
@@ -68,6 +69,7 @@
 		<url-pattern>/admin_movie_list</url-pattern>
 		<url-pattern>/admin_movie</url-pattern>
 		<url-pattern>/admin_movie_modify</url-pattern>
+		<url-pattern>/admin_movie_delete</url-pattern>
 		<url-pattern>/member_review</url-pattern>
 	</filter-mapping>
 	

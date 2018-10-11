@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -16,27 +15,34 @@
 		#movieDataTable {width: 90%; margin: auto;}
 		#movieDataTable, #movieDataTable tr, #movieDataTable td {border: 1px solid black; border-collapse: collapse; text-align: center; padding: 10px;}
 		.thead {background-color: rgb(255, 153, 51); font-weight: bold;}
+		
+		#confirmTable {margin: auto;}
+		#confirmTable, #confirmTable tr, #confirmTable th, #confirmTable td {border: 1px solid black; padding: 10px;}
+		#confirmTable th {background-color: rgb(255, 153, 51);}
+		#confirmTable input {text-align: center;}
 	
 	</style>
 </head>
 <body>
 
-	<jsp:include page="/WEB-INF/view/layout/top.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/layout/top.jsp" flush="false"></jsp:include>
 	
 	<jsp:include page="/WEB-INF/view/layout/left.jsp"></jsp:include>
-	
+
 	<div id="container">
 	
 		<h1>
-			영화 정보&nbsp;&nbsp;
+			영화 삭제&nbsp;&nbsp;
 			<sub>
-				<a href="admin_movie_list?pageNo=${param.pageNo}">[영화 목록]</a>&nbsp;&nbsp;
-				<a href="admin_movie_modify?pageNo=${param.pageNo}&movieId=${param.movieId}">[수정]</a>&nbsp;&nbsp;
-				<a href="admin_movie_delete?pageNo=${param.pageNo}&movieId=${param.movieId}">[삭제]</a>
+				<a href="">[영화 목록]</a>&nbsp;&nbsp;
+				<a href="">[영화 정보]</a>&nbsp;&nbsp;
+				<a href="">[수정]</a>
 			</sub>
 		</h1>
-	
+		
 		<hr>
+		
+		<span>※ 영화 정보 확인 후 삭제를 원하신다면 관리자 비밀번호를 입력해주세요.</span><br><br>
 		
 		<table id="movieDataTable">
 			
@@ -119,8 +125,24 @@
 			</tr>
 		
 		</table>
+		
+		<br><br>
+		
+		<div id="confirm">
+			<form action="admin_movie_delete?pageNo=${param.pageNo}" method="post">
+				<table id="confirmTable">
+					<tr>
+						<th>관리자 비밀번호</th>
+						<td>
+							<input type="password" name="password" placeholder="관리자 비밀번호">
+							<input type="submit" value="삭제">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
 	
 	</div>
-
+	
 </body>
 </html>

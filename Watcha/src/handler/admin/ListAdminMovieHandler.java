@@ -32,7 +32,7 @@ public class ListAdminMovieHandler implements CommandHandler {
 		// request로부터 pageNo(parameter) 받기
 		String pageNoStr = req.getParameter("pageNo");
 		int pageNo = 1;
-		if(pageNoStr != null) {
+		if(pageNoStr != null && !pageNoStr.isEmpty()) {
 			pageNo = Integer.parseInt(pageNoStr);
 		}
 		

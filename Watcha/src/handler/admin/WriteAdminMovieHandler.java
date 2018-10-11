@@ -50,7 +50,7 @@ public class WriteAdminMovieHandler implements CommandHandler{
 		
 		String timeStr = req.getParameter("time");
 		int time = 0;
-		if(timeStr != null) {
+		if(timeStr != null && !timeStr.isEmpty()) {
 			time = Integer.parseInt(timeStr);
 		}else {
 			errors.put("time", true);
@@ -58,7 +58,7 @@ public class WriteAdminMovieHandler implements CommandHandler{
 		
 		String rateStr = req.getParameter("rate");
 		int rate = 0;
-		if(rateStr != null) {
+		if(rateStr != null && !rateStr.isEmpty()) {
 			rate = Integer.parseInt(rateStr);
 		}else {
 			errors.put("rate", true);
@@ -66,9 +66,10 @@ public class WriteAdminMovieHandler implements CommandHandler{
 		
 		String genreIdStr = req.getParameter("genreId");
 		int genreId = 0;
-		if(genreIdStr != null) {
+		if(genreIdStr != null && !genreIdStr.isEmpty()) {
 			genreId = Integer.parseInt(genreIdStr);
 		}else {
+			System.out.println("여기들어오나??");
 			errors.put("genreId", true);
 		}
 		

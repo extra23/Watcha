@@ -20,6 +20,7 @@
 		#newMovieDataTable select {width: 98%;}
 		#newMovieDataTable textarea {width: 98%;}
 		#submitButton {width: 300px; height: 30px; margin: auto; font-weight: bold;}
+		#newMovieDataTable span {color: red; font-size: 10px;}
 	
 	</style>
 </head>
@@ -52,7 +53,10 @@
 			
 				<tr>
 					<td colspan="2" class="thead">제목 (한글)</td>
-					<td colspan="6"><input type="text" name="title" placeholder="title"></td>
+					<td colspan="6">
+						<input type="text" name="title" placeholder="title" value="${param.title}"><br>
+						<c:if test="${errors.title}"><span>제목을 입력해주세요.</span></c:if>
+					</td>
 				</tr>
 				
 				<tr>
@@ -64,31 +68,41 @@
 					<td class="thead">장르</td>
 					<td>
 						<select name="genreId">
+							<option value="" selected disabled>장르 선택</option>
 							<c:forEach var="movieGenre" items="${movieGenreList}">
-								<option value="${movieGenre.genreId}">${movieGenre.genreName}</option>
+								<c:if test="${param.genreId eq movieGenre.genreId}">
+									<option value="${movieGenre.genreId}" selected="selected">${movieGenre.genreName}</option>
+								</c:if>
+								<c:if test="${not (param.genreId eq movieGenre.genreId)}">
+									<option value="${movieGenre.genreId}">${movieGenre.genreName}</option>
+								</c:if>
 							</c:forEach>
 						</select>
+						<c:if test="${errors.genreId}"><span>장르를 선택해주세요.</span></c:if>
 					</td>
 					<td class="thead">개봉년도</td>
-					<td><input type="text" name="releaseDate" placeholder="releaseDate"></td>
+					<td>
+						<input type="text" name="releaseDate" placeholder="releaseDate" value="${param.releaseDate}"><br>
+						<c:if test="${errors.releaseDate}"><span>개봉년도를 입력해주세요.</span></c:if>
+					</td>
 					<td class="thead">상영시간</td>
-					<td><input type="text" name="time" placeholder="time"></td>
+					<td><input type="text" name="time" placeholder="time" value="${param.time}"></td>
 					<td class="thead">상영등급</td>
 					<td> <%-- 버튼 형식으로 만들어 볼까?? --%>
-						<input type="text" name="rate" placeholder="rate">
+						<input type="text" name="rate" placeholder="rate" value="${param.rate}">
 					</td>
 				</tr>
 				
 				<tr>
 					<td colspan="2" class="thead">감독</td>
-					<td colspan="2"><input type="text" name="director" placeholder="director"></td>
+					<td colspan="2"><input type="text" name="director" placeholder="director" value="${param.director}"></td>
 					<td colspan="2" class="thead">배우</td>
-					<td colspan="2"><input type="text" name="actor" placeholder="actor"></td>
+					<td colspan="2"><input type="text" name="actor" placeholder="actor" value="${param.actor}"></td>
 				</tr>
 				
 				<tr>
 					<td colspan="2" class="thead">줄거리</td>
-					<td colspan="6"><textarea rows="30" cols="100" name="plot" placeholder="plot"></textarea></td>
+					<td colspan="6"><textarea rows="30" cols="100" name="plot" placeholder="plot">${param.plot}</textarea></td>
 				</tr>
 				
 				<tr>
@@ -97,23 +111,23 @@
 				</tr>
 				<tr>
 					<td colspan="4">
-						<input type="text" name="imageName" placeholder="Image Name">
+						<input type="text" name="imageName" placeholder="Image Name" value="${param.imageName}">
 					</td>
 					<td colspan="4">
-						<input type="text" name="trailer" placeholder="trailer">
+						<input type="text" name="trailer" placeholder="trailer" value="${param.trailer}">
 					</td>
 				</tr>
 				
 				<tr>
 					<td colspan="2" class="thead">명대사</td>
-					<td colspan="6"><input type="text" name="famousLine" placeholder="famousLine"></td>
+					<td colspan="6"><input type="text" name="famousLine" placeholder="famousLine" value="${param.famousLine}"></td>
 				</tr>
 				
 				<tr>
 					<td colspan="2" class="thead">검색어</td>
 					<td colspan="2"></td>
-					<td colspan="2"><input type="text" name="searchWord2" placeholder="검색어"></td>
-					<td colspan="2"><input type="text" name="searchWord3" placeholder="검색어"></td>
+					<td colspan="2"><input type="text" name="searchWord2" placeholder="검색어" value="${param.searchWord2}"></td>
+					<td colspan="2"><input type="text" name="searchWord3" placeholder="검색어" value="${param.searchWord3}"></td>
 				</tr>
 				
 			</table>
