@@ -5,13 +5,12 @@ import java.sql.SQLException;
 
 import Exception.PermissionDeniedException;
 import Exception.ReviewNotFoundException;
-import dao.WatchaReviewContentDAO;
 import dao.WatchaReviewDAO;
 import jdbc.ConnectionProvider;
 import model.WatchaReview;
 
 public class DeleteReviewService {
-	// 싱글톤dd
+	// 싱글톤
 	private static DeleteReviewService instance = new DeleteReviewService( );
 	private DeleteReviewService( ) { }
 	public static DeleteReviewService getInstance( ) {
@@ -20,7 +19,6 @@ public class DeleteReviewService {
 	
 	public void delete(ReviewRequest dr) {
 		WatchaReviewDAO reviewDAO =WatchaReviewDAO.getInstance( );
-		WatchaReviewContentDAO contentDAO = WatchaReviewContentDAO.getInstance( );
 		
 		try(Connection conn = ConnectionProvider.getConnection( )){
 			try {
@@ -36,8 +34,7 @@ public class DeleteReviewService {
 					throw new PermissionDeniedException("사용자 권한이 없음");
 				}
 				reviewDAO.delete(conn, dr.getMemberId( ));
-				contentDAO.delete(conn, dr.getMemberId( ));
-				// reviewDAO, contentDAO 를 이용해서 게시글 삭제 메소드를 실행
+				// reviewDAO 를 이용해서 게시글 삭제 메소드를 실행
 				conn.commit( );
 			}catch (SQLException e) {
 				conn.rollback( );

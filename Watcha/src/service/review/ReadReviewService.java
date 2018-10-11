@@ -3,13 +3,12 @@ package service.review;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import Exception.ReviewContentNotFoundException;
+
 import Exception.ReviewNotFoundException;
-import dao.WatchaReviewContentDAO;
 import dao.WatchaReviewDAO;
 import jdbc.ConnectionProvider;
 import model.WatchaReview;
-import model.WatchaReviewContent;
+
 
 public class ReadReviewService {
 	private static ReadReviewService instance = new ReadReviewService( );
@@ -20,17 +19,13 @@ public class ReadReviewService {
 	
 	public ReviewData getReview(int memberId, boolean increaseReadCount) {
 		WatchaReviewDAO reviewDAO = WatchaReviewDAO.getInstance( );
-		WatchaReviewContentDAO contentDAO = WatchaReviewContentDAO.getInstance( );
+		
 		try(Connection conn= ConnectionProvider.getConnection( )){
 			WatchaReview review = reviewDAO.selectById(conn, memberId);
 			if(review == null) {
 				throw new ReviewNotFoundException("review 없음");
 			}
-			WatchaReviewContent reviewContent = contentDAO.selectById(conn, memberId);
-			if(reviewContent == null) {
-				throw new ReviewContentNotFoundException("content 없음");
-			}
-			return new ReviewData(review, reviewContent);
+			return new ReviewData(review);
 		}catch(SQLException e) {
 			throw new RuntimeException(e);
 		}
