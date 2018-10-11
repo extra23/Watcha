@@ -7,11 +7,9 @@
 	<style>
 	
 		body {background: url("images/background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
-		#th {font-family: BomBaramOTF; margin-top: 85px; color:white;}
+
 		#container {background-color: rgb(250, 250, 250); border-radius: 20px; width: calc(100% - 260px); float: right; padding: 30px; margin: 20px; margin-left: -10px; margin-right: 25px;}
 		#container * {font-family: a찐빵M;}
-		input {text-align: center; color:white;}
-		span {font-size: 10px; font-family: a찐빵M; color:white;}
 
 		#review{width: 90%; margin: auto;}
 		#review, #review tr, th, td {border: 1px solid black; border-collapse: collapse;}
@@ -45,7 +43,6 @@
 		
 		#star-value {display: inline-block;}
 		
-		
 	</style>
 </head>
 <body>
@@ -59,6 +56,7 @@
 				<col width="*"/>
 				<col width="30%"/>
 			</colgroup>
+			
 	<thead>		
 	<tr>
 		<th>영화</th>
@@ -85,6 +83,34 @@
 		</td>
 	</tr>	
 </table>
+
+
+	<script>
+		<c:forEach var="review" items="${reviewPage.reviewList}">
+		var star = <c:out value="${review.star}"/>
+		if (star == 0.5) {
+			document.getElementById('star-div-0.5').style.width = "11px";
+		} else if (star == 1.0) {
+			document.getElementById('star-div-1.0').style.width = "21px";
+		} else if (star == 1.5) {
+			document.getElementById('star-div-1.5').style.width = "31px";
+		} else if (star == 2.0) {
+			document.getElementById('star-div-2.0').style.width = "42px";
+		} else if (star == 2.5) {
+			document.getElementById('star-div-2.5').style.width = "52px";
+		} else if (star == 3.0) {
+			document.getElementById('star-div-3.0').style.width = "62px";
+		} else if (star == 3.5) {
+			document.getElementById('star-div-3.5').style.width = "72px";
+		} else if (star == 4.0) {
+			document.getElementById('star-div-4.0').style.width = "83px";
+		} else if (star == 4.5) {
+			document.getElementById('star-div-4.5').style.width = "93px";
+		} else if (star == 5.0) {
+			document.getElementById('star-div-5.0').style.width = "103px"
+		}
+		</c:forEach>
+	</script>
 
 </body>
 </html>
