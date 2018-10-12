@@ -13,7 +13,7 @@
 		#memberReviewList {background-color: rgb(250, 250, 250); border-radius: 20px; width: calc(100% - 260px); float: right; padding: 30px; margin: 20px; margin-left: -10px; margin-right: 25px;}
 		#memberReviewList * {font-family: a찐빵M;}
 
-		#review{width: 90%; margin: auto;}
+		#review{width: 100%; margin: auto;}
 		#review, #review tr, th, td {border: 1px solid black; border-collapse: collapse;}
 		#review td, #review th, #review tr {padding: 10px; text-align: center;}
 		#review thead {background-color: rgb(255, 153, 51);}
@@ -45,13 +45,14 @@
 		<!-- 게시글이 있을 때 보여줄 화면 -->
 		<table id="review">
 
-			<colgroup>
+<%-- 			<colgroup>
 				<col width="20%"/>
 				<col width="*"/>
 				<col width="5%"/>
 				<col width="10"/>
 				<col width="10"/>
-			</colgroup>
+				<col width="10"/>
+			</colgroup> --%>
 			
 			<thead>		
 				<tr>
@@ -60,6 +61,7 @@
 					<th>별점</th>
 					<th>작성일</th>
 					<th>수정일</th>
+					<th>관리</th>
 				</tr>
 			</thead>
 	
@@ -67,35 +69,24 @@
 				<c:forEach var="reviewData" items="${reviewPage.reviewList}">
 					<tr>
 						<td>${reviewData.title}</td>
-						<td>${reviewData.}</td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${reviewData.review}</td>
+						<td id="star-td">
+							<div id="star-div-${reviewData.star}" style="overflow: hidden; display: inline-block; position: relative; top: 4px;">
+								<img src="images/starRed2.png" width="102.5">
+							</div>
+							<span id="star">${reviewData.star}</span>
+						</td>
+						<td>${reviewData.wdate}</td>
+						<td>${reviewData.udate}</td>
+						<td>
+							<a href="">[수정]</a>
+							<a href="member_review_delete?no=${reviewData.reviewId}">[삭제, ${reviewData.reviewId}]</a>
+						</td>
 					</tr>
 				</c:forEach>
-				
-				
-				
-				<tr>
-					<td>${MovieDetailDAO.movieId}</td>
-		<td>"${authUser.memberName}</td>
-		<td>${WatchaReview.review}</td>
-		<td><span id="star">${review.star}</span></td>
-	</tr>
-		
-	<tr>
-		<td colspan="2">
-		<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }"/>
-		
-		<c:if test="${AuthUser.memberId == AuthUser.userId}">
-			<a href="modify?no=${WatchaReview.reviewId }">[수정]</a>
-			<a href="member_review_delete?no=${WatchaReview.reviewId}">[삭제]</a>
-		</c:if>
-		</td>
-	</tr>
 			</tbody>
 		
-</table>
+		</table>
 
 
 	<script>

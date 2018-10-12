@@ -69,7 +69,7 @@ public class WatchaReviewDAO {
 			try (ResultSet rs = pst.executeQuery()) {
 				List<WatchaReview> reviewList = new ArrayList<WatchaReview>();
 				while (rs.next()) {
-					reviewList.add(convReview(rs));
+					reviewList.add(convReview(rs, 0));
 				}
 				return reviewList;
 			}
@@ -86,7 +86,7 @@ public class WatchaReviewDAO {
 			try(ResultSet rs = pst.executeQuery();){
 				List<WatchaReview> reviewList = new ArrayList<>();
 				while(rs.next()) {
-					reviewList.add(convReview(rs));
+					reviewList.add(convReview(rs, 1));
 				}
 				return reviewList;
 			}
@@ -94,14 +94,14 @@ public class WatchaReviewDAO {
 	}
 	
 	//review_id로 특정 리뷰를 가져오는 메소드
-	public WatchaReview selectById(Connection conn, int memberId) throws SQLException {
-		String sql = "select * from watcha_review where member_id = ?";
+	public WatchaReview selectById(Connection conn, int reviewId) throws SQLException {
+		String sql = "select * from watcha_review where review_id = ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
-			pst.setInt(1, memberId);
+			pst.setInt(1, reviewId);
 			try(ResultSet rs = pst.executeQuery()){
 				WatchaReview watchaReview = null;
 				if(rs.next()) {
-					watchaReview = convReview(rs);
+					watchaReview = convReview(rs, 0);
 				}
 				return watchaReview;
 			}
@@ -109,10 +109,10 @@ public class WatchaReviewDAO {
 	}
 
 	// 사용자 리뷰 삭제
-	public int delete(Connection conn, int memberId) throws SQLException {
-		String sql = "delete from watcha_review where member_id =?";
+	public int delete(Connection conn, int reviewId) throws SQLException {
+		String sql = "delete from watcha_review where review_id =?";
 		try (PreparedStatement pst = conn.prepareStatement(sql)) {
-			pst.setInt(1, memberId);
+			pst.setInt(1, reviewId);
 			return pst.executeUpdate();
 		}
 	}
@@ -125,14 +125,14 @@ public class WatchaReviewDAO {
 			try(ResultSet rs = pst.executeQuery()){
 				WatchaReview watchaReview = null;
 				if(rs.next()) {
-					watchaReview = convReview(rs);
+					watchaReview = convReview(rs, 0);
 				}
 				return watchaReview;
 			}
 		}
 	}	
 	
-	// (member_id에 따라서) watcha_review의 전체 tuple수를 가져오는 메소드de
+	// (member_id에 따라서) watcha_review의 전체 tuple수를 가져오는 메소드
 	public int selectMemberCount(Connection conn, int memberId) throws SQLException {
 		String sql = "select count(*) from watcha_review where member_id = ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql);){
@@ -147,14 +147,21 @@ public class WatchaReviewDAO {
 	}
 
 	//ResultSet으로 나온결과를 Watcha_review객체로 생성해서 담는 메소드
-	private WatchaReview convReview(ResultSet rs) throws SQLException {
+	private WatchaReview convReview(ResultSet rs, int flag) throws SQLException {
 		
-		WatchaReview watchaReview = new WatchaReview(rs.getInt("review_id"),
-									rs.getInt("member_id"),
-									rs.getInt("movie_id"),
-									rs.getString("title"),
-									rs.getDouble("star"), 
-									rs.getString("review"));
+		WatchaReview watchaReview = null;
+		
+		if(flag == 0) {
+			watchaReview = new WatchaReview(rs.getInt("review_id"), rs.getInt("member_id"), rs.getInt("movie_id"), rs.getString("review"), rs.getDouble("star"), rs.getTimestamp("wdate").toLocalDateTime(), rs.getTimestamp("udate").toLocalDateTime());
+		}else {
+			watchaReview = new WatchaReview(rs.getInt("review_id"),
+					rs.getInt("member_id"),
+					rs.getInt("movie_id"),
+					rs.getString("title"),
+					rs.getDouble("star"), 
+					rs.getString("review"), rs.getTimestamp("wdate").toLocalDateTime(), rs.getTimestamp("udate").toLocalDateTime());
+		}
+		
 		return watchaReview;
 		
 	}

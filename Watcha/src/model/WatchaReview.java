@@ -15,13 +15,25 @@ public class WatchaReview {
 	
 	
 	//생성자. DB에서 가져올 때 사용할 생성자
-	public WatchaReview(int reviewId, int memberId, int movieId, String title, double star, String review) {
+	public WatchaReview(int reviewId, int memberId, int movieId, String review, double star, LocalDateTime wdate, LocalDateTime udate) {
+		this.reviewId = reviewId;
+		this.movieId = movieId;
+		this.memberId = memberId;
+		this.star = star;
+		this.review = review;
+		this.wdate = wdate;
+		this.udate = udate;
+	}
+	
+	public WatchaReview(int reviewId, int memberId, int movieId, String title, double star, String review, LocalDateTime wdate, LocalDateTime udate) {
 		this.reviewId = reviewId;
 		this.movieId = movieId;
 		this.memberId = memberId;
 		this.title = title;
 		this.star = star;
 		this.review = review;
+		this.wdate = wdate;
+		this.udate = udate;
 	}
 	
 	//생성자. 작성할 때 사용할 생성자
