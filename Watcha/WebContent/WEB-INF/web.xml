@@ -41,6 +41,7 @@
 		<url-pattern>/member_like</url-pattern>
 		<url-pattern>/member_review_list</url-pattern>
 		<url-pattern>/member_review_delete</url-pattern>
+		<url-pattern>/member_review_modify</url-pattern>
 		<url-pattern>/delete_like</url-pattern>
 	</servlet-mapping>
 	

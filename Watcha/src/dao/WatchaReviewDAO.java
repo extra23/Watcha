@@ -145,6 +145,16 @@ public class WatchaReviewDAO {
 		}
 		return 0;
 	}
+	
+	// 리뷰 수정하는 메소드
+		public int update(Connection conn, int reviewId, String review) throws SQLException {
+			String sql = "update watcha_review set review =? where reveiw_id =?";
+			try(PreparedStatement pst = conn.prepareStatement(sql)){
+				pst.setString(1, review);
+				pst.setInt(2, reviewId);
+				return pst.executeUpdate( );
+			}
+		}
 
 	//ResultSet으로 나온결과를 Watcha_review객체로 생성해서 담는 메소드
 	private WatchaReview convReview(ResultSet rs, int flag) throws SQLException {
