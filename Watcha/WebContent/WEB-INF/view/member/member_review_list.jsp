@@ -79,8 +79,8 @@
 						<td>${reviewData.wdate}</td>
 						<td>${reviewData.udate}</td>
 						<td>
-							<a href="">[수정]</a>
-							<a href="member_review_delete?no=${reviewData.reviewId}">[삭제, ${reviewData.reviewId}]</a>
+							<a href="member_review_modify?no=${reviewData.reviewId}">[수정]</a>
+							<a href="member_review_delete?no=${reviewData.reviewId}">[삭제]</a>
 						</td>
 					</tr>
 				</c:forEach>
