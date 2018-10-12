@@ -68,7 +68,7 @@
 					<td class="thead">장르</td>
 					<td>
 						<select name="genreId">
-							<option value="" selected disabled>장르 선택</option>
+							<option value="" selected disabled></option>
 							<c:forEach var="movieGenre" items="${movieGenreList}">
 								<c:if test="${param.genreId eq movieGenre.genreId}">
 									<option value="${movieGenre.genreId}" selected="selected">${movieGenre.genreName}</option>

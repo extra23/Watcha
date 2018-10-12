@@ -10,11 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import Exception.PermissionDeniedException;
 import Exception.ReviewNotFoundException;
 import common.handler.CommandHandler;
-import model.WatchaReview;
 import service.account.AuthUser;
 import service.review.DeleteReviewService;
-import service.review.ReadReviewService;
-import service.review.ReviewData;
 
 
 public class DeleteReviewHandler implements CommandHandler {

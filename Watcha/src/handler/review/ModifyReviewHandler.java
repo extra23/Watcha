@@ -16,7 +16,7 @@ import service.review.ModifyReviewService;
 
 public class ModifyReviewHandler implements CommandHandler{
 
-	private static final String FORM_VIEW = "/WEB-INF/view/member/member_review_modify";
+	private static final String FORM_VIEW = "/WEB-INF/view/member/member_review_modify.jsp";
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {

@@ -191,6 +191,15 @@ public class WatchaReviewDAO {
 		}
 	}
 	
+	// delete : 사용자 계정 탈퇴 시 관련된 리뷰들도 삭제하는 메소드
+	public int deleteByMemberId(Connection conn, int memberId) throws SQLException {
+		String sql = "delete from watcha_review where member_id=?";
+		try(PreparedStatement pst = conn.prepareStatement(sql);){
+			pst.setInt(1, memberId);
+			return pst.executeUpdate();
+		}
+	}
+	
 	//ResultSet으로 나온결과를 Watcha_review객체로 생성해서 담는 메소드
 	private WatchaReview convReview(ResultSet rs, int flag) throws SQLException {
 		

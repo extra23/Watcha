@@ -17,7 +17,7 @@ public class ReadReviewService {
 		return instance;
 	}
 	
-	public ReviewData getReview(int memberId) {
+/*	public ReviewData getReview(int memberId) {
 		WatchaReviewDAO reviewDAO = WatchaReviewDAO.getInstance( );
 		
 		try(Connection conn= ConnectionProvider.getConnection( )){
@@ -29,5 +29,6 @@ public class ReadReviewService {
 		}catch(SQLException e) {
 			throw new RuntimeException(e);
 		}
-	}
+		return null;
+	}*/
 }
