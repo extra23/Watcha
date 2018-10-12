@@ -70,7 +70,7 @@
 		
 		<c:if test="${AuthUser.memberId == AuthUser.userId}">
 			<a href="modify?no=${WatchaReview.reviewId }">[수정]</a>
-			<a href="delete?no=${WatchaReview.reviewId }">[삭제]</a>
+			<a href="review_delete?no=${WatchaReview.reviewId }">[삭제]</a>
 		</c:if>
 		</td>
 	</tr>	

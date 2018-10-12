@@ -17,23 +17,23 @@ public class DeleteReviewService {
 		return instance;
 	}
 	
-	public void delete(ReviewRequest dr) {
+	public void delete(int reviewId, int memberId) {
 		WatchaReviewDAO reviewDAO =WatchaReviewDAO.getInstance( );
 		
 		try(Connection conn = ConnectionProvider.getConnection( )){
 			try {
 				conn.setAutoCommit(false);
 				
-				WatchaReview review = reviewDAO.selectById(conn, dr.getMemberId( ));
+				WatchaReview review = reviewDAO.selectById(conn, reviewId);
 				// 게시글이 있는지 확인
 				if(review == null) {
 					throw new ReviewNotFoundException("리뷰가 없습니다");
 				}
 				// 사용자 권한이 있는지 확인
-				if(review.getMemberId() != dr.getMemberId()) {
+				if(review.getMemberId() != memberId) {
 					throw new PermissionDeniedException("사용자 권한이 없음");
 				}
-				reviewDAO.delete(conn, dr.getMemberId( ));
+				reviewDAO.delete(conn, reviewId);
 				// reviewDAO 를 이용해서 게시글 삭제 메소드를 실행
 				conn.commit( );
 			}catch (SQLException e) {

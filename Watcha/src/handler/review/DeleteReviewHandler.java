@@ -1,9 +1,21 @@
 package handler.review;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Exception.PermissionDeniedException;
+import Exception.ReviewNotFoundException;
 import common.handler.CommandHandler;
+import model.WatchaReview;
+import service.account.AuthUser;
+import service.review.DeleteReviewService;
+import service.review.ReadReviewService;
+import service.review.ReviewData;
+
 
 public class DeleteReviewHandler implements CommandHandler {
 	private static final String FORM_VIEW ="/WEB-INF/view/member/member_account_delete.jsp";
@@ -20,16 +32,42 @@ public class DeleteReviewHandler implements CommandHandler {
 		}
 	}
 	
-	private String processForm(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return null;
+	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		return "/	WEB-INF/view/member/member_review_delete.jsp";
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
+	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		
+		//  ReviewData에 수정 내용들을 파라미터에서 받아서 담고
+		int memberId = ((AuthUser)req.getSession( ).getAttribute("authUser")).getMemberId();
+		
+		String pageNoStr = req.getParameter("pageNo");
+		int pageNo = 1;
+		if(pageNoStr != null && !pageNoStr.isEmpty()) {
+			pageNo = Integer.parseInt(pageNoStr);
+		}
+		
+		// 파라미터 받아오기
+		int reviewId = Integer.parseInt(req.getParameter("no"));
+		
+		// errors 를 담을 Map 객체 생성
+		Map<String, Boolean> errors = new HashMap<>( );
+		req.setAttribute("errors", errors);
+		
+		// 사용할 서비스 객체 생성
+		DeleteReviewService deleteReviewService = DeleteReviewService.getInstance( );
+		
+		// 서비스 객체 사용
+		try {
+			deleteReviewService.delete(reviewId, memberId);
+		}catch(PermissionDeniedException e) {
+			errors.put("PermissionDenied", true);
+			return FORM_VIEW;
+		}catch(ReviewNotFoundException e) {
+			errors.put("ReviewNotFound", true);
+			return FORM_VIEW;
+		}
+		resp.sendRedirect(req.getContextPath( ) + "/member_review_list?pageNo =" + pageNo);
 		return null;
 	}
-
-	
-	
 }

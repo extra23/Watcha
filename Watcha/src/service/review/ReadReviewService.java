@@ -17,7 +17,7 @@ public class ReadReviewService {
 		return instance;
 	}
 	
-	public ReviewData getReview(int memberId, boolean increaseReadCount) {
+	public ReviewData getReview(int memberId) {
 		WatchaReviewDAO reviewDAO = WatchaReviewDAO.getInstance( );
 		
 		try(Connection conn= ConnectionProvider.getConnection( )){
