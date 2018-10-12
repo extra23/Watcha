@@ -11,13 +11,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
 	<jsp:include page="/WEB-INF/view/layout/top.jsp" flush="false"></jsp:include>
 	
 	<jsp:include page="/WEB-INF/view/layout/left.jsp" flush="false"></jsp:include>
 
-<form action="delete_review?no = ${param.no }" method="post">
-<input type="password" name="password" placeholder="비밀번호">
-<input type="submit" value="삭제">
-</form>
+	<span style="color: white">${param.no}</span>
+
+	<form action="member_review_delete?no=${param.no}" method="post">
+		<input type="password" name="password" placeholder="비밀번호">
+		<input type="submit" value="삭제">
+	</form>
+	
 </body>
 </html>

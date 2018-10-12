@@ -18,6 +18,7 @@ public class DeleteReviewService {
 	}
 	
 	public void delete(int reviewId, int memberId) {
+		System.out.println("서비스로 들어옴");
 		WatchaReviewDAO reviewDAO =WatchaReviewDAO.getInstance( );
 		
 		try(Connection conn = ConnectionProvider.getConnection( )){
@@ -27,10 +28,12 @@ public class DeleteReviewService {
 				WatchaReview review = reviewDAO.selectById(conn, reviewId);
 				// 게시글이 있는지 확인
 				if(review == null) {
+					System.out.println("오류 발생, 삭제할 리뷰 없어");
 					throw new ReviewNotFoundException("리뷰가 없습니다");
 				}
 				// 사용자 권한이 있는지 확인
 				if(review.getMemberId() != memberId) {
+					System.out.println("오류 발생, 삭제하는 사람이 작성한 사람이 아니야");
 					throw new PermissionDeniedException("사용자 권한이 없음");
 				}
 				reviewDAO.delete(conn, reviewId);

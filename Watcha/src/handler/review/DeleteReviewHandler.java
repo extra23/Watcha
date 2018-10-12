@@ -58,6 +58,8 @@ public class DeleteReviewHandler implements CommandHandler {
 		// 사용할 서비스 객체 생성
 		DeleteReviewService deleteReviewService = DeleteReviewService.getInstance( );
 		
+		System.out.println("여기까지는 됨");
+		
 		// 서비스 객체 사용
 		try {
 			deleteReviewService.delete(reviewId, memberId);
@@ -68,7 +70,13 @@ public class DeleteReviewHandler implements CommandHandler {
 			errors.put("ReviewNotFound", true);
 			return FORM_VIEW;
 		}
+		
+		System.out.println(errors.keySet());
+		
 		resp.sendRedirect(req.getContextPath( ) + "/member_review_list?pageNo =" + pageNo);
+		
 		return null;
+		
 	}
+	
 }
