@@ -24,7 +24,7 @@ public class ListReviewService {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			WatchaReviewDAO watchaReviewDAO = WatchaReviewDAO.getInstance();
 			int total = watchaReviewDAO.selectCount(conn, movieId);
-			List<WatchaReview> reviewList = watchaReviewDAO.selectList(conn, movieId, (pageNum-1)*size, size);
+			List<WatchaReview> reviewList = watchaReviewDAO.selectByMovieId(conn, movieId, (pageNum-1)*size, size);
 			return new ReviewPage(reviewList, pageNum, total, size, blockSize);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

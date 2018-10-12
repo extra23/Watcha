@@ -60,6 +60,7 @@
 		</c:if>
 
 		<!-- 게시글이 있을 때 보여줄 화면 -->
+		<span style="color: white;">${reviewPage}</span>
 		<table id="movieReviewTable">
 			<c:forEach var="review" items="${reviewPage.reviewList}">
 				<tr>

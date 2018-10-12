@@ -73,6 +73,7 @@ public class ReadMovieHandler implements CommandHandler{
 		req.setAttribute("movieData", movieData);
 		req.setAttribute("movieGenreList", movieGenreList);
 		req.setAttribute("reviewPage", reviewPage);
+		
 		return FORM_VIEW;
 		
 	}

@@ -76,7 +76,27 @@ public class WatchaReviewDAO {
 		}
 	}
 	
-	// (member_id에 따라서) 리미트를 이용한 List<WatchaReview>를 가져오는 쿼리를 날리는 메소드
+	// (movie_id에 따라) 리미트를 이용한 List<WatchaReview>를 가져오는 쿼리를 날리는 메소드
+	public List<WatchaReview> selectByMovieId(Connection conn, int movieId, int StratRow, int size) throws SQLException{
+		
+		String sql = "select * from watcha_review where movie_id=? order by review_id desc limit ?, ?";
+		
+		try(PreparedStatement pst = conn.prepareStatement(sql);){
+			pst.setInt(1, movieId);
+			pst.setInt(2, StratRow);
+			pst.setInt(3, size);
+			try(ResultSet rs = pst.executeQuery();){
+				List<WatchaReview> watchaReviewList = new ArrayList<>();
+				while(rs.next()) {
+					watchaReviewList.add(convReview(rs, 0));
+				}
+				return watchaReviewList;
+			}
+		}
+		
+	}
+	
+	// (watcha_review 테이블과 movie_pre 테이블 조인) (member_id에 따라서) 리미트를 이용한 List<WatchaReview>를 가져오는 쿼리를 날리는 메소드
 	public List<WatchaReview> selectList(Connection conn, int memberId, int startRow, int size) throws SQLException{
 		String sql = "select * from watcha_review join movie_pre on watcha_review.movie_id = movie_pre.movie_id where watcha_review.member_id = ? limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql);){
@@ -91,6 +111,11 @@ public class WatchaReviewDAO {
 				return reviewList;
 			}
 		}
+	}
+	
+	// (watcha_review 테이블과 member 테이블 조인)
+	public List<WatchaReview> selectReviewList(Connection conn, int memberId, int startRow, int size){
+		String sql = "select * from watcha_review join member on watcha_review.member_id = member.member_id";
 	}
 	
 	//review_id로 특정 리뷰를 가져오는 메소드
