@@ -19,11 +19,21 @@ public class WatchaLikeDAO {
 	}
 	private WatchaLikeDAO () {}
 	
-	//사용자가 보고싶다고한 작품 삭제하자.
+	//사용자가 보고싶다고한 작품 전체 삭제하자.
 	public int delete(Connection conn, int memberId) throws SQLException {
 		String sql = "delete from watcha_like where member_id =?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, memberId);
+			return pst.executeUpdate();
+		}
+	}
+	
+	//사용자가 선택한 movie_id에 해당하는 영화만 삭제하는 메소드
+	public int delete(Connection conn, int memberId, int movieId) throws SQLException {
+		String sql = "delete from watcha_like where member_id =? && movie_id = ?";
+		try(PreparedStatement pst = conn.prepareStatement(sql)){
+			pst.setInt(1, memberId);
+			pst.setInt(2, movieId);
 			return pst.executeUpdate();
 		}
 	}

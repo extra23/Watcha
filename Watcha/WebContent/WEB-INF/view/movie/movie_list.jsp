@@ -82,7 +82,7 @@
 			<div id="moviePre">
 				<div class="col-sm-6 col-md-4" id="col-md-4">
 					<div class="thumbnail">
-						<img src="poster/${moviePre.imageName}" alt="영화 포스터">
+						<img src="poster/${moviePre.imageName}" alt="영화 포스터" style="width: 260px; height: 373px;">
 						<div class="caption">
 							<h3 id="movieTitle">${moviePre.title}</h3>
 							<p id="movieInfo">

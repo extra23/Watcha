@@ -1,5 +1,6 @@
 package handler.like;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import common.handler.CommandHandler;
 import model.MoviePre;
 import service.account.AuthUser;
+import service.like.DeleteLikeService;
 import service.like.LikePage;
 import service.like.ListLikeService;
 import service.like.SelectLikeService;
@@ -58,7 +60,9 @@ public class ListLikeHandler implements CommandHandler{
 		return "/WEB-INF/view/member/member_like.jsp";
 	}
 
-	private String processSubmint(HttpServletRequest req, HttpServletResponse resp) {
+	private String processSubmint(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
+		
 		return null;
 	}
 
