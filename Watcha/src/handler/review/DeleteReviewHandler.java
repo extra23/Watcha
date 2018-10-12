@@ -18,11 +18,12 @@ import service.review.ReviewData;
 
 
 public class DeleteReviewHandler implements CommandHandler {
-	private static final String FORM_VIEW ="/WEB-INF/view/member/member_account_delete.jsp";
+	
+	private static final String FORM_VIEW ="/WEB-INF/view/member/member_review_delete.jsp";
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		if(req.getMethod( ).equalsIgnoreCase("GET")) {
+		if(req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, resp);
 		}else if(req.getMethod( ).equalsIgnoreCase("POST")) {
 			return processSubmit(req, resp);
@@ -33,7 +34,7 @@ public class DeleteReviewHandler implements CommandHandler {
 	}
 	
 	private String processForm(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		return "/	WEB-INF/view/member/member_review_delete.jsp";
+		return FORM_VIEW;
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {

@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,32 +35,49 @@
 	
 	<jsp:include page="/WEB-INF/view/layout/left.jsp" flush="false"></jsp:include>
 
-<div id="memberReviewList">
+	<div id="memberReviewList">
 
 		<!--  리뷰가 없을 때 보여줄 화면-->
 		<c:if test="${!reviewPage.hasReviews()}">
 			<div style="text-align: center;">현재 등록된 리뷰가 없습니다.</div>
 		</c:if>
 
-<!-- 게시글이 있을 때 보여줄 화면 -->
-<table id="review">
+		<!-- 게시글이 있을 때 보여줄 화면 -->
+		<table id="review">
 
 			<colgroup>
-				<col width="10%"/>
+				<col width="20%"/>
 				<col width="*"/>
-				<col width="30%"/>
+				<col width="5%"/>
+				<col width="10"/>
+				<col width="10"/>
 			</colgroup>
 			
-	<thead>		
-	<tr>
-		<th>영화</th>
-		<th>작성자</th>
-		<th>리뷰</th>
-		<th>별점</th>
-	</tr>
-	</thead>
-	<tr>
-		<td>${MovieDetailDAO.movieId}</td>
+			<thead>		
+				<tr>
+					<th>영화</th>
+					<th>리뷰</th>
+					<th>별점</th>
+					<th>작성일</th>
+					<th>수정일</th>
+				</tr>
+			</thead>
+	
+			<tbody>
+				<c:forEach var="reviewData" items="${reviewPage.reviewList}">
+					<tr>
+						<td>${reviewData.title}</td>
+						<td>${reviewData.}</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</c:forEach>
+				
+				
+				
+				<tr>
+					<td>${MovieDetailDAO.movieId}</td>
 		<td>"${authUser.memberName}</td>
 		<td>${WatchaReview.review}</td>
 		<td><span id="star">${review.star}</span></td>
@@ -70,10 +89,12 @@
 		
 		<c:if test="${AuthUser.memberId == AuthUser.userId}">
 			<a href="modify?no=${WatchaReview.reviewId }">[수정]</a>
-			<a href="review_delete?no=${WatchaReview.reviewId }">[삭제]</a>
+			<a href="member_review_delete?no=${WatchaReview.reviewId}">[삭제]</a>
 		</c:if>
 		</td>
-	</tr>	
+	</tr>
+			</tbody>
+		
 </table>
 
 

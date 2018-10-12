@@ -78,7 +78,7 @@ public class WatchaReviewDAO {
 	
 	// (member_id에 따라서) 리미트를 이용한 List<WatchaReview>를 가져오는 쿼리를 날리는 메소드
 	public List<WatchaReview> selectList(Connection conn, int memberId, int startRow, int size) throws SQLException{
-		String sql = "select * from watcha_review join movie_pre on watcha_review.movie_id = movie_pre.movie_id where watcha_review.member_id = ?";
+		String sql = "select * from watcha_review join movie_pre on watcha_review.movie_id = movie_pre.movie_id where watcha_review.member_id = ? limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql);){
 			pst.setInt(1, memberId);
 			pst.setInt(2, startRow);
@@ -152,6 +152,7 @@ public class WatchaReviewDAO {
 		WatchaReview watchaReview = new WatchaReview(rs.getInt("review_id"),
 									rs.getInt("member_id"),
 									rs.getInt("movie_id"),
+									rs.getString("title"),
 									rs.getDouble("star"), 
 									rs.getString("review"));
 		return watchaReview;

@@ -38,9 +38,9 @@
 		<url-pattern>/member_account_modify</url-pattern>
 		<url-pattern>/member_account_delete</url-pattern>
 		<url-pattern>/like_write</url-pattern>
-		<url-pattern>/member_review</url-pattern>
 		<url-pattern>/member_like</url-pattern>
-		<url-pattern>/review_delete</url-pattern>
+		<url-pattern>/member_review_list</url-pattern>
+		<url-pattern>/member_review_delete</url-pattern>
 	</servlet-mapping>
 	
 	<!-- CharacterEncodingFilter 등록 및 맵핑` -->

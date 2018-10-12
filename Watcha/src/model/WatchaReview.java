@@ -7,6 +7,7 @@ public class WatchaReview {
 	private int reviewId;
 	private int memberId;
 	private int movieId;
+	private String title;
 	private double star;
 	private String review;
 	private LocalDateTime wdate;
@@ -14,10 +15,11 @@ public class WatchaReview {
 	
 	
 	//생성자. DB에서 가져올 때 사용할 생성자
-	public WatchaReview(int reviewId, int memberId, int movieId, double star, String review) {
+	public WatchaReview(int reviewId, int memberId, int movieId, String title, double star, String review) {
 		this.reviewId = reviewId;
 		this.movieId = movieId;
 		this.memberId = memberId;
+		this.title = title;
 		this.star = star;
 		this.review = review;
 	}
@@ -53,6 +55,10 @@ public class WatchaReview {
 
 	public void setMovieId(int movieId) {
 		this.movieId = movieId;
+	}
+
+	public String getTitle() {
+		return title;
 	}
 
 	public double getStar() {
