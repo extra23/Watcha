@@ -197,6 +197,22 @@ public class MoviePreDAO {
 		}
 	}
 	
+	//watcha_like에 해당하는 member_id를 활용해서 movie_pre에서 정보를 가져오는 메소드
+			public MoviePre selectByLike(Connection conn, int memberId) throws SQLException {
+				String sql = "select * from movie_pre where movie_id in (select movie_id from watcha_like where member_id = ?)";
+				try(PreparedStatement pst = conn.prepareStatement(sql)){
+					pst.setInt(1, memberId);
+					try(ResultSet rs = pst.executeQuery()){
+						MoviePre moviePre = null;
+						if(rs.next()) {
+							moviePre = convMoviePre(rs);
+						}
+						return moviePre;
+					}
+				}
+			}
+	
+	
 	// movie_pre 테이블의 정보를 수정하는 쿼리를 날리는 메소드
 	public void updateMoviePre(Connection conn, MovieData movieData) throws SQLException {
 		String sql = "update movie_pre set title=?, genre_id=?, time=?, release_date=?, rate=?, famous_line=?, image_name=?, search_word1=?, search_word2=?, search_word3=? where movie_id=?";
