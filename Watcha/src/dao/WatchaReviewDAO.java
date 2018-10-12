@@ -129,7 +129,7 @@ public class WatchaReviewDAO {
 	
 	// select : (watcha_review 테이블과 member 테이블 조인)
 	public List<WatchaReview> selectReviewList(Connection conn, int movieId, int startRow, int size) throws SQLException{
-		String sql = "select * from watcha_review join member on watcha_review.member_id = member.member_id where movie_id=?";
+		String sql = "select * from watcha_review join member on watcha_review.member_id = member.member_id where movie_id=? order by review_id desc";
 		try(PreparedStatement pst = conn.prepareStatement(sql);){
 			pst.setInt(1, movieId);
 			try(ResultSet rs = pst.executeQuery();){
@@ -201,7 +201,7 @@ public class WatchaReviewDAO {
 		}else if(flag == 1){
 			watchaReview = new WatchaReview(rs.getInt("review_id"), rs.getInt("member_id"), rs.getInt("movie_id"), rs.getString("title"), rs.getDouble("star"), rs.getString("review"), rs.getTimestamp("wdate").toLocalDateTime(), rs.getTimestamp("udate").toLocalDateTime());
 		}else if(flag == 2) {
-			watchaReview = new WatchaReview(rs.getInt("review_id"), rs.getInt("member_id"), rs.getString("member_name"), rs.getInt("movie_id"), rs.getInt("star"), rs.getString("review"), rs.getTimestamp("wdate").toLocalDateTime(), rs.getTimestamp("udate").toLocalDateTime());
+			watchaReview = new WatchaReview(rs.getInt("review_id"), rs.getInt("member_id"), rs.getString("member_name"), rs.getInt("movie_id"), rs.getDouble("star"), rs.getString("review"), rs.getTimestamp("wdate").toLocalDateTime(), rs.getTimestamp("udate").toLocalDateTime());
 		}
 		
 		return watchaReview;
