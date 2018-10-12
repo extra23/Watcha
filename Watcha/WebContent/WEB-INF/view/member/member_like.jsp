@@ -59,7 +59,7 @@
 							</p>
 							<p id="buttonGroup">
 								<a href="movie?movieId=${moviePre.movieId}" class="btn btn-primary" role="button" style="background-color: rgb(255, 153, 51); border-width: 0px;">상세보기</a> 
-								<a  href="like_write?pageNo=${param.pageNo}&genreId=${param.genreId}&no=${moviePre.movieId}" class="btn btn-default" role="button"><img src="images/heart.png" width="20px;"></a>
+								<a  href="delete_like?pageNo=${param.pageNo}&genreId=${param.genreId}&no=${moviePre.movieId}" class="btn btn-default" role="button"><img src="images/GrayHeart.PNG" width="20px;"></a>
 							</p>
 						</div>
 					</div>

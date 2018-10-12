@@ -52,7 +52,7 @@ public class ListLikeHandler implements CommandHandler{
 		 //SelectLikeService 객체 생성
 		 SelectLikeService selectLikeService = SelectLikeService.getInstance();
 		 
-		 List<MoviePre> moviePreList =  selectLikeService.getLikeList(memberId);
+		 List<MoviePre> moviePreList = selectLikeService.getLikeList(memberId);
 		 req.setAttribute("moviePreList", moviePreList);
 		 
 		return "/WEB-INF/view/member/member_like.jsp";

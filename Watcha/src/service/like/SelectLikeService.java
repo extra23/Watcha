@@ -26,7 +26,7 @@ public class SelectLikeService {
 
 	public List<MoviePre> getLikeList(int memberId) {
 
-		// MoviePre를 담을 ArrayList를 생성
+		/*// MoviePre를 담을 ArrayList를 생성
 		List<MoviePre> moviePreList = new ArrayList<>();
 
 		// movieId를 담을 ArrayList를 생성
@@ -45,13 +45,22 @@ public class SelectLikeService {
 				for (int i = 0; i < movieIdList.size(); i++) {
 					moviePreList.add(moviePreDAO.selectById(conn, movieIdList.get(i)));
 				}
+			}*/
+		
+		// 사용할 MoviePreDao 객체 생성
+		MoviePreDAO moviePreDAO = MoviePreDAO.getInstance();
+		
+		List<MoviePre> moviePreList = new ArrayList<>();
+		
+		try (Connection conn = ConnectionProvider.getConnection()) {
+			moviePreList  = moviePreDAO.selectByLike(conn, memberId);
+			
+			return moviePreList ;
+			
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-			return moviePreList;
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
+		
 		return null;
 	}
 
