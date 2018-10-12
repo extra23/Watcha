@@ -42,7 +42,6 @@
 		<url-pattern>/member_review_list</url-pattern>
 		<url-pattern>/member_review_delete</url-pattern>
 		<url-pattern>/member_review_modify</url-pattern>
-		<url-pattern>/delete_like</url-pattern>
 	</servlet-mapping>
 	
 	<!-- CharacterEncodingFilter 등록 및 맵핑` -->

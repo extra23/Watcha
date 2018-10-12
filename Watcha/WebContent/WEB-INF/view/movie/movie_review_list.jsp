@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -64,7 +63,7 @@
 		<table id="movieReviewTable">
 			<c:forEach var="review" items="${reviewPage.reviewList}">
 				<tr>
-					<td><span id="writer">${authUser.memberName}</span>&nbsp;&nbsp;
+					<td><span id="writer">${review.memberName}</span>&nbsp;&nbsp;
 						<div id="star-div-${review.star}" style="overflow: hidden; display: inline-block; position: relative; top: 4px;">
 							<img src="images/starRed.png" width="102.5">
 						</div>&nbsp;
