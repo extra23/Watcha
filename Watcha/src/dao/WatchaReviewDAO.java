@@ -174,7 +174,7 @@ public class WatchaReviewDAO {
 	
 	// update 리뷰 수정하는 메소드
 	public int update(Connection conn, int reviewId, String review) throws SQLException {
-		String sql = "update watcha_review set review =? where reveiw_id =?";
+		String sql = "update watcha_review set review =? where review_id =?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setString(1, review);
 			pst.setInt(2, reviewId);
