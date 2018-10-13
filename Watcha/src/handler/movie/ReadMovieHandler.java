@@ -48,7 +48,7 @@ public class ReadMovieHandler implements CommandHandler{
 		// reviewPage
 		String pageNoStr = req.getParameter("pageNo");
 		int pageNo = 1;
-		if(pageNoStr != null) {
+		if(pageNoStr != null && !pageNoStr.isEmpty()) {
 			pageNo = Integer.parseInt(pageNoStr);
 		}
 		

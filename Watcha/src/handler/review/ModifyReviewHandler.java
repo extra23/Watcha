@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import Exception.PermissionDeniedException;
 import Exception.ReviewNotFoundException;
 import common.handler.CommandHandler;
+import model.WatchaReview;
 import service.account.AuthUser;
 import service.review.ModifyReviewService;
+import service.review.ReadReviewService;
 
 public class ModifyReviewHandler implements CommandHandler{
 
@@ -31,10 +33,22 @@ public class ModifyReviewHandler implements CommandHandler{
 	}
 	
 	private String processForm(HttpServletRequest req, HttpServletResponse resp) {
+		
+		// review를 가져올 수 있는 reviewId 파라미터로 받아오기
+		int reviewId = Integer.parseInt(req.getParameter("no"));
+		// review 받아올 ReadReviewSevice 객체 받아옥
+		ReadReviewService readReviewService = ReadReviewService.getInstance();
+		// reviewId 인자값으로 넘겨줘서 readReviewService 사용하기
+		WatchaReview review = readReviewService.getReview(reviewId);
+		// request 객체에 savedReview를 setAttribute 하기
+		req.setAttribute("review", review);
+		
 		return FORM_VIEW; 
+		
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		
 		//  ReviewData에 수정 내용들을 파라미터에서 받아서 담고
 		int memberId = ((AuthUser)req.getSession( ).getAttribute("authUser")).getMemberId();
 		
@@ -44,8 +58,15 @@ public class ModifyReviewHandler implements CommandHandler{
 			pageNo = Integer.parseInt(pageNoStr);
 		}
 		
-		// 파라미터 받아오기
+		// 파라미터 받아오기 (reviewId)
 		int reviewId = Integer.parseInt(req.getParameter("no"));
+		
+		// 파라미터 받아오기 (star)
+		String starStr = req.getParameter("star");
+		double star = 0.0;
+		if(starStr != null) {
+			star = Double.parseDouble(starStr);
+		}
 		
 		// errors 를 담을 Map 객체 생성
 		Map<String, Boolean> errors = new HashMap<>( );
@@ -56,7 +77,7 @@ public class ModifyReviewHandler implements CommandHandler{
 		
 		// 서비스 객체 사용
 		try {
-			modifyReviewService.modify(reviewId, memberId);
+			modifyReviewService.modify(reviewId, memberId, star, req.getParameter("review"));
 		}catch(PermissionDeniedException e) {
 			errors.put("PermissionDenied", true);
 			return FORM_VIEW;
@@ -64,6 +85,7 @@ public class ModifyReviewHandler implements CommandHandler{
 			errors.put("ReviewNotFound", true);
 			return FORM_VIEW;
 		}
+		
 		resp.sendRedirect(req.getContextPath( ) + "/member_review_list?pageNo =" + pageNo);
 		
 		return null;

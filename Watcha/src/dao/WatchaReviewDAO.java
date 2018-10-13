@@ -112,7 +112,7 @@ public class WatchaReviewDAO {
 	
 	// select : (watcha_review 테이블과 movie_pre 테이블 조인) (member_id에 따라서) 리미트를 이용한 List<WatchaReview>를 가져오는 쿼리를 날리는 메소드
 	public List<WatchaReview> selectList(Connection conn, int memberId, int startRow, int size) throws SQLException{
-		String sql = "select * from watcha_review join movie_pre on watcha_review.movie_id = movie_pre.movie_id where watcha_review.member_id = ? limit ?, ?";
+		String sql = "select * from watcha_review join movie_pre on watcha_review.movie_id = movie_pre.movie_id where watcha_review.member_id = ? order by review_id desc limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql);){
 			pst.setInt(1, memberId);
 			pst.setInt(2, startRow);
@@ -173,11 +173,12 @@ public class WatchaReviewDAO {
 	}	
 	
 	// update 리뷰 수정하는 메소드
-	public int update(Connection conn, int reviewId, String review) throws SQLException {
-		String sql = "update watcha_review set review =? where review_id =?";
+	public int update(Connection conn, int reviewId, Double star, String review) throws SQLException {
+		String sql = "update watcha_review set review=?,star=? where review_id =? ";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setString(1, review);
-			pst.setInt(2, reviewId);
+			pst.setDouble(2, star);
+			pst.setInt(3, reviewId);
 			return pst.executeUpdate( );
 		}
 	}

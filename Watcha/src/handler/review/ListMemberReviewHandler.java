@@ -19,7 +19,7 @@ public class ListMemberReviewHandler implements CommandHandler{
 		
 		String pageNoStr = req.getParameter("pageNo");
 		int pageNum = 1;
-		if(pageNoStr != null) {
+		if(pageNoStr != null && !pageNoStr.isEmpty()) {
 			pageNum = Integer.parseInt(pageNoStr);
 		}
 		
