@@ -14,7 +14,7 @@ body {
 }
 </style>
 <meta charset="UTF-8">
-<title>member_review_modify</title>
+<title>POTATO::리뷰 수정</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/layout/top.jsp" flush="false"></jsp:include>

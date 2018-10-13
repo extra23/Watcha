@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>member_review!!d!!</title>
+<title>POTATO::리뷰 목록</title>
 	<style>
 	
 		body {background: url("images/background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
 
-		#memberReviewList {background-color: rgb(250, 250, 250); border-radius: 20px; width: calc(100% - 260px); float: right; padding: 30px; margin: 20px; margin-left: -10px; margin-right: 25px;}
+		#memberReviewList {background-color: rgb(250, 250, 250); border-radius: 20px; width: calc(100% - 260px); float: right; padding: 30px; padding-top: 10px; margin: 20px; margin-left: -10px; margin-right: 25px;}
 		#memberReviewList * {font-family: a찐빵M;}
 
 		#review{width: 100%; margin: auto;}
@@ -31,6 +31,7 @@
 	</style>
 </head>
 <body>
+
 	<jsp:include page="/WEB-INF/view/layout/top.jsp" flush="false"></jsp:include>
 	
 	<jsp:include page="/WEB-INF/view/layout/left.jsp" flush="false"></jsp:include>

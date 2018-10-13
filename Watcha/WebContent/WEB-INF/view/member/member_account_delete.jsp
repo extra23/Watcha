@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>member_account_delete</title>
+	<title>POTATO::회원탈퇴</title>
 	<style>
 		
 		body {
