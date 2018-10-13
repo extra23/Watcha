@@ -20,6 +20,7 @@ public class ModifyReviewHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		System.out.println("?");
 		if(req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, resp);
 		}else if(req.getMethod( ).equalsIgnoreCase("POST")) {
@@ -37,7 +38,7 @@ public class ModifyReviewHandler implements CommandHandler{
 	private String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		//  ReviewData에 수정 내용들을 파라미터에서 받아서 담고
 		int memberId = ((AuthUser)req.getSession( ).getAttribute("authUser")).getMemberId();
-		
+		System.out.println("?dfefef");
 		String pageNoStr = req.getParameter("pageNo");
 		int pageNo = 1;
 		if(pageNoStr != null && !pageNoStr.isEmpty()) {
