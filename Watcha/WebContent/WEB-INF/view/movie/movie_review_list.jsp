@@ -15,6 +15,7 @@
 			margin-left: -10px;
 			margin-right: 30px;
 			margin-top: 5px;
+			max-width: calc(100% - 1075px);
 			min-width: calc(100% - 1075px);
 			border-radius: 20px;
 			padding: 30px;

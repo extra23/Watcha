@@ -27,6 +27,9 @@
 	
 		<p id="movieTitle">
 			${movieData.moviePre.title}
+			<sub>
+				<a href="movie_list?pageNo=${param.pageNo}">[영화 목록]</a>
+			</sub>
 		</p>
 		
 		<p id="moviePre">

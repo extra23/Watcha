@@ -17,18 +17,20 @@ public class ReadReviewService {
 		return instance;
 	}
 	
-/*	public ReviewData getReview(int memberId) {
+	public WatchaReview getReview(int memberId) {
+		
 		WatchaReviewDAO reviewDAO = WatchaReviewDAO.getInstance( );
 		
 		try(Connection conn= ConnectionProvider.getConnection( )){
-			WatchaReview review = reviewDAO.selectById(conn, memberId);
-			if(review == null) {
+			WatchaReview savedReview = reviewDAO.selectById(conn, memberId);
+			if(savedReview == null) {
 				throw new ReviewNotFoundException("review 없음");
 			}
-			return new ReviewData(review);
+			return savedReview;
 		}catch(SQLException e) {
 			throw new RuntimeException(e);
 		}
-		return null;
-	}*/
+		
+	}
+	
 }

@@ -66,14 +66,19 @@
 		<filter-name>loginCheckFilter</filter-name>
 		<url-pattern>/movie_list</url-pattern>
 		<url-pattern>/movie</url-pattern>
-		<url-pattern>/member_account_modify</url-pattern>
-		<url-pattern>/member_account_delete</url-pattern>
 		<url-pattern>/admin_movie_write</url-pattern>
 		<url-pattern>/admin_movie_list</url-pattern>
 		<url-pattern>/admin_movie</url-pattern>
 		<url-pattern>/admin_movie_modify</url-pattern>
 		<url-pattern>/admin_movie_delete</url-pattern>
-		<url-pattern>/member_review</url-pattern>
+		<url-pattern>/member_account_modify</url-pattern>
+		<url-pattern>/member_account_delete</url-pattern>
+		<url-pattern>/like_write</url-pattern>
+		<url-pattern>/member_like</url-pattern>
+		<url-pattern>/member_review_list</url-pattern>
+		<url-pattern>/member_review_delete</url-pattern>
+		<url-pattern>/member_review_modify</url-pattern>
+		<url-pattern>/delete_like</url-pattern>
 	</filter-mapping>
 	
 	<!-- Session 설정 -->

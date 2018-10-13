@@ -17,7 +17,7 @@ public class ModifyReviewService {
 		return instance;
 	}
 
-	public void modify(int reviewId, int memberId) {
+	public void modify(int reviewId, int memberId, Double star, String review) {
 		WatchaReviewDAO reviewDAO = WatchaReviewDAO.getInstance( );
 		
 		try(Connection conn = ConnectionProvider.getConnection( )){
@@ -34,7 +34,7 @@ public class ModifyReviewService {
 				if(savedWatchaReview.getMemberId() != memberId) {
 					throw new PermissionDeniedException("사용자 권한이 없음");
 				}
-				reviewDAO.update(conn, reviewId, savedWatchaReview.getReview());
+				reviewDAO.update(conn, reviewId, star, review);
 				conn.commit( );
 		}catch (SQLException e) {
 			conn.rollback( );
