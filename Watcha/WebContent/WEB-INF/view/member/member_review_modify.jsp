@@ -21,7 +21,7 @@ body {
 
 	<jsp:include page="/WEB-INF/view/layout/left.jsp" flush="false"></jsp:include>
 
-	<form action="member_review_modify?no=${param.no}" method="post">
+	<form action="member_review_list?no=${param.no}" method="post">
 		<input type="hidden" name="no" value="${reviewData.reviewId}">
 
 		<table id="review">
@@ -49,31 +49,14 @@ body {
 		<input type="submit" value="수정">
 	</form>
 
-	<script>
-		<c:forEach var="review" items="${reviewPage.reviewList}">
-		var star = <c:out value="${review.star}"/>
-		if (star == 0.5) {
-			document.getElementById('star-div-0.5').style.width = "11px";
-		} else if (star == 1.0) {
-			document.getElementById('star-div-1.0').style.width = "21px";
-		} else if (star == 1.5) {
-			document.getElementById('star-div-1.5').style.width = "31px";
-		} else if (star == 2.0) {
-			document.getElementById('star-div-2.0').style.width = "42px";
-		} else if (star == 2.5) {
-			document.getElementById('star-div-2.5').style.width = "52px";
-		} else if (star == 3.0) {
-			document.getElementById('star-div-3.0').style.width = "62px";
-		} else if (star == 3.5) {
-			document.getElementById('star-div-3.5').style.width = "72px";
-		} else if (star == 4.0) {
-			document.getElementById('star-div-4.0').style.width = "83px";
-		} else if (star == 4.5) {
-			document.getElementById('star-div-4.5').style.width = "93px";
-		} else if (star == 5.0) {
-			document.getElementById('star-div-5.0').style.width = "103px"
+<script>
+	
+		function resize(i){
+			var per = (i) * 10;
+			document.getElementById('red-star').style.width = per + '%';
+			document.getElementById('star-value').value = 0.5 * i;
 		}
-		</c:forEach>
+	
 	</script>
 </body>
 </html>

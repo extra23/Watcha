@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -25,6 +26,11 @@
 		#star {
 			font-size: 10px;
 			color: rgb(255, 0, 128);
+		}
+		
+		#ReviewListPagination {
+			text-align: center;
+			margin: -10px;
 		}
 
 		
@@ -75,7 +81,7 @@
 				<c:forEach var="reviewData" items="${reviewPage.reviewList}">
 					<tr>
 						<td>${reviewData.title}</td>
-						<td>${reviewData.review}</td>
+						<td><u:pre value="${reviewData.review}"></u:pre></td>
 						<td id="star-td">
 							<div class="star-div-${reviewData.star}" style="overflow: hidden; display: inline-block; position: relative; top: 4px;">
 								<img src="images/starRed2.png" width="102.5">
@@ -94,6 +100,51 @@
 		
 		</table>
 		</c:if>
+		
+		<!-- 페이지네이션 -->
+		<c:if test="${reviewPage.hasReviews()}">
+			<div id="ReviewListPagination">
+				<nav>
+					<ul class="pagination">
+						<c:if
+							test="${reviewPage.totalPages > 5 && reviewPage.currentPage > 4}">
+							<li><a href="member_review_list?reviewId=${param.reviewId}&pageNo=1" aria-label="Previous">
+									<span aria-hidden="true">&lt;&lt;</span>
+							</a></li>
+						</c:if>
+						<c:if test="${reviewPage.currentPage > 2}">
+							<li>
+								<a href="member_review_list?reviewId=${param.reviewId}&pageNo=${reviewPage.currentPage - 2}" aria-label="Previous">
+									<span aria-hidden="true">&lt;</span>
+								</a>
+							</li>
+						</c:if>
+						<c:forEach var="pageNo" begin="${reviewPage.startPage}" end="${reviewPage.endPage}">
+							<c:if test="${reviewPage.currentPage eq pageNo}">
+								<li class="active"><a href="member_review_list?reviewId=${param.reviewId}&pageNo=${pageNo}">${pageNo}</a></li>
+							</c:if>
+							<c:if test="${not (reviewPage.currentPage eq pageNo)}">
+								<li><a href="member_review_list?reviewId=${param.reviewId}&pageNo=${pageNo}">${pageNo}</a></li>
+							</c:if>
+						</c:forEach>
+						<c:if test="${reviewPage.totalPages > 1 && reviewPage.currentPage < reviewPage.totalPages - 1}">
+							<li>
+								<a href="member_review_list?reviewId=${param.reviewId}&pageNo=${reviewPage.currentPage + 2}" aria-label="Next"> 
+									<span aria-hidden="true">&gt;</span>
+								</a>
+							</li>
+						</c:if>
+						<c:if test="${reviewPage.totalPages > 5 && reviewPage.currentPage < reviewPage.totalPages - 2}">
+							<li>
+								<a href="member_review_list?reviewId=${param.reviewId}&pageNo=${reviewPage.totalPages}" aria-label="Next"> 
+									<span aria-hidden="true">&gt;&gt;</span>
+								</a>
+							</li>
+						</c:if>
+					</ul>
+				</nav>
+			</div>
+		</c:if>		
 
 
 		<script>
