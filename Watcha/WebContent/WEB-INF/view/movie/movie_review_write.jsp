@@ -71,7 +71,7 @@
 				</div>
 			</div>
 			
-			<input type="hidden" name="star" id="star-value">
+			<input type="hidden" name="star" id="star-value" value="0">
 
 			<p style="text-align: center; margin-top: -28px;">
 				<textarea rows="3" cols="125" name="review" style="font-size: 12px;">${param.review}</textarea>

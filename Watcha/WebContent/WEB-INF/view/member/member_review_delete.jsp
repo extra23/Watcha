@@ -8,7 +8,7 @@
 
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>POTATO::리뷰 삭제</title>
 </head>
 <body>
 	

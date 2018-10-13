@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>POTATO::영화 목록</title>
 	<style>
 	
 		body {background: url("images/background2.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
@@ -27,7 +27,7 @@
 		#moviePre {width: 300px; display: inline-block; margin: 20px;}
 		#col-md-4 {width: 100%;}
 		#movieTitle {font-family: BomBaramOTF;}
-		#movieInfo, #buttonGroup {font-family: a찐빵M;}
+		#genre, #movieInfo, #buttonGroup {font-family: a찐빵M;}
 		
 		#MovieListPagination {text-align: center;}
 		#MovieListPagination * {font-family: a찐빵M;}
@@ -85,6 +85,11 @@
 						<img src="poster/${moviePre.imageName}" alt="영화 포스터" style="width: 260px; height: 373px;">
 						<div class="caption">
 							<h3 id="movieTitle">${moviePre.title}</h3>
+							<p id="genre">
+								<c:forEach var="movieGenre" items="${movieGenreList}">
+									<c:if test="${movieGenre.genreId eq moviePre.genreId}">${movieGenre.genreName}</c:if>
+								</c:forEach>
+							</p>
 							<p id="movieInfo">
 								<span>${moviePre.releaseDate}년</span>&nbsp;&nbsp;
 								<c:if test="${moviePre.rate eq 0}">

@@ -45,7 +45,7 @@
 			<li><a href="member_account_modify" onclick="return check()">계정 관리</a></li>
 			<li><a href="member_account_delete">회원 탈퇴</a></li>
 			<li><a href="member_like">보고싶어요</a></li>
-			<li><a href="member_review">리뷰</a>
+			<li><a href="member_review_list">리뷰</a>
 		</ul>
 	
 	</div>

@@ -47,7 +47,7 @@ public class DeleteAccountService {
 				//memberDAO,watchaLikeDAO,watchaReviewDAO를 이용해서 멤버삭제 메소드 실행
 				memberDAO.delete(conn, memberId);
 				watchaLikeDAO.delete(conn, memberId);
-				watchaReviewDAO.delete(conn, memberId);
+				watchaReviewDAO.deleteByMemberId(conn, memberId);
 				conn.commit();
 				
 			}catch(SQLException e) {

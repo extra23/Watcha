@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -64,8 +63,8 @@
 		<table id="movieReviewTable">
 			<c:forEach var="review" items="${reviewPage.reviewList}">
 				<tr>
-					<td><span id="writer">${authUser.memberName}</span>&nbsp;&nbsp;
-						<div id="star-div-${review.star}" style="overflow: hidden; display: inline-block; position: relative; top: 4px;">
+					<td><span id="writer">${review.memberName}</span>&nbsp;&nbsp;
+						<div class="star-div-${review.star}" style="overflow: hidden; display: inline-block; position: relative; top: 4px;">
 							<img src="images/starRed.png" width="102.5">
 						</div>&nbsp;
 						<span id="star">${review.star}</span>
@@ -134,28 +133,52 @@
 
 	<script>
 		<c:forEach var="review" items="${reviewPage.reviewList}">
-		var star = <c:out value="${review.star}"/>
-		if (star == 0.5) {
-			document.getElementById('star-div-0.5').style.width = "11px";
-		} else if (star == 1.0) {
-			document.getElementById('star-div-1.0').style.width = "21px";
-		} else if (star == 1.5) {
-			document.getElementById('star-div-1.5').style.width = "31px";
-		} else if (star == 2.0) {
-			document.getElementById('star-div-2.0').style.width = "42px";
-		} else if (star == 2.5) {
-			document.getElementById('star-div-2.5').style.width = "52px";
-		} else if (star == 3.0) {
-			document.getElementById('star-div-3.0').style.width = "62px";
-		} else if (star == 3.5) {
-			document.getElementById('star-div-3.5').style.width = "72px";
-		} else if (star == 4.0) {
-			document.getElementById('star-div-4.0').style.width = "83px";
-		} else if (star == 4.5) {
-			document.getElementById('star-div-4.5').style.width = "93px";
-		} else if (star == 5.0) {
-			document.getElementById('star-div-5.0').style.width = "103px"
-		}
+			var star = <c:out value="${review.star}"/>
+			if (star == 0.5) {
+				for(let i = 0;  i < document.getElementsByClassName("star-div-0.5").length;  i++){
+					document.getElementsByClassName("star-div-0.5")[i].style.width = "11px";
+				}
+			} else if (star == 1.0) {
+				for(let i = 0;  i < document.getElementsByClassName("star-div-1.0").length;  i++){
+					document.getElementsByClassName("star-div-1.0")[i].style.width = "21px";
+				}
+			} else if (star == 1.5) {
+				for(let i = 0;  i < document.getElementsByClassName("star-div-1.5").length;  i++){
+					document.getElementsByClassName("star-div-1.5")[i].style.width = "31px";
+				}
+			} else if (star == 2.0) {
+				for(let i = 0;  i < document.getElementsByClassName("star-div-2.0").length;  i++){
+					document.getElementsByClassName("star-div-2.0")[i].style.width = "42px";
+				}
+			} else if (star == 2.5) {
+				for(let i = 0;  i < document.getElementsByClassName("star-div-2.5").length;  i++){
+					document.getElementsByClassName("star-div-2.5")[i].style.width = "52px";
+				}
+			} else if (star == 3.0) {
+				for(let i = 0;  i < document.getElementsByClassName("star-div-3.0").length;  i++){
+					document.getElementsByClassName("star-div-3.0")[i].style.width = "62px";
+				}
+			} else if (star == 3.5) {
+				for(let i = 0;  i < document.getElementsByClassName("star-div-3.5").length;  i++){
+					document.getElementsByClassName("star-div-3.5")[i].style.width = "72px";
+				}
+			} else if (star == 4.0) {
+				for(let i = 0;  i < document.getElementsByClassName("star-div-4.0").length;  i++){
+					document.getElementsByClassName("star-div-4.0")[i].style.width = "83px";
+				}
+			} else if (star == 4.5) {
+				for(let i = 0;  i < document.getElementsByClassName("star-div-4.5").length;  i++){
+					document.getElementsByClassName("star-div-4.5")[i].style.width = "93px";
+				}
+			} else if (star == 5.0) {
+				for(let i = 0;  i < document.getElementsByClassName("star-div-5.0").length;  i++){
+					document.getElementsByClassName("star-div-5.0")[i].style.width = "103px";
+				}
+			} else if (star == 0.0) {
+				for(let i = 0;  i < document.getElementsByClassName("star-div-0.0").length;  i++){
+					document.getElementsByClassName("star-div-0.0")[i].style.width = "0px";
+				}
+			}
 		</c:forEach>
 	</script>
 
