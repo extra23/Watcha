@@ -38,6 +38,7 @@ public class DeleteReviewHandler implements CommandHandler {
 		
 		//  ReviewData에 수정 내용들을 파라미터에서 받아서 담고
 		int memberId = ((AuthUser)req.getSession( ).getAttribute("authUser")).getMemberId();
+		String password = ((AuthUser)req.getSession( ).getAttribute("authUser")).getPassword();
 		
 		String pageNoStr = req.getParameter("pageNo");
 		int pageNo = 1;
@@ -47,10 +48,17 @@ public class DeleteReviewHandler implements CommandHandler {
 		
 		// 파라미터 받아오기
 		int reviewId = Integer.parseInt(req.getParameter("no"));
+
 		
 		// errors 를 담을 Map 객체 생성
-		Map<String, Boolean> errors = new HashMap<>( );
+		Map<String, Boolean> errors = new HashMap<String, Boolean>( );
+		if(password == null || password.isEmpty()) {
+			errors.put("password", true);
+		}
 		req.setAttribute("errors", errors);
+		if(!errors.isEmpty()) {
+			return FORM_VIEW;
+		}
 		
 		// 사용할 서비스 객체 생성
 		DeleteReviewService deleteReviewService = DeleteReviewService.getInstance( );
@@ -59,7 +67,7 @@ public class DeleteReviewHandler implements CommandHandler {
 		
 		// 서비스 객체 사용
 		try {
-			deleteReviewService.delete(reviewId, memberId);
+			deleteReviewService.delete(reviewId, memberId, password);
 		}catch(PermissionDeniedException e) {
 			errors.put("PermissionDenied", true);
 			return FORM_VIEW;

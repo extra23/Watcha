@@ -105,7 +105,7 @@
 			
 			<br>
 			
-			<div style="text-align: center;"><input type="submit" value="수정"></div>
+			<div style="text-align: center;"><input type="submit" value="수정" onclick="modify()"></div>
 		
 		</form>
 	
@@ -141,6 +141,10 @@
 			document.getElementById("red-star").style.width = "90%";
 		}else if(star == 5.0){
 			document.getElementById("red-star").style.width = "100%";
+		}
+		
+		function modify(){
+			alert("리뷰가 수정되었습니다.");
 		}
 	
 	</script>

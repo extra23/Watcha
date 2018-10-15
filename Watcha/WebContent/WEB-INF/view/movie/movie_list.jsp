@@ -109,7 +109,7 @@
 							</p>
 							<p id="buttonGroup">
 								<a href="movie?pageNo=${param.pageNo}&movieId=${moviePre.movieId}&genreId=${param.genreId}" class="btn btn-primary" role="button" style="background-color: rgb(255, 153, 51); border-width: 0px;">상세보기</a> 
-								<a href="like_write?pageNo=${param.pageNo}&genreId=${param.genreId}&no=${moviePre.movieId}" class="btn btn-default" role="button"><img src="images/heart.png" width="20px;"></a>
+								<a href="like_write?pageNo=${param.pageNo}&genreId=${param.genreId}&no=${moviePre.movieId}" class="btn btn-default" role="button" onclick="return likeAlert()" name="like"><img src="images/heart.png" width="20px;"></a>
 							</p>
 						</div>
 					</div>
@@ -187,7 +187,7 @@
 								</p>
 								<p id="buttonGroup">
 									<a href="movie?movieId=${moviePre.movieId}" class="btn btn-primary" role="button" style="background-color: rgb(255, 153, 51); border-width: 0px;">상세보기</a> 
-									<a href="like_write?pageNo=${param.pageNo}&genreId=${param.genreId}&no=${moviePre.movieId}" class="btn btn-default" role="button"><img src="images/heart.png" width="20px;"></a>
+									<a href="like_write?pageNo=${param.pageNo}&genreId=${param.genreId}&no=${moviePre.movieId}" class="btn btn-default" role="button" onclick="return likeAlert()" name="like"><img src="images/heart.png" width="20px;"></a>
 								</p>
 							</div>
 						</div>
@@ -197,7 +197,13 @@
 		</div>
 	</c:if>
 	
-	<span></span>
+	<script>
+	
+		function likeAlert(){
+			alert("보고싶어요 목록에 추가되었습다 찜찜찜");
+			return true;
+		}
+	</script>
 	
 </body>
 </html>

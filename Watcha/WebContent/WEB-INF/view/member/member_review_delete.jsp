@@ -29,10 +29,18 @@
 		</h1>
 		<hr>
 		<form action="member_review_delete?no=${param.no}" method="post">
-			<input type="password" name="password" placeholder="비밀번호">
-			<input type="submit" value="삭제">
+			<input type="password" name="password" placeholder="비밀번호"><br>
+					<c:if test="${errors.password}"><span>Password를 입력해주세요.</span></c:if>
+					<c:if test="${errors.idOrPasswordNotMatch}"><span>Password가 일치하지 않습니다.</span></c:if>
+			<input type="submit" value="삭제" onclick="deleteAlert()">
 		</form>
 	</div>
+	
+	<script>
+		function deleteAlert(){
+			alert("리뷰가 삭제되었습니다.ㅜㅜ");
+		}
+	</script>
 	
 </body>
 </html>
