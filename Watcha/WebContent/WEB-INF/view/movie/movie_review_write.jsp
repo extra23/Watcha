@@ -82,6 +82,8 @@
 			</p>
 
 		</form>
+		
+		<c:if test="${errors.star}"><span>별점을 입력해주세요.</span></c:if>
 
 	</div>
 	

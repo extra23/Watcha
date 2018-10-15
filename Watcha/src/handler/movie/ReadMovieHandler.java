@@ -85,13 +85,13 @@ public class ReadMovieHandler implements CommandHandler{
 		
 		// 사용자가 작성한 내용을 받아와서 ReviewRequest 객체 생성하여 저장
 		String starStr = req.getParameter("star");
+		System.out.println("starStr : " + starStr);
 		double star = 0.0;
 		if(starStr != null) {
 			star = Double.parseDouble(starStr);
 		}else {
 			errors.put("star", true);
-			RequestDispatcher requestDispatcher = req.getRequestDispatcher(FORM_VIEW);
-			requestDispatcher.forward(req, resp);
+			return processForm(req, resp);
 		}
 		
 		ReviewRequest reviewRequest = new ReviewRequest(((AuthUser)req.getSession().getAttribute("authUser")).getMemberId(), movieId, star, req.getParameter("review"));
@@ -104,8 +104,7 @@ public class ReadMovieHandler implements CommandHandler{
 		}
 		
 		if(!errors.isEmpty()) {
-			RequestDispatcher requestDispatcher = req.getRequestDispatcher(FORM_VIEW);
-			requestDispatcher.forward(req, resp);
+			return processForm(req, resp);
 		}
 		
 		// WriteReviewService 이용하여 watcha_review 테이블에 reviewRequest 내용 넣기
