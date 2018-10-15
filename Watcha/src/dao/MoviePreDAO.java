@@ -147,7 +147,7 @@ public class MoviePreDAO {
 	// (genre_id 상관없이) searchWord들로 특정 MoviePreList를 가져오는 메소드
 	public List<MoviePre> selectMoviePreList(Connection conn, String searchWord) throws SQLException{
 		
-		String sql = "select * from movie_pre where search_word1 like ? or search_word2 like ? or search_word3 like ?";
+		String sql = "select * from movie_pre where search_word1 like ? or search_word2 like ? or search_word3 like ? order by movie_id desc;";
 		
 		try(PreparedStatement pst = conn.prepareStatement(sql);){
 			pst.setString(1, "%" + searchWord + "%");

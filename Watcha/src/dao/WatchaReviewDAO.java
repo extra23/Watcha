@@ -129,9 +129,11 @@ public class WatchaReviewDAO {
 	
 	// select : (watcha_review 테이블과 member 테이블 조인)
 	public List<WatchaReview> selectReviewList(Connection conn, int movieId, int startRow, int size) throws SQLException{
-		String sql = "select * from watcha_review join member on watcha_review.member_id = member.member_id where movie_id=? order by review_id desc";
+		String sql = "select * from watcha_review join member on watcha_review.member_id = member.member_id where movie_id=? order by review_id desc limit ?, ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql);){
 			pst.setInt(1, movieId);
+			pst.setInt(2, startRow);
+			pst.setInt(3, size);
 			try(ResultSet rs = pst.executeQuery();){
 				List<WatchaReview> watchaReviewList = new ArrayList<>();
 				while(rs.next()) {

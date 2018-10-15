@@ -28,13 +28,16 @@
 		<p id="movieTitle">
 			${movieData.moviePre.title}
 			<sub>
-				<a href="movie_list?pageNo=${param.pageNo}">[영화 목록]</a>
+				<a href="movie_list?pageNo=${param.pageNo}&genreId=${param.genreId}">[영화 목록]</a>
 			</sub>
 		</p>
 		
 		<p id="moviePre">
 			<span>${movieData.moviePre.releaseDate}년</span>&nbsp;&nbsp;
-			<span>${movieData.moviePre.rate}세</span>&nbsp;&nbsp;
+			<span>
+				<c:if test="${movieData.moviePre.rate eq 0}">전체 연령가</c:if>
+				<c:if test="${not (movieData.moviePre.rate eq 0)}">${movieData.moviePre.rate}세</c:if>
+			</span>&nbsp;&nbsp;
 			<span>${movieData.moviePre.time}분</span>&nbsp;&nbsp;
 			<span>
 				<c:forEach var="movieGenre" items="${movieGenreList}">

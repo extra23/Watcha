@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -46,10 +48,10 @@ public class ReadMovieHandler implements CommandHandler{
 		int movieId = Integer.parseInt(req.getParameter("movieId"));
 		this.movieId = movieId;
 		// reviewPage
-		String pageNoStr = req.getParameter("pageNo");
-		int pageNo = 1;
-		if(pageNoStr != null && !pageNoStr.isEmpty()) {
-			pageNo = Integer.parseInt(pageNoStr);
+		String reviewPageNoStr = req.getParameter("reviewPageNo");
+		int reviewPageNo = 1;
+		if(reviewPageNoStr != null && !reviewPageNoStr.isEmpty()) {
+			reviewPageNo = Integer.parseInt(reviewPageNoStr);
 		}
 		
 		// 사용할 service 객체 생성 (movieGenre, movieData, reviewPage)
@@ -66,7 +68,7 @@ public class ReadMovieHandler implements CommandHandler{
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;
 		}
-		ReviewPage reviewPage = listReviewService.getReviewPage(movieId, pageNo);
+		ReviewPage reviewPage = listReviewService.getReviewPage(movieId, reviewPageNo);
 		
 		// 화면으로 이동
 		req.setAttribute("movieData", movieData);
@@ -77,7 +79,7 @@ public class ReadMovieHandler implements CommandHandler{
 		
 	}
 	
-	public String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		
 		Map<String, Boolean> errors = new HashMap<>();
 		
@@ -88,6 +90,8 @@ public class ReadMovieHandler implements CommandHandler{
 			star = Double.parseDouble(starStr);
 		}else {
 			errors.put("star", true);
+			RequestDispatcher requestDispatcher = req.getRequestDispatcher(FORM_VIEW);
+			requestDispatcher.forward(req, resp);
 		}
 		
 		ReviewRequest reviewRequest = new ReviewRequest(((AuthUser)req.getSession().getAttribute("authUser")).getMemberId(), movieId, star, req.getParameter("review"));
@@ -100,7 +104,8 @@ public class ReadMovieHandler implements CommandHandler{
 		}
 		
 		if(!errors.isEmpty()) {
-			return FORM_VIEW;
+			RequestDispatcher requestDispatcher = req.getRequestDispatcher(FORM_VIEW);
+			requestDispatcher.forward(req, resp);
 		}
 		
 		// WriteReviewService 이용하여 watcha_review 테이블에 reviewRequest 내용 넣기

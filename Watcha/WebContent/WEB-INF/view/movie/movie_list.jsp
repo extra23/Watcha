@@ -59,11 +59,18 @@
 		</div>
  		<div class="col-lg-6" id="searchMovie">
  			<form class="input-group" action="movie_list?genreId=${param.genreId}" method="post">
-      			<input type="text" name="searchWord" class="form-control" placeholder="영화 제목을 입력해주세요." style="background-color: rgb(0, 0, 0, 0); color: white; border: 0.5px solid white; padding: 18px;">
+      			<input type="text" name="searchWord" class="form-control" placeholder="영화 제목을 입력해주세요." value="${param.searchWord}" style="background-color: rgb(0, 0, 0, 0); color: white; border: 0.5px solid white; padding: 18px;">
       			<span class="input-group-btn">
         			<input type="submit" class="btn btn-default" value="검색" style="background-color: rgb(0, 0, 0, 0); color: white; border: 0.5px solid white; padding: 8px;">
       			</span>
    			</form>
+ 		 </div>
+ 		 <div id="result" style="color: white; display: inline-block;">
+ 		 	<c:if test="${empty param.genreId and not empty param.searchWord}">전체 장르 > ${param.searchWord}</c:if>
+ 		 	<c:forEach var="movieGenre" items="${movieGenreList}">
+ 		 		<c:if test="${movieGenre.genreId eq param.genreId}">${movieGenre.genreName}</c:if>
+ 		 	</c:forEach>
+ 		 	<c:if test="${not empty param.genreId and not empty param.searchWord}"> > ${param.searchWord}</c:if>
  		 </div>
 	</div>
 
@@ -101,7 +108,7 @@
 								<span>${moviePre.time}분</span>
 							</p>
 							<p id="buttonGroup">
-								<a href="movie?pageNo=${param.pageNo}&movieId=${moviePre.movieId}" class="btn btn-primary" role="button" style="background-color: rgb(255, 153, 51); border-width: 0px;">상세보기</a> 
+								<a href="movie?pageNo=${param.pageNo}&movieId=${moviePre.movieId}&genreId=${param.genreId}" class="btn btn-primary" role="button" style="background-color: rgb(255, 153, 51); border-width: 0px;">상세보기</a> 
 								<a href="like_write?pageNo=${param.pageNo}&genreId=${param.genreId}&no=${moviePre.movieId}" class="btn btn-default" role="button"><img src="images/heart.png" width="20px;"></a>
 							</p>
 						</div>

@@ -86,7 +86,7 @@
 
 				<tbody>
 				<tr>
-					<td><textarea rows="5" cols="30" name="review">${review.review}</textarea></td>
+					<td><textarea rows="5" cols="30" name="review" style="resize: none;">${review.review}</textarea></td>
 					<td>
 						<div id="gray-star">
 							<c:forEach begin="1" end="10" var="i">

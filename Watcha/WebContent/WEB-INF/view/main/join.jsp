@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -20,6 +21,7 @@
 	 	#join input, #cancelButton {height: 30px; width: calc(100% - 10%); border-radius: 3px; border-width: 0px; padding: 5px; text-align: center;}
 		#createButton {background-color: rgb(65, 65, 65); color: white; cursor: pointer;}
 		#cancelButton {cursor: pointer;}
+		#join span {color: red; font-size: 12px;}
 
 	</style>
 </head>
@@ -41,19 +43,24 @@
 			<form action="join" method="post">
 			
 				<p>
-					<input type="text" name="memberName" placeholder="User Name" autocomplete=off>
+					<input type="text" name="memberName" placeholder="User Name" value="${param.memberName}" autocomplete=off><br>
+					<c:if test="${errors.memberName}"><span>User Name을 입력해주세요.</span></c:if>
 				</p>
 				
 				<p>
-					<input type="text" name="userId" placeholder="ID" autocomplete=off>
+					<input type="text" name="userId" placeholder="ID" value="${param.userId}" autocomplete=off><br>
+					<c:if test="${errors.userId}"><span>ID를 입력해주세요.</span></c:if>
+					<c:if test="${errors.duplicatedId}"><span>이미 등록된 ID 입니다.</span></c:if>
 				</p>
 				
 				<p>
-					<input type="password" name="password" placeholder="Password" autocomplete=off>
+					<input type="password" name="password" placeholder="Password" value="${param.password}" autocomplete=off><br>
+					<c:if test="${errors.password}"><span>Password를 입력해주세요.</span></c:if>
 				</p>
 				
 				<p>
-					<input type="password" name="confirmPassword" placeholder="Confirm Password" autocomplete=off>
+					<input type="password" name="confirmPassword" placeholder="Confirm Password" value="${param.confirmPassword}" autocomplete=off><br>
+					<c:if test="${errors.confirmPassword}"><span>Password를 다시 한 번 입력해주세요.</span></c:if>
 				</p>
 				
 				<p>
