@@ -59,7 +59,7 @@
 
 	<div id="movieReviewWrite">
 
-		<form action="movie?movieId=${param.movieId}" method="post">
+		<form action="movie?pageNo=${param.pageNo}&genreId=${param.genreId}&movieId=${param.movieId}" method="post">
 
 			<div id="gray-star">
 				<c:forEach begin="1" end="10" var="i">
@@ -73,7 +73,7 @@
 			<input type="hidden" name="star" id="star-value" value="0">
 
 			<p style="text-align: center; margin-top: -28px;">
-				<textarea rows="3" cols="125" name="review" style="font-size: 12px;">${param.review}</textarea>
+				<textarea rows="3" cols="125" name="review" style="font-size: 12px; resize: none;">${param.review}</textarea>
 			</p>
 
 			<p>

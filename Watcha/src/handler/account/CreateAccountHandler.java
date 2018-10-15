@@ -51,8 +51,7 @@ public class CreateAccountHandler implements CommandHandler{
 			createAccountRequest.setPassword(req.getParameter("password"));
 			createAccountRequest.setConfirmPassword(req.getParameter("confirmPassword"));
 		
-		Map<String, Boolean> errors = new HashMap<String, Boolean>( );
-		
+		Map<String, Boolean> errors = new HashMap<String, Boolean>();
 		req.setAttribute("errors", errors);
 		
 		// 데이터 검증, 무결성 체크, 패스워드 확인

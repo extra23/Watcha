@@ -91,46 +91,13 @@
 			<div id="ReviewListPagination">
 				<nav>
 					<ul class="pagination">
-						<c:if
-							test="${reviewPage.totalPages > 5 && reviewPage.currentPage > 4}">
-							<li><a href="movie?movieId=${param.movieId}&pageNo=1" aria-label="Previous">
-									<span aria-hidden="true">&lt;&lt;</span>
-							</a></li>
-						</c:if>
-						<c:if test="${reviewPage.currentPage > 2}">
-							<li>
-								<a href="movie?movieId=${param.movieId}&pageNo=${reviewPage.currentPage - 2}" aria-label="Previous">
-									<span aria-hidden="true">&lt;</span>
-								</a>
-							</li>
-						</c:if>
 						<c:forEach var="pageNo" begin="${reviewPage.startPage}" end="${reviewPage.endPage}">
-							<c:if test="${reviewPage.currentPage eq pageNo}">
-								<li class="active"><a href="movie?movieId=${param.movieId}&pageNo=${pageNo}">${pageNo}</a></li>
-							</c:if>
-							<c:if test="${not (reviewPage.currentPage eq pageNo)}">
-								<li><a href="movie?movieId=${param.movieId}&pageNo=${pageNo}">${pageNo}</a></li>
-							</c:if>
+							<li><a href="movie?pageNo=${param.pageNo}&movieId=${param.movieId}&reviewPageNo=${pageNo}">[${pageNo}]</a></li>
 						</c:forEach>
-						<c:if test="${reviewPage.totalPages > 1 && reviewPage.currentPage < reviewPage.totalPages - 1}">
-							<li>
-								<a href="movie?movieId=${param.movieId}&pageNo=${reviewPage.currentPage + 2}" aria-label="Next"> 
-									<span aria-hidden="true">&gt;</span>
-								</a>
-							</li>
-						</c:if>
-						<c:if test="${reviewPage.totalPages > 5 && reviewPage.currentPage < reviewPage.totalPages - 2}">
-							<li>
-								<a href="movie?movieId=${param.movieId}&pageNo=${reviewPage.totalPages}" aria-label="Next"> 
-									<span aria-hidden="true">&gt;&gt;</span>
-								</a>
-							</li>
-						</c:if>
 					</ul>
 				</nav>
 			</div>
 		</c:if>
-
 	</div>
 
 	<script>
