@@ -26,6 +26,8 @@
 			font-family: a찐빵M;
 		}
 		
+		#movieReviewWrite span {color: red; font-size: 12px;}
+		
 		#gray-star {
 			background: url("images/starGray.png") no-repeat; 
 			display: inline-block; 
@@ -77,13 +79,13 @@
 			</p>
 
 			<p>
-				<input type="submit" value="리뷰등록" style="width: 48.5%; font-size: 12px;">&nbsp;&nbsp;&nbsp;
+				<input type="submit" value="리뷰등록" style="width: 48.5%; font-size: 12px;" onclick="return starCheck()">&nbsp;&nbsp;&nbsp;
 				<input type="reset" value="초기화" style="width: 49%; font-size: 12px;">
 			</p>
 
 		</form>
 		
-		<c:if test="${errors.star}"><span>별점을 입력해주세요.</span></c:if>
+		<c:if test="${errors.review}"><span>review 내용을 입력해주세요.</span></c:if>
 
 	</div>
 	
@@ -93,6 +95,17 @@
 			var per = (i) * 10;
 			document.getElementById('red-star').style.width = per + '%';
 			document.getElementById('star-value').value = 0.5 * i;
+		}
+		
+		function starCheck(){
+			var star = document.getElementById('star-value').value;
+			if(star == 0.0){
+				if(confirm('현재 별점이 0.0점 입니다. 그대로 입력하시겠습니까?')){
+					return true;
+				}else {
+					return false;
+				}
+			}
 		}
 	
 	</script>
