@@ -28,6 +28,7 @@
 
 		table, tr, td {
 			padding: 8px;
+			width: 100%;
 		}
 
 		#writer {
@@ -69,6 +70,14 @@
 							<img src="images/starRed.png" width="102.5">
 						</div>&nbsp;
 						<span id="star">${review.star}</span>
+						<c:if test="${authUser.memberId eq review.memberId}">
+							<div style="float: right;">
+								<form method="post">
+									<input type="submit" value="수정" formaction="movie?pageNo=${param.pageNo}&genreId=${param.genreId}&movieId=${param.movieId}&submitFlag=modify">
+									<input type="submit" value="삭제" formaction="movie?pageNo=${param.pageNo}&genreId=${param.genreId}&movieId=${param.movieId}&submitFlag=delete">
+								</form>
+							</div>
+						</c:if>
 					</td>
 				</tr>
 				<tr>

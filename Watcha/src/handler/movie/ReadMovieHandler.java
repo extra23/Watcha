@@ -81,40 +81,48 @@ public class ReadMovieHandler implements CommandHandler{
 	
 	public String processSubmit(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		
-		Map<String, Boolean> errors = new HashMap<>();
-		
-		// 사용자가 작성한 내용을 받아와서 ReviewRequest 객체 생성하여 저장
-		String starStr = req.getParameter("star");
-		System.out.println("starStr : " + starStr);
-		double star = 0.0;
-		if(starStr != null) {
-			star = Double.parseDouble(starStr);
+		if(req.getParameter("submitFlag").equalsIgnoreCase("write")) {
+			
+			Map<String, Boolean> errors = new HashMap<>();
+			
+			// 사용자가 작성한 내용을 받아와서 ReviewRequest 객체 생성하여 저장
+			String starStr = req.getParameter("star");
+			double star = 0.0;
+			if(starStr != null) {
+				star = Double.parseDouble(starStr);
+			}else {
+				errors.put("star", true);
+				return processForm(req, resp);
+			}
+			
+			ReviewRequest reviewRequest = new ReviewRequest(((AuthUser)req.getSession().getAttribute("authUser")).getMemberId(), movieId, star, req.getParameter("review"));
+			
+			reviewRequest.validate(errors);
+			req.setAttribute("errors", errors);
+			
+			if(!errors.isEmpty()) {
+				return processForm(req, resp);
+			}
+			
+			// WriteReviewService 이용하여 watcha_review 테이블에 reviewRequest 내용 넣기
+			WriteReviewService writeReviewService = WriteReviewService.getInstance();
+			writeReviewService.write(reviewRequest);
+			
+			resp.sendRedirect(req.getContextPath() + "/movie?movieId=" + this.movieId);
+			
+			return null;
+			
+		}else if(req.getParameter("submitFlag").equalsIgnoreCase("modify")) {
+			System.out.println("리뷰 수정하는 곳");
+			return processForm(req, resp);
+		}else if(req.getParameter("submitFlag").equalsIgnoreCase("delete")) {
+			System.out.println("리뷰 삭제하는 곳");
+			return processForm(req, resp);
 		}else {
-			errors.put("star", true);
-			return processForm(req, resp);
+			System.out.println("error");
 		}
-		
-		ReviewRequest reviewRequest = new ReviewRequest(((AuthUser)req.getSession().getAttribute("authUser")).getMemberId(), movieId, star, req.getParameter("review"));
-		
-		reviewRequest.validate(errors);
-		req.setAttribute("errors", errors);
-		
-		for(String errorsValue : errors.keySet()) {
-			System.out.println(errorsValue);
-		}
-		
-		if(!errors.isEmpty()) {
-			return processForm(req, resp);
-		}
-		
-		// WriteReviewService 이용하여 watcha_review 테이블에 reviewRequest 내용 넣기
-		WriteReviewService writeReviewService = WriteReviewService.getInstance();
-		writeReviewService.write(reviewRequest);
-		
-		resp.sendRedirect(req.getContextPath() + "/movie?movieId=" + this.movieId);
 		
 		return null;
-		
 	}
 
 }

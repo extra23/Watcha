@@ -50,10 +50,6 @@ public class ModifyAccountHandler implements CommandHandler{
 		String newPwd = req.getParameter("newPwd");
 		String memberName = req.getParameter("memberName");
 		
-		System.out.println("oldPwd : " + req.getParameter("oldPwd"));
-		System.out.println("newPwd : " + newPwd);
-		System.out.println("memberName : " + memberName);
-		
 		if(oldPwd == null || oldPwd.isEmpty()) {
 			errors.put("oldPwd", true);
 		}
@@ -72,8 +68,10 @@ public class ModifyAccountHandler implements CommandHandler{
 		
 		try {
 			ModifyAccountService modifyAccountService = ModifyAccountService.getInstance();
-			modifyAccountService.changePassword(authUser.getUserId(), oldPwd, newPwd,memberName);
-			req.setAttribute("authUser", authUser);
+			int modifyFlag = modifyAccountService.changePassword(authUser.getUserId(), oldPwd, newPwd, memberName);
+			authUser.setPassword(newPwd);
+			authUser.setMemberName(memberName);
+			req.setAttribute("modifyFlag", modifyFlag);
 			return FORM_VIEW;
 		}catch(InvalidPasswordException e) {
 			errors.put("wrongOldPwd", true);

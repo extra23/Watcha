@@ -74,18 +74,19 @@
 			
 			<input type="hidden" name="star" id="star-value" value="0">
 
-			<p style="text-align: center; margin-top: -28px;">
-				<textarea rows="3" cols="125" name="review" style="font-size: 12px; resize: none;">${param.review}</textarea>
+			<p style="text-align: center; margin-top: -28px; margin-bottom: 0;">
+				<textarea rows="3" cols="125" name="review" maxlength="249" style="font-size: 12px; resize: none; margin-bottom: 0;" onkeyup="lengthCheck()">${param.review}</textarea>
+				<div id="reviewLength" style="text-align: right; font-size: 12px; margin-right: 5px;">0 / 250</div>
 			</p>
 
 			<p>
 				<input type="submit" value="리뷰등록" style="width: 48.5%; font-size: 12px;" onclick="return starCheck()">&nbsp;&nbsp;&nbsp;
-				<input type="reset" value="초기화" style="width: 49%; font-size: 12px;">
+				<input type="reset" value="초기화" style="width: 49%; font-size: 12px;" onclick="return starReset()">
 			</p>
 
 		</form>
 		
-		<c:if test="${errors.review}"><span>review 내용을 입력해주세요.</span></c:if>
+		<c:if test="${errors.review}"><span>※ review 내용을 입력해주세요.</span></c:if>
 
 	</div>
 	
@@ -97,6 +98,10 @@
 			document.getElementById('star-value').value = 0.5 * i;
 		}
 		
+		function lengthCheck(){
+			document.getElementById('reviewLength').innerHTML = document.getElementsByName('review')[0].value.length + " / 250";
+		}
+		
 		function starCheck(){
 			var star = document.getElementById('star-value').value;
 			if(star == 0.0){
@@ -106,6 +111,11 @@
 					return false;
 				}
 			}
+		}
+		
+		function starReset(){
+			resize(0)
+			return true;
 		}
 	
 	</script>

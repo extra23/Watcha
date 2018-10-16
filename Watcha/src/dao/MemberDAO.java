@@ -70,13 +70,13 @@ public class MemberDAO {
 	}
 	
 	// 사용자 정보 수정
-	public void update(Connection conn, Member member) throws SQLException {
+	public int update(Connection conn, Member member) throws SQLException {
 		String sql = "update member set member_name = ?, password = ? where member_id = ?";
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setString(1, member.getMemberName());
 			pst.setString(2, member.getPassword());
 			pst.setInt(3, member.getMemberId());
-			pst.executeUpdate();
+			return pst.executeUpdate();
 		}
 	}
 	

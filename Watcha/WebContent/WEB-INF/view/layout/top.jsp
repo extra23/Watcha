@@ -94,7 +94,7 @@
 				<li class="divider"></li>
 			</c:if>
 		
-			<li><a href="member_account_modify" onclick="return check()">계정 관리</a></li>
+			<li><a href="member_account_modify" onclick="return top_check()">계정 관리</a></li>
 			<li><a href="member_account_delete">회원 탈퇴</a></li>
 			<li><a href="member_like">보고싶어요</a></li>
 			<li><a href="member_review_list">리뷰</a>
@@ -110,7 +110,7 @@
 	
 	<script>
 	
-		function check(){
+		function top_check(){
 			var password = prompt("비밀번호를 다시 한 번 입력해주세요.");
 			if("${authUser.password}" == password){
 				return true;

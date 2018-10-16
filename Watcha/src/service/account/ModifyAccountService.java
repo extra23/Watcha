@@ -24,7 +24,9 @@ public class ModifyAccountService {
 	// 비밀번호 변경위해 비즈니스 로직 수행
 	// 로그인 아이디, 현 비번, 새 비번을 인자로 받고 그것을 통해서 비번이 제대로 되었는지
 	// 현재 있는 사용자인지 확인하고 로직을 수행한다.
-	public void changePassword(String userId, String oldPwd, String newPwd,String memberName) {
+	public int changePassword(String userId, String oldPwd, String newPwd, String memberName) {
+		
+		int modifyFlag = 0;
 		
 		MemberDAO memberDao = MemberDAO.getInstance();
 		
@@ -51,8 +53,10 @@ public class ModifyAccountService {
 				// 정상이면 update
 				member.setPassword(newPwd);
 				member.setMemberName(memberName);
-				memberDao.update(conn, member);
+				modifyFlag = memberDao.update(conn, member);
 				conn.commit();
+				
+				return modifyFlag;
 				
 			} catch (SQLException e) {
 				// 아니면 예외날리고 롤백
