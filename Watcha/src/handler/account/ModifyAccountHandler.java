@@ -62,7 +62,7 @@ public class ModifyAccountHandler implements CommandHandler{
 			errors.put("newPwd", true);
 		}
 		
-		if(oldPwd != null && newPwd != null && oldPwd.equals(newPwd)) {
+		if(oldPwd.equals(newPwd)) {
 			errors.put("samePwd", true);
 		}
 		
