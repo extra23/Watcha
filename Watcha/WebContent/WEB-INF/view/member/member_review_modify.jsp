@@ -158,15 +158,17 @@
 					return false;
 				}
 			} else if(star == 0.0){
-					if(confirm('현재 별점이 0.0점 입니다. 그대로 입력하시겠습니까?')){
-						alert("리뷰가 수정되었습니다.");	
-						return true;
-					}else {
-						return false;
-					}
+				if(confirm('현재 별점이 0.0점 입니다. 그대로 입력하시겠습니까?')){
+					alert("리뷰가 수정되었습니다.");	
+					return true;
+				}else {
+					return false;
 				}
-			}	
-			
+			}
+			alert("리뷰가 수정되었습니다.");
+			return true;
+		}
+
 		
 	
 	
