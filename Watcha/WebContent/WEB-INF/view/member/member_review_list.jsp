@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
 
 <!DOCTYPE html>
@@ -88,8 +89,19 @@
 							</div>
 							<span id="star">${reviewData.star}</span>
 						</td>
-						<td>${reviewData.wdate}</td>
-						<td>${reviewData.udate}</td>
+						<td>
+							<c:set value="${reviewData.wdate.toString()}" var="wdateStr"/> 
+							<fmt:parseDate value="${wdateStr }" var="parseWdate" pattern="YYYY-MM-dd'T'HH:mm:ss"/>
+							<fmt:formatDate value="${parseWdate }" var="wdate" pattern="YYYY-MM-dd HH:mm"/>
+							${wdate }
+						</td>
+						
+						<td>
+						<c:set value="${reviewData.udate.toString()}" var="udateStr"/>
+						<fmt:parseDate value="${udateStr }" var="parseUdate" pattern="YYYY-MM-dd'T'HH:mm:ss"/>
+						<fmt:formatDate value="${parseUdate }" var="udate" pattern="YYYY-MM-dd HH:mm"/>
+						${udate}
+						</td>
 						<td>
 							<a href="member_review_modify?pageNo=${param.pageNo}&no=${reviewData.reviewId}">[수정]</a>
 							<a href="member_review_delete?pageNo=${param.pageNo}&no=${reviewData.reviewId}">[삭제]</a>
