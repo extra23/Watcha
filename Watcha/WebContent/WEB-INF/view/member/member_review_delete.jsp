@@ -30,16 +30,30 @@
 		<hr>
 		<form action="member_review_delete?no=${param.no}" method="post">
 			<input type="password" name="password" placeholder="비밀번호"><br>
-					<c:if test="${errors.password}"><span>Password를 입력해주세요.</span></c:if>
-					<c:if test="${errors.idOrPasswordNotMatch}"><span>Password가 일치하지 않습니다.</span></c:if>
-			<input type="submit" value="삭제" onclick="deleteAlert()">
+			<input type="submit" value="삭제" onclick="return deleteAlert()">
 		</form>
+		
+		
 	</div>
 	
 	<script>
 		function deleteAlert(){
-			alert("리뷰가 삭제되었습니다.ㅜㅜ");
-		}
+			var password = document.getElementsByName('password')[0].value; 
+			
+			if(password == null || password == ""){
+				alert("비밀번호를 입력하지 않았습니다.");
+				return false;
+			}else if(password != "${authUser.password}"){
+				alert("입력한 비밀번호가 계정의 비밀번호와 다릅니다. 다시 입력해주세요.");
+				return false;
+				}else{
+					alert("삭제제제ㅔ.");
+				}
+			}
+			
+	
+		
+
 	</script>
 	
 </body>

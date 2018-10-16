@@ -71,7 +71,7 @@
 		
 		<hr>
 	
-		<form action="member_review_modify?no=${param.no}" method="post">
+		<form action="member_review_modify?no=${param.no}" method="post" name="review1">
 
 			<input type="hidden" name="no" value="${reviewData.reviewId}">
 
@@ -96,7 +96,8 @@
 								<img src="images/starRed2.png">
 							</div>
 						</div>
-						<input type="hidden" name="star" id="star-value" value="0">
+						<%-- <input type="hidden" name="star" id="star-value" value="${review.star}"> --%>
+						<input type="hidden" name="star" id="star-value">
 					</td>
 				</tr>
 				</tbody>
@@ -105,10 +106,9 @@
 			
 			<br>
 			
-			<div style="text-align: center;"><input type="submit" value="수정" onclick="modify()"></div>
-		
-		</form>
+			<div style="text-align: center;"><input type="submit" value="수정" onclick="return modify()"></div>
 	
+		</form>
 	</div>
 
 	<script>
@@ -119,8 +119,10 @@
 			document.getElementById('star-value').value = 0.5 * i;
 		}
 		
+		resize("${review.star*2}");
+
 		var star = <c:out value="${review.star}"/>
-		
+		/* 
 		if(star == 0.5){
 			document.getElementById("red-star").style.width = "10%";
 		}else if(star == 1.0){
@@ -141,11 +143,32 @@
 			document.getElementById("red-star").style.width = "90%";
 		}else if(star == 5.0){
 			document.getElementById("red-star").style.width = "100%";
-		}
+		} */
 		
 		function modify(){
-			alert("리뷰가 수정되었습니다.");
-		}
+			var review = document.getElementsByName('review')[0].value;
+			var star = document.getElementById('star-value').value;
+			
+			
+			if(review == null || review == ""){
+				if(confirm('리뷰가 입력되지 않았ㅅ브니; 그대로 입력하시겠습니까?')){
+					alert("리뷰가 수정되었습니다.");
+					return true;
+				}else{
+					return false;
+				}
+			} else if(star == 0.0){
+					if(confirm('현재 별점이 0.0점 입니다. 그대로 입력하시겠습니까?')){
+						alert("리뷰가 수정되었습니다.");	
+						return true;
+					}else {
+						return false;
+					}
+				}
+			}	
+			
+		
+	
 	
 	</script>
 	
