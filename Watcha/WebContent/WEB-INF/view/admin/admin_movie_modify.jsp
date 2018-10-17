@@ -130,12 +130,20 @@
 			<br>
 			
 			<div style="text-align: center;">
-				<input type="submit" value="수정" id="submitButton">
+				<input type="submit" value="수정" id="submitButton" onclick="return modify()">
 			</div>
 		
 		</form>
 	
 	</div>
+	
+	<script>
+	
+	function modify(){
+		alert("수정완료");
+	}
+	
+	</script>
 
 </body>
 </html>

@@ -2,7 +2,13 @@ package service.like;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.DuplicateFormatFlagsException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import Exception.DuplicateException;
 import dao.WatchaLikeDAO;
 import jdbc.ConnectionProvider;
 
@@ -21,8 +27,20 @@ public class WriteLikeService {
 		WatchaLikeDAO watchaLikeDAO = WatchaLikeDAO.getInstance();
 		
 		try(Connection conn = ConnectionProvider.getConnection()){
-			
-			watchaLikeDAO.insert(conn, likeRequest);
+			conn.setAutoCommit(false);
+			try {
+				List<Integer> movieIdArr = watchaLikeDAO.selectByIdToArr(conn, likeRequest.getMemberId());
+				for(int movieId : movieIdArr) {
+					if(movieId == likeRequest.getMovieId()) {
+						conn.rollback();
+						throw new DuplicateException("이미 찜한 영화입니다.");
+					}	
+				}
+				watchaLikeDAO.insert(conn, likeRequest);
+				conn.commit();
+			}catch(SQLException e) {
+				throw new RuntimeException(e);
+			}	
 			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

@@ -51,7 +51,10 @@ public class ListLikeHandler implements CommandHandler{
 		 
 		 req.setAttribute("likePage", likePage);
 		
+		 
 		 //SelectLikeService 객체 생성
+	
+		 
 		 SelectLikeService selectLikeService = SelectLikeService.getInstance();
 		 
 		 List<MoviePre> moviePreList = selectLikeService.getLikeList(memberId);

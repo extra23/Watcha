@@ -28,6 +28,7 @@
 		#col-md-4 {width: 100%;}
 		#movieTitle {font-family: BomBaramOTF;}
 		#genre, #movieInfo, #buttonGroup {font-family: a찐빵M;}
+
 		
 		#MovieListPagination {text-align: center;}
 		#MovieListPagination * {font-family: a찐빵M;}
@@ -109,7 +110,8 @@
 							</p>
 							<p id="buttonGroup">
 								<a href="movie?pageNo=${param.pageNo}&movieId=${moviePre.movieId}&genreId=${param.genreId}" class="btn btn-primary" role="button" style="background-color: rgb(255, 153, 51); border-width: 0px;">상세보기</a> 
-								<a href="like_write?pageNo=${param.pageNo}&genreId=${param.genreId}&no=${moviePre.movieId}" class="btn btn-default" role="button" onclick="return likeAlert()" name="like"><img src="images/heart.png" width="20px;"></a>
+								<a href="like_write?pageNo=${param.pageNo}&genreId=${param.genreId}&no=${moviePre.movieId}" class="btn btn-default" role="button" onclick="return likeAlert()"><img src="images/heart.png" width="20px;"></a>
+						
 							</p>
 						</div>
 					</div>
@@ -196,14 +198,19 @@
 			</c:forEach>
 		</div>
 	</c:if>
-	
-	<script>
+	${exitError}
+	<!-- <script>
 	
 		function likeAlert(){
 			alert("보고싶어요 목록에 추가되었습다 찜찜찜");
 			return true;
 		}
-	</script>
+		
+		if('${exitError}'){
+			alert("이미 추가된 것");
+		}
+		
+	</script> -->
 	
 </body>
 </html>

@@ -138,7 +138,7 @@
 						<th>관리자 비밀번호</th>
 						<td>
 							<input type="password" name="password" placeholder="관리자 비밀번호">
-							<input type="submit" value="삭제">
+							<input type="submit" value="삭제" onclick="return deleteAlert()">
 						</td>
 					</tr>
 				</table>
@@ -146,6 +146,26 @@
 		</div>
 	
 	</div>
+	
+	<script>
+		function deleteAlert(){
+			var password = document.getElementsByName('password')[0].value; 
+			
+			if(password == null || password == ""){
+				alert("비밀번호를 입력하지 않았습니다.");
+				return false;
+			}else if(password != "${authUser.password}"){
+				alert("입력한 비밀번호가 계정의 비밀번호와 다릅니다. 다시 입력해주세요.");
+				return false;
+				}else{
+					alert("삭제제제ㅔ.");
+				}
+			}
+			
+	
+		
+
+	</script>
 	
 </body>
 </html>

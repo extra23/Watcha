@@ -1,11 +1,13 @@
 package handler.like;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Exception.DuplicateException;
 import common.handler.CommandHandler;
 import model.WatchaLike;
 import service.account.AuthUser;
@@ -19,6 +21,8 @@ public class WriteLikeHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		resp.setContentType("text/html; charset=UTF-8");
+		PrintWriter pw = resp.getWriter();
 		
 		String pageNoStr = req.getParameter("pageNo");
 		int pageNo = 1;
@@ -42,9 +46,17 @@ public class WriteLikeHandler implements CommandHandler{
 		LikeRequest likeRequest = new LikeRequest(memberId, movieId);
 		
 		WriteLikeService writeLikeService = WriteLikeService.getInstance();
-		writeLikeService.write(likeRequest);
 		
-		resp.sendRedirect(req.getContextPath()+"/movie_list?pageNo=" + pageNo + "&genreId=" + genreId);
+		try{
+			
+			writeLikeService.write(likeRequest);
+			pw.println("<script>alert('보고싶어요 목록에 추가되었습다 찜찜찜')</script>");
+		}catch(DuplicateException e) {
+			pw.println("<script>alert('이미 찜함')</script>");
+		}
+		
+		pw.println("<script>location.href = '" + req.getContextPath()+"/movie_list?pageNo=" + pageNo + "&genreId=" + genreId + "'</script>");
+		//resp.sendRedirect(req.getContextPath()+"/movie_list?pageNo=" + pageNo + "&genreId=" + genreId);
 		
 		return null;
 		
