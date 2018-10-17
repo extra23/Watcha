@@ -64,33 +64,25 @@
 		<!-- 게시글이 있을 때 보여줄 화면 -->
 		<table id="movieReviewTable">
 			<c:forEach var="review" items="${reviewPage.reviewList}">
+				<tbody id="${review.reviewId}">
 				<tr>
-					<td><span id="writer">${review.memberName}</span>&nbsp;&nbsp;
+					<td>
+						<span id="writer">${review.memberName}</span>&nbsp;&nbsp;
 						<div class="star-div-${review.star}" style="overflow: hidden; display: inline-block; position: relative; top: 4px;">
 							<img src="images/starRed.png" width="102.5">
 						</div>&nbsp;
 						<span id="star">${review.star}</span>
 						<c:if test="${authUser.memberId eq review.memberId}">
 							<div style="float: right;">
-								<form method="post">
-									<input type="submit" value="수정" formaction="movie?pageNo=${param.pageNo}&genreId=${param.genreId}&movieId=${param.movieId}&submitFlag=modify">
-									<input type="submit" value="삭제" formaction="movie?pageNo=${param.pageNo}&genreId=${param.genreId}&movieId=${param.movieId}&submitFlag=delete">
-								</form>
+								<button onclick="reviewModify(${review.reviewId})">수정</button>
 							</div>
 						</c:if>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2"><u:pre value="${review.review}"></u:pre></td>
+					<td colspan="2" style="padding-bottom: 60px;"><u:pre value="${review.review}"></u:pre></td>
 				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
+				</tbody>
 			</c:forEach>
 		</table>
 
@@ -157,6 +149,11 @@
 				}
 			}
 		</c:forEach>
+		
+		function reviewModify(reviewId, memberName){
+			document.getElementById(reviewId).children[0].children[0].innerHTML = "메롱";
+		}
+		
 	</script>
 
 </body>

@@ -61,7 +61,7 @@
 
 	<div id="movieReviewWrite">
 
-		<form action="movie?pageNo=${param.pageNo}&genreId=${param.genreId}&movieId=${param.movieId}" method="post">
+		<form action="movie?pageNo=${param.pageNo}&genreId=${param.genreId}&movieId=${param.movieId}&submitFlag=write" method="post">
 
 			<div id="gray-star">
 				<c:forEach begin="1" end="10" var="i">
